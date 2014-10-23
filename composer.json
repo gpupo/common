@@ -1,0 +1,26 @@
+{
+    "name": "gpupo/common",
+    "description": "Common Objects",
+    "keywords": [""],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.5",
+        "doctrine/common": "~2.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": { "Gpupo\\": "src/Gpupo" }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Gpupo\\Tests\\": "tests/Gpupo/Tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
