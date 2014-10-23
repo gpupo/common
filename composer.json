@@ -1,7 +1,7 @@
 {
     "name": "gpupo/common",
     "description": "Common Objects",
-    "keywords": [""],
+    "keywords": ["common"],
     "license": "MIT",
     "require": {
         "php": ">=5.5",
