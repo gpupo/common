@@ -11,7 +11,12 @@ trait OptionsTrait
     {
         return $this->options;
     }
-
+    
+    public function getDefaultOptions()
+    {
+        return [];
+    }
+    
     public function setOptions(Array $options = [])
     {
         $list = array_merge($this->getDefaultOptions(), $options);
