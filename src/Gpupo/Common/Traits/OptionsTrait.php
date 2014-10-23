@@ -9,6 +9,10 @@ trait OptionsTrait
 
     public function getOptions()
     {
+        if (!$this->options instanceof Collection) {
+            $this->setOptions($this->options);
+        }
+        
         return $this->options;
     }
     
