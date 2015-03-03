@@ -1,5 +1,9 @@
+[![Build Status](https://secure.travis-ci.org/gpupo/common.png?branch=master)](http://travis-ci.org/gpupo/common)
 
+## Install
 
+    composer require gpupo/common:dev-master
+    
 ## Contributors
 
 * [@gpupo](https://github.com/gpupo)
