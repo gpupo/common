@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of common
+ *
+ * (c) Gilmar Pupo <g@g1mr.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Gpupo\Common\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -24,10 +33,10 @@ abstract class CollectionAbstract extends ArrayCollection
 
     public function toJson($route = null)
     {
-        if (empty($route) || $route == 'save') {
+        if (empty($route) || $route === 'save') {
             $data = $this->toArray();
         } else {
-            $method = 'to' . ucfirst($route);
+            $method = 'to'.ucfirst($route);
             $data = $this->$method();
         }
 
@@ -36,7 +45,7 @@ abstract class CollectionAbstract extends ArrayCollection
 
     protected function piece($key, $newKey = null)
     {
-        return [$newKey?: $key => $this->get($key)];
+        return [$newKey ?: $key => $this->get($key)];
     }
 
     public function __toString()
