@@ -12,7 +12,7 @@
 namespace Gpupo\Tests\Common\Entity;
 
 use Gpupo\Common\Entity\Collection;
-use Gpupo\Tests\TestCaseAbstract;
+use Gpupo\Tests\Common\TestCaseAbstract;
 
 class CollectionTest extends TestCaseAbstract
 {
