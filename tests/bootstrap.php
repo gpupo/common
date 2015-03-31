@@ -9,8 +9,4 @@
  * file that was distributed with this source code.
  */
 
-namespace Gpupo\Tests;
-
-abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
-{
-}
+$loader = require __DIR__.'/../vendor/autoload.php';
