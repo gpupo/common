@@ -2,7 +2,7 @@
 
 namespace Gpupo\Tests\Common\Entity;
 
-use Gpupo\Tests\TestCaseAbstract;
+use Gpupo\Tests\Common\TestCaseAbstract;
 use Gpupo\Common\Entity\Collection;
 
 class CommonTest extends TestCaseAbstract
