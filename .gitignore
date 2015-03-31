@@ -1,4 +1,4 @@
 *.swp
-vendor
-composer.lock
-nbproject
+/vendor/
+/nbproject/
+/.idea/
