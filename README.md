@@ -2,11 +2,12 @@
 
 ## Install
 
-    composer require gpupo/common:dev-master
+    composer require gpupo/common
     
 ## Contributors
 
-* [@gpupo](https://github.com/gpupo)
+- [@gpupo](https://github.com/gpupo)
+- [All Contributors](https://github.com/gpupo/common/contributors)
 
 ## License
 
