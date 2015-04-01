@@ -13,18 +13,16 @@ namespace Gpupo\Common\Traits;
 
 trait SingletonTrait
 {
-    protected static $instance;
-
-    /**
-     * Permite acesso a instancia dinamica.
-     */
-    public static function getInstance()
+    final public static function getInstance()
     {
-        if (!isset(self::$instance)) {
-            $class = get_called_class();
-            self::$instance = new $class();
+        static $aoInstance = [];
+
+        $calledClassName = get_called_class();
+
+        if (! isset($instanceList[$calledClassName])) {
+            $instanceList[$calledClassName] = new $calledClassName();
         }
 
-        return self::$instance;
+        return $instanceList[$calledClassName];
     }
 }
