@@ -15,11 +15,11 @@ trait SingletonTrait
 {
     final public static function getInstance()
     {
-        static $aoInstance = [];
+        static $instanceList = [];
 
         $calledClassName = get_called_class();
 
-        if (! isset($instanceList[$calledClassName])) {
+        if (!isset($instanceList[$calledClassName])) {
             $instanceList[$calledClassName] = new $calledClassName();
         }
 
