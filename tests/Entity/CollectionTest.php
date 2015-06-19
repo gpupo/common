@@ -16,6 +16,23 @@ use Gpupo\Tests\Common\TestCaseAbstract;
 
 class CollectionTest extends TestCaseAbstract
 {
+    public function testPossuiAcessoSingleton()
+    {
+        $collection = Collection::getInstance();
+        $this->assertInstanceOf('Gpupo\Common\Entity\Collection', $collection);
+
+        return $collection;
+    }
+
+    /**
+     * @depends testPossuiAcessoSingleton
+     */
+    public function testPossuiMétodosGettersESettersMágicos(Collection $collection)
+    {
+        $collection->setFoo('bar');
+        $this->assertEquals('bar', $collection->getFoo());
+    }
+
     /**
      * @dataProvider dataProviderInformacao
      */
