@@ -13,10 +13,12 @@ namespace Gpupo\Common\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Gpupo\Common\Traits\MagicCallTrait;
+use Gpupo\Common\Traits\SingletonTrait;
 
 abstract class CollectionAbstract extends ArrayCollection
 {
     use MagicCallTrait;
+    use SingletonTrait;
 
     public function toArray()
     {
@@ -29,6 +31,26 @@ abstract class CollectionAbstract extends ArrayCollection
         }
 
         return $list;
+    }
+
+    /**
+     * Adiciona um elemento no final de um valor array existente.
+     *
+     * @param string $key
+     * @param mixed  $value
+     *
+     * @throws \LogicException
+     */
+    public function addToArrayValue($key, $value)
+    {
+        $currentValue = $this->get($key);
+
+        if (is_array($currentValue)) {
+            $currentValue[] = $value;
+            $this->set($key, $currentValue);
+        } else {
+            throw new \LogicException("Elemento $key deve ser um array");
+        }
     }
 
     public function toJson($route = null)

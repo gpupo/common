@@ -7,23 +7,18 @@
         "php": ">=5.4",
         "doctrine/common": "~2.4"
     },
-    "require-dev": {
-        "phpunit/phpunit": "~4.0"
-    },
     "autoload": {
         "psr-4": {
-            "Gpupo\\Common\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
+            "Gpupo\\Common\\": "src",
             "Gpupo\\Tests\\Common\\": "tests"
         }
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.5-dev"
-        }
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "codeclimate/php-test-reporter": "dev-master"
+    },
+    "config": {
+        "preferred-install": "dist"
     },
     "minimum-stability" : "stable"
 }
