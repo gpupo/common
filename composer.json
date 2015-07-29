@@ -1,6 +1,13 @@
 {
     "name": "gpupo/common",
     "description": "Common Objects",
+    "homepage": "https://www.github.com/gpupo/common",
+    "authors": [
+        {
+            "name": "Gilmar Pupo",
+            "email": "g@g1mr.com"
+        }
+    ],
     "keywords": ["common"],
     "license": "MIT",
     "require": {
