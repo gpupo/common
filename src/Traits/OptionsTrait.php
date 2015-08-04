@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of common
+ * This file is part of gpupo/common
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -43,7 +43,7 @@ trait OptionsTrait
     public function receiveOptions(Collection $options)
     {
         var_dump($options);
+
         return $this->setOptions(array_merge($this->getDefaultOptions(), $options->toArray()));
     }
-
 }

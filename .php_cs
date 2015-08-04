@@ -7,7 +7,7 @@ use Symfony\CS\Fixer\Contrib\HeaderCommentFixer;
 
 
 $header = <<<EOF
-This file is part of common
+This file is part of gpupo/common
 
 (c) Gilmar Pupo <g@g1mr.com>
 
@@ -41,5 +41,5 @@ return Config::create()
         'strict_param',
     ))
     ->level(FixerInterface::SYMFONY_LEVEL)
-    ->setUsingCache(false)             
+    ->setUsingCache(false)
     ->finder($finder);

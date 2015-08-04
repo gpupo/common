@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of common
+ * This file is part of gpupo/common
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
@@ -25,7 +25,7 @@ abstract class CollectionAbstract extends ArrayCollection
         $list = parent::toArray();
 
         foreach ($list as $key => $value) {
-            if ($value instanceof CollectionAbstract) {
+            if ($value instanceof self) {
                 $list[$key] = $value->toArray();
             }
         }
