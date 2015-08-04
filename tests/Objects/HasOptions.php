@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of common
+ * This file is part of gpupo/common
  *
  * (c) Gilmar Pupo <g@g1mr.com>
  *
