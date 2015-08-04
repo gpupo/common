@@ -39,4 +39,11 @@ trait OptionsTrait
 
         return $this;
     }
+
+    public function receiveOptions(Collection $options)
+    {
+        var_dump($options);
+        return $this->setOptions(array_merge($this->getDefaultOptions(), $options->toArray()));
+    }
+
 }
