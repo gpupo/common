@@ -3,7 +3,7 @@
 ## Install
 
     composer require gpupo/common
-    
+
 ## Contributors
 
 - [@gpupo](https://github.com/gpupo)
