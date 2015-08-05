@@ -7,6 +7,9 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
+ *
+ * For more information, see
+ * <http://www.g1mr.com/common/>.
  */
 
 namespace Gpupo\Common\Traits;
@@ -42,8 +45,6 @@ trait OptionsTrait
 
     public function receiveOptions(Collection $options)
     {
-        var_dump($options);
-
         return $this->setOptions(array_merge($this->getDefaultOptions(), $options->toArray()));
     }
 }
