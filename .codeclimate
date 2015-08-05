@@ -1,0 +1,5 @@
+#!/bin/bash
+
+phpunit --coverage-clover build/logs/clover.xml;
+
+CODECLIMATE_REPO_TOKEN=5144e386c3e4cd6fbab8d18c702139069f287b4887d165f432bce831a61674ef ./vendor/bin/test-reporter

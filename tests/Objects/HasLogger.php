@@ -12,4 +12,12 @@
  * <http://www.g1mr.com/common/>.
  */
 
-$loader = require __DIR__.'/../vendor/autoload.php';
+namespace Gpupo\Tests\Common\Objects;
+
+use Gpupo\Common\Interfaces\LoggerInterface;
+use Gpupo\Common\Traits\LoggerTrait;
+
+class HasLogger extends AbstractObject implements LoggerInterface
+{
+    use LoggerTrait;
+}

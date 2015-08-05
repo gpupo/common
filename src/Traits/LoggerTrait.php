@@ -12,7 +12,7 @@
  * <http://www.g1mr.com/common/>.
  */
 
-namespace Gpupo\CommonSdk\Traits;
+namespace Gpupo\Common\Traits;
 
 trait LoggerTrait
 {
