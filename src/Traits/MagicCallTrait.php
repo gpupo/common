@@ -14,7 +14,7 @@
 
 namespace Gpupo\Common\Traits;
 
-use Gpupo\Common\Tools\String;
+use Gpupo\Common\Tools\StringTool;
 
 /**
  * Acesso mágico a elementos de Doctrine Collection
@@ -34,7 +34,7 @@ trait MagicCallTrait
         if ($this->containsKey($field)) {
             return $this->get($field);
         }
-        $snake = String::camelCaseToSnakeCase($field);
+        $snake = StringTool::camelCaseToSnakeCase($field);
 
         if ($this->containsKey($snake)) {
             return $this->get($snake);
