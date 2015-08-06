@@ -14,19 +14,22 @@
 
 namespace Gpupo\Common\Traits;
 
-use Gpupo\Tools\String;
+use Gpupo\Common\Tools\String;
 
 trait MagicCallTrait
 {
-    protected function magicResolvGetter($field)
+    private function __magicResolvGetter($field, callable $exception)
     {
         if ($this->containsKey($field)) {
             return $this->get($field);
-        } elseif ($this->containsKey($field=String::camelCaseToSnakeCase($field))) {
-            return $this->get($field);
+        }
+        $snake = String::camelCaseToSnakeCase($field);
+
+        if ($this->containsKey($snake)) {
+            return $this->get($snake);
         }
 
-        return false;
+        $exception();
     }
 
     /**
@@ -41,6 +44,11 @@ trait MagicCallTrait
      */
     public function __call($method, $args)
     {
+        $exception = function() use ($method)
+        {
+            throw new \BadMethodCallException('There is no [magic] method '.$method.'()');
+        };
+
         $command = substr($method, 0, 3);
         $field = substr($method, 3);
         $field[0] = strtolower($field[0]);
@@ -50,13 +58,14 @@ trait MagicCallTrait
 
             return $this;
         } elseif ($command === 'get') {
-            return $this->magicResolvGetter($field);
+            return $this->__magicResolvGetter($field, $exception);
         } elseif ($command === 'add') {
             $this->add($field, current($args));
 
             return $this;
-        } else {
-            throw new \BadMethodCallException('There is no method '.$method);
         }
+
+        $exception();
     }
+
 }
