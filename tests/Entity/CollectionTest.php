@@ -37,6 +37,17 @@ class CollectionTest extends TestCaseAbstract
     }
 
     /**
+     * @depends testPossuiAcessoSingleton
+     */
+    public function testMétodosGettersMágicosPossibilitamAcessoAPropriedadesCamelCaseOuSnakeCase(Collection $collection)
+    {
+        $collection->set('foO', 'bar');
+        $this->assertEquals('bar', $collection->getFoO());
+        $collection->set('ze_ta', 'jones');
+        $this->assertEquals('jones', $collection->getZeTa());
+    }
+
+    /**
      * @dataProvider dataProviderInformacao
      */
     public function testPossuiEstruturaDeInformacao($value)

@@ -33,6 +33,9 @@ class StringTest extends TestCaseAbstract
             ['FooBar', 'foo_bar'],
             ['fooBar', 'foo_bar'],
             ['foo_Bar', 'foo_bar'],
+            ['ze_ta', 'ze_ta'],
+            ['ZeTa', 'ze_ta'],
+            ['zeTa', 'ze_ta'],
             ['FooBarZetaJones', 'foo_bar_zeta_jones'],
         ];
     }
