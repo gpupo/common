@@ -14,8 +14,21 @@
 
 namespace Gpupo\Common\Traits;
 
+use Gpupo\Tools\String;
+
 trait MagicCallTrait
 {
+    protected function magicResolvGetter($field)
+    {
+        if ($this->containsKey($field)) {
+            return $this->get($field);
+        } elseif ($this->containsKey($field=String::camelCaseToSnakeCase($field))) {
+            return $this->get($field);
+        }
+
+        return false;
+    }
+
     /**
      * Magic method that implements.
      *
@@ -37,7 +50,7 @@ trait MagicCallTrait
 
             return $this;
         } elseif ($command === 'get') {
-            return $this->get($field);
+            return $this->magicResolvGetter($field);
         } elseif ($command === 'add') {
             $this->add($field, current($args));
 
