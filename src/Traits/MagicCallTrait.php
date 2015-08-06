@@ -23,6 +23,8 @@ trait MagicCallTrait
 {
     abstract public function get($key);
 
+    abstract public function set($key, $value);
+
     abstract public function add($value);
 
     abstract public function containsKey($key);
@@ -42,13 +44,11 @@ trait MagicCallTrait
     }
 
     /**
-     * Magic method that implements.
+     * Magic method Hook
      *
      * @param string $method
      * @param array  $args
-     *
      * @throws \BadMethodCallException
-     *
      * @return mixed
      */
     public function __call($method, $args)
