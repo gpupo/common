@@ -14,7 +14,7 @@
 
 namespace Gpupo\Common\Tools;
 
-class String
+class StringTool
 {
     /**
      * Convert CamelCase to snake_case.

@@ -14,7 +14,7 @@
 
 namespace Gpupo\Tests\Common\Tools;
 
-use Gpupo\Common\Tools\String;
+use Gpupo\Common\Tools\StringTool;
 use Gpupo\Tests\Common\TestCaseAbstract;
 
 class StringTest extends TestCaseAbstract
@@ -24,7 +24,7 @@ class StringTest extends TestCaseAbstract
      */
     public function testConverteCamelCaseParaSnakeCase($camelCase, $snakeCase)
     {
-        $this->assertEquals($snakeCase, String::camelCaseToSnakeCase($camelCase));
+        $this->assertEquals($snakeCase, StringTool::camelCaseToSnakeCase($camelCase));
     }
 
     public function dataProviderCases()
