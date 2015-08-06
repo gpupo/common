@@ -14,8 +14,8 @@
 
 namespace Gpupo\Tests\Common\Objects;
 
-use Gpupo\Common\Traits\MagicCallTrait;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gpupo\Common\Traits\MagicCallTrait;
 
 class HasMagicCall extends ArrayCollection
 {

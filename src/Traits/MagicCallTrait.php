@@ -16,8 +16,17 @@ namespace Gpupo\Common\Traits;
 
 use Gpupo\Common\Tools\String;
 
+/**
+ * Acesso mágico a elementos de Doctrine Collection
+ */
 trait MagicCallTrait
 {
+    abstract public function get($key);
+
+    abstract public function add($value);
+
+    abstract public function containsKey($key);
+
     private function __magicResolvGetter($field, callable $exception)
     {
         if ($this->containsKey($field)) {
