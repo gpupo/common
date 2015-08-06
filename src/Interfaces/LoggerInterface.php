@@ -14,8 +14,6 @@
 
 namespace Gpupo\Common\Interfaces;
 
-use Gpupo\Common\Entity\Collection;
-
 interface LoggerInterface
 {
     public function getLogger();

@@ -29,7 +29,7 @@ class OptionsTraitTest extends TestCaseAbstract
     public function testHasOptionsContainer()
     {
         $object = new HasOptions();
-        $object->setOptions(['foo'=>'bar']);
+        $object->setOptions(['foo' => 'bar']);
         $this->assertEquals('bar', $object->getOptions()->get('foo'));
     }
 }
