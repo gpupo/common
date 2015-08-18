@@ -26,12 +26,12 @@ abstract class AbstractApplication extends Application
 
     protected $commonParameters = [];
 
-        protected function addConfig($string)
-        {
-            $this->config = array_merge($this->config, @json_decode($string, true));
+    protected function addConfig($string)
+    {
+        $this->config = array_merge($this->config, @json_decode($string, true));
 
-            return $this;
-        }
+        return $this;
+    }
 
     public function findConfig(array $paths, $nick = 'app')
     {
