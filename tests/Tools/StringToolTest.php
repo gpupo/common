@@ -17,7 +17,7 @@ namespace Gpupo\Tests\Common\Tools;
 use Gpupo\Common\Tools\StringTool;
 use Gpupo\Tests\Common\TestCaseAbstract;
 
-class StringTest extends TestCaseAbstract
+class StringToolTest extends TestCaseAbstract
 {
     /**
      * @dataProvider dataProviderCases

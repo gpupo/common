@@ -36,7 +36,7 @@ abstract class AbstractApplication extends Application
     public function findConfig(array $paths, $nick = 'app')
     {
         foreach ($paths as $path) {
-            foreach([$nick.'.json.dist', $nick.'.json', '.'.$nick] as $name) {
+            foreach ([$nick.'.json.dist', $nick.'.json', '.'.$nick] as $name) {
                 $filename = $path.$name;
                 if (file_exists($filename)) {
                     $this->addConfig(file_get_contents($filename));

@@ -17,7 +17,7 @@ namespace Gpupo\Common\Traits;
 use Gpupo\Common\Tools\StringTool;
 
 /**
- * Acesso mágico a elementos de Doctrine Collection
+ * Acesso mágico a elementos de Doctrine Collection.
  */
 trait MagicCallTrait
 {
@@ -44,17 +44,18 @@ trait MagicCallTrait
     }
 
     /**
-     * Magic method Hook
+     * Magic method Hook.
      *
      * @param string $method
      * @param array  $args
+     *
      * @throws \BadMethodCallException
+     *
      * @return mixed
      */
     public function __call($method, $args)
     {
-        $exception = function() use ($method)
-        {
+        $exception = function () use ($method) {
             throw new \BadMethodCallException('There is no [magic] method '.$method.'()');
         };
 
@@ -76,5 +77,4 @@ trait MagicCallTrait
 
         $exception();
     }
-
 }
