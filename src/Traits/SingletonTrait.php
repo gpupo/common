@@ -16,16 +16,26 @@ namespace Gpupo\Common\Traits;
 
 trait SingletonTrait
 {
+    protected static $instanceList = [];
+
     final public static function getInstance()
     {
-        static $instanceList = [];
-
         $calledClassName = get_called_class();
 
-        if (!isset($instanceList[$calledClassName])) {
-            $instanceList[$calledClassName] = new $calledClassName();
+        if (!isset(self::$instanceList[$calledClassName])) {
+            self::setInstance($calledClassName, new $calledClassName());
         }
 
-        return $instanceList[$calledClassName];
+        return self::$instanceList[$calledClassName];
+    }
+
+    final public static function setInstance($calledClassName, $object)
+    {
+        self::$instanceList[$calledClassName] = $object;
+    }
+
+    final public static function rebuildInstance($object)
+    {
+        self::setInstance(get_called_class(), $object);
     }
 }
