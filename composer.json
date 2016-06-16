@@ -1,7 +1,7 @@
 {
     "name": "gpupo/common",
     "description": "Common Objects",
-    "homepage": "https://www.github.com/gpupo/common",
+    "homepage": "http://www.g1mr.com/common/",
     "authors": [
         {
             "name": "Gilmar Pupo",
@@ -11,7 +11,7 @@
     "keywords": ["common"],
     "license": "MIT",
     "require": {
-        "php": ">=5.4",
+        "php": "^5.6 || ^7.0",
         "doctrine/common": "~2.5.1"
     },
     "autoload": {
@@ -21,11 +21,12 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.0",
+        "phpunit/phpunit": "~5.4",
         "codeclimate/php-test-reporter": "dev-master"
     },
     "config": {
         "preferred-install": "dist"
     },
-    "minimum-stability" : "stable"
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
