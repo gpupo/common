@@ -14,9 +14,6 @@ matrix:
 branches:
   except:
     - /^psr.*$/
-before_script:
-  - composer self-update
-  - composer install --prefer-dist
-script: ant test
+script: ant travis
 notifications:
   email: false
