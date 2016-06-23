@@ -13,8 +13,8 @@
  */
 namespace Gpupo\Common\Console;
 
-use Gpupo\Common\Traits\TableTrait;
 use InvalidArgumentException;
+use Gpupo\Common\Traits\TableTrait;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
