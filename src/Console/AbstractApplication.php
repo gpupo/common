@@ -11,9 +11,9 @@
  * For more information, see
  * <http://www.g1mr.com/common/>.
  */
-
 namespace Gpupo\Common\Console;
 
+use Gpupo\Common\Traits\TableTrait;
 use InvalidArgumentException;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
@@ -22,6 +22,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class AbstractApplication extends Application
 {
+    use TableTrait;
+
     protected $config = [];
 
     protected $commonParameters = [];
