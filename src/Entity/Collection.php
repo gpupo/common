@@ -11,7 +11,6 @@
  * For more information, see
  * <http://www.g1mr.com/common/>.
  */
-
 namespace Gpupo\Common\Entity;
 
 class Collection extends CollectionAbstract implements CollectionInterface

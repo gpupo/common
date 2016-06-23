@@ -11,7 +11,6 @@
  * For more information, see
  * <http://www.g1mr.com/common/>.
  */
-
 namespace Gpupo\Tests\Common;
 
 abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase

@@ -11,7 +11,6 @@
  * For more information, see
  * <http://www.g1mr.com/common/>.
  */
-
 namespace Gpupo\Common\Traits;
 
 use Gpupo\Common\Entity\Collection;
@@ -34,7 +33,7 @@ trait OptionsTrait
         return [];
     }
 
-    public function setOptions(Array $options = [])
+    public function setOptions(array $options = [])
     {
         $list = array_merge($this->getDefaultOptions(), $options);
 

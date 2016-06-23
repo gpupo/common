@@ -11,7 +11,6 @@
  * For more information, see
  * <http://www.g1mr.com/common/>.
  */
-
 namespace Gpupo\Tests\Common\Traits;
 
 use Gpupo\Tests\Common\Objects\HasSingleton;
