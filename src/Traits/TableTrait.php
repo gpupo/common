@@ -15,6 +15,7 @@ namespace Gpupo\Common\Traits;
 
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
+use Gpupo\Common\Entity\CollectionAbstract;
 
 trait TableTrait
 {
@@ -22,7 +23,12 @@ trait TableTrait
     {
         $table = new Table($output);
         $table->setStyle('borderless');
-        $list = $object->toArray();
+
+        if ($object instanceof CollectionAbstract) {
+            $list = $object->toArray();
+        } else {
+            $list = $object;
+        }
 
         foreach ($list as $item) {
             foreach ($item as $key => $value) {
