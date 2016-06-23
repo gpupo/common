@@ -68,7 +68,7 @@ abstract class AbstractApplication extends Application
             $subject = $parameter['key'].' (['.implode($parameter['options'], ',')
                 .((array_key_exists('default', $parameter)) ? '] ENTER for <info>'.$parameter['default'].'</info>' : '').'): ';
 
-            return $this->getHelperSet()->get('dialog')->askAndValidate($output, $subject, function ($value) use ($parameter) {
+            return $this->getHelperSet()->get('dialog')->askAndValidate($output, $subject, function($value) use ($parameter) {
                if (array_search($value, $parameter['options'], true) === false) {
                    throw new InvalidArgumentException(sprintf($parameter['key'].'"%s" is invalid. Valid values:'.implode($parameter['options'], ','), $value));
                }
