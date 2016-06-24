@@ -19,6 +19,7 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
 
 abstract class AbstractApplication extends Application
 {
@@ -68,7 +69,9 @@ abstract class AbstractApplication extends Application
             $subject = $parameter['key'].' (['.implode($parameter['options'], ',')
                 .((array_key_exists('default', $parameter)) ? '] ENTER for <info>'.$parameter['default'].'</info>' : '').'): ';
 
-            return $this->getHelperSet()->get('dialog')->askAndValidate($output, $subject, function($value) use ($parameter) {
+            $question = new Question($subject);
+
+            return $this->getHelperSet()->get('question')->askAndValidate($input, $output, $question, function ($value) use ($parameter) {
                if (array_search($value, $parameter['options'], true) === false) {
                    throw new InvalidArgumentException(sprintf($parameter['key'].'"%s" is invalid. Valid values:'.implode($parameter['options'], ','), $value));
                }
@@ -76,7 +79,10 @@ abstract class AbstractApplication extends Application
                return $value;
            }, false, (array_key_exists('default', $parameter) ? $parameter['default'] : ''));
         } else {
-            return  $this->getHelperSet()->get('dialog')->ask($output, $parameter['key'].': ');
+
+            $question = new Question($parameter['key'].': ');
+
+            return  $this->getHelperSet()->get('question')->ask($input, $output, $question);
         }
     }
 
