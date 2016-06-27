@@ -60,7 +60,7 @@ abstract class CollectionAbstract extends ArrayCollection
         if (empty($route) || $route === 'save') {
             $data = $this->toArray();
         } else {
-            $method = 'to'.ucfirst($route);
+            $method = 'to' . ucfirst($route);
             $data = $this->$method();
         }
 

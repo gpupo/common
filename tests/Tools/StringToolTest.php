@@ -23,7 +23,7 @@ class StringToolTest extends TestCaseAbstract
      */
     public function testConverteCamelCaseParaSnakeCase($camelCase, $snakeCase)
     {
-        $this->assertEquals($snakeCase, StringTool::camelCaseToSnakeCase($camelCase));
+        $this->assertSame($snakeCase, StringTool::camelCaseToSnakeCase($camelCase));
     }
 
     public function dataProviderCases()

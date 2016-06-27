@@ -13,9 +13,9 @@
  */
 namespace Gpupo\Common\Traits;
 
+use Gpupo\Common\Entity\CollectionAbstract;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
-use Gpupo\Common\Entity\CollectionAbstract;
 
 trait TableTrait
 {

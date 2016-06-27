@@ -32,7 +32,7 @@ class CollectionTest extends TestCaseAbstract
     public function testPossuiMétodosGettersESettersMágicos(Collection $collection)
     {
         $collection->setFoo('bar');
-        $this->assertEquals('bar', $collection->getFoo());
+        $this->assertSame('bar', $collection->getFoo());
     }
 
     /**
@@ -41,9 +41,9 @@ class CollectionTest extends TestCaseAbstract
     public function testMétodosGettersMágicosPossibilitamAcessoAPropriedadesCamelCaseOuSnakeCase(Collection $collection)
     {
         $collection->set('foO', 'bar');
-        $this->assertEquals('bar', $collection->getFoO());
+        $this->assertSame('bar', $collection->getFoO());
         $collection->set('ze_ta', 'jones');
-        $this->assertEquals('jones', $collection->getZeTa());
+        $this->assertSame('jones', $collection->getZeTa());
     }
 
     /**
@@ -53,7 +53,7 @@ class CollectionTest extends TestCaseAbstract
     {
         $collection = new Collection();
         $collection->set('foo', $value);
-        $this->assertEquals($value, $collection->get('foo'));
+        $this->assertSame($value, $collection->get('foo'));
     }
 
     public function dataProviderInformacao()
