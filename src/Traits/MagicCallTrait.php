@@ -2,15 +2,12 @@
 
 /*
  * This file is part of gpupo/common
- *
- * (c) Gilmar Pupo <g@g1mr.com>
- *
+ * Created by Gilmar Pupo <g@g1mr.com>
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- *
- * For more information, see
- * <http://www.g1mr.com/common/>.
+ * For more information, see <http://www.g1mr.com/>.
  */
+
 namespace Gpupo\Common\Traits;
 
 use Gpupo\Common\Tools\StringTool;
@@ -55,7 +52,7 @@ trait MagicCallTrait
     public function __call($method, $args)
     {
         $exception = function () use ($method) {
-            throw new \BadMethodCallException('There is no [magic] method ' . $method . '()');
+            throw new \BadMethodCallException('There is no [magic] method '.$method.'()');
         };
 
         $command = substr($method, 0, 3);
