@@ -13,8 +13,8 @@
  */
 namespace Gpupo\Common\Console;
 
-use InvalidArgumentException;
 use Gpupo\Common\Traits\TableTrait;
+use InvalidArgumentException;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -39,8 +39,8 @@ abstract class AbstractApplication extends Application
     public function findConfig(array $paths, $nick = 'app')
     {
         foreach ($paths as $path) {
-            foreach ([$nick.'.json.dist', $nick.'.json', '.'.$nick] as $name) {
-                $filename = $path.$name;
+            foreach ([$nick . '.json.dist', $nick . '.json', '.' . $nick] as $name) {
+                $filename = $path . $name;
                 if (file_exists($filename)) {
                     $this->addConfig(file_get_contents($filename));
                 }
@@ -66,21 +66,20 @@ abstract class AbstractApplication extends Application
         } elseif ($input->getOption($parameter['key'])) {
             return $input->getOption($parameter['key']);
         } elseif (array_key_exists('options', $parameter)) {
-            $subject = $parameter['key'].' (['.implode($parameter['options'], ',')
-                .((array_key_exists('default', $parameter)) ? '] ENTER for <info>'.$parameter['default'].'</info>' : '').'): ';
+            $subject = $parameter['key'] . ' ([' . implode($parameter['options'], ',')
+                . ((array_key_exists('default', $parameter)) ? '] ENTER for <info>' . $parameter['default'] . '</info>' : '') . '): ';
 
             $question = new Question($subject);
 
             return $this->getHelperSet()->get('question')->askAndValidate($input, $output, $question, function ($value) use ($parameter) {
                if (array_search($value, $parameter['options'], true) === false) {
-                   throw new InvalidArgumentException(sprintf($parameter['key'].'"%s" is invalid. Valid values:'.implode($parameter['options'], ','), $value));
+                   throw new InvalidArgumentException(sprintf($parameter['key'] . '"%s" is invalid. Valid values:' . implode($parameter['options'], ','), $value));
                }
 
                return $value;
            }, false, (array_key_exists('default', $parameter) ? $parameter['default'] : ''));
         } else {
-
-            $question = new Question($parameter['key'].': ');
+            $question = new Question($parameter['key'] . ': ');
 
             return  $this->getHelperSet()->get('question')->ask($input, $output, $question);
         }

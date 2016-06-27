@@ -54,8 +54,8 @@ trait MagicCallTrait
      */
     public function __call($method, $args)
     {
-        $exception = function() use ($method) {
-            throw new \BadMethodCallException('There is no [magic] method '.$method.'()');
+        $exception = function () use ($method) {
+            throw new \BadMethodCallException('There is no [magic] method ' . $method . '()');
         };
 
         $command = substr($method, 0, 3);

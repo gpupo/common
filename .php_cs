@@ -32,7 +32,7 @@ $finder = DefaultFinder::create()
 
 return Config::create()
     ->fixers(array(
-        '-yoda_conditions',
+        'yoda_conditions',
         'align_double_arrow',
         'header_comment',
         'multiline_spaces_before_semicolon',
@@ -42,6 +42,14 @@ return Config::create()
         'phpdoc_var_to_type',
         'strict',
         'strict_param',
+        'short_array_syntax',
+        'php_unit_strict',
+        'php_unit_construct',
+        'newline_after_open_tag',
+        'concat_with_spaces',
+        'ereg_to_preg',
+        'short_echo_tag',
+        'pre_increment',
     ))
     ->level(FixerInterface::SYMFONY_LEVEL)
     ->setUsingCache(false)

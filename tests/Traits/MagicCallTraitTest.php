@@ -21,6 +21,6 @@ class MagicCallTraitTest extends TestCaseAbstract
     public function testHasMagicMethods()
     {
         $object = new HasMagicCall(['foo' => 'bar']);
-        $this->assertEquals('bar', $object->getFoo());
+        $this->assertSame('bar', $object->getFoo());
     }
 }
