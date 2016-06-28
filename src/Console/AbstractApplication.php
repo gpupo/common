@@ -3,20 +3,25 @@
 /*
  * This file is part of gpupo/common
  * Created by Gilmar Pupo <g@g1mr.com>
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For the information of copyright and license you should read the file
+ * LICENSE which is distributed with this source code.
+ * Para a informação dos direitos autorais e de licença você deve ler o arquivo
+ * LICENSE que é distribuído com este código-fonte.
+ * Para obtener la información de los derechos de autor y la licencia debe leer
+ * el archivo LICENSE que se distribuye con el código fuente.
  * For more information, see <http://www.g1mr.com/>.
  */
 
 namespace Gpupo\Common\Console;
 
-use Gpupo\Common\Traits\TableTrait;
 use InvalidArgumentException;
+use Gpupo\Common\Traits\TableTrait;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Console\Question\ChoiceQuestion;
 
 abstract class AbstractApplication extends Application
 {
@@ -66,16 +71,13 @@ abstract class AbstractApplication extends Application
             $subject = $parameter['key'].' (['.implode($parameter['options'], ',')
                 .((array_key_exists('default', $parameter)) ? '] ENTER for <info>'.$parameter['default'].'</info>' : '').'): ';
 
-            $question = new Question($subject);
+            $question =  new ChoiceQuestion($subject, $parameter['options'], 0);
+            $question->setErrorMessage('%s is invalid. Valid values:'.implode($parameter['options']));
 
-            return $this->getHelperSet()->get('question')->askAndValidate($input, $output, $question, function ($value) use ($parameter) {
-               if (array_search($value, $parameter['options'], true) === false) {
-                   throw new InvalidArgumentException(sprintf($parameter['key'].'"%s" is invalid. Valid values:'.implode($parameter['options'], ','), $value));
-               }
+            return $this->getHelperSet()->get('question')->ask($input, $output, $question);
 
-               return $value;
-           }, false, (array_key_exists('default', $parameter) ? $parameter['default'] : ''));
         } else {
+
             $question = new Question($parameter['key'].': ');
 
             return  $this->getHelperSet()->get('question')->ask($input, $output, $question);
