@@ -14,14 +14,13 @@
 
 namespace Gpupo\Common\Console;
 
-use InvalidArgumentException;
 use Gpupo\Common\Traits\TableTrait;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Question\ChoiceQuestion;
+use Symfony\Component\Console\Question\Question;
 
 abstract class AbstractApplication extends Application
 {
@@ -71,13 +70,11 @@ abstract class AbstractApplication extends Application
             $subject = $parameter['key'].' (['.implode($parameter['options'], ',')
                 .((array_key_exists('default', $parameter)) ? '] ENTER for <info>'.$parameter['default'].'</info>' : '').'): ';
 
-            $question =  new ChoiceQuestion($subject, $parameter['options'], 0);
+            $question = new ChoiceQuestion($subject, $parameter['options'], 0);
             $question->setErrorMessage('%s is invalid. Valid values:'.implode($parameter['options']));
 
             return $this->getHelperSet()->get('question')->ask($input, $output, $question);
-
         } else {
-
             $question = new Question($parameter['key'].': ');
 
             return  $this->getHelperSet()->get('question')->ask($input, $output, $question);
