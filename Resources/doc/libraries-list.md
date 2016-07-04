@@ -1,6 +1,8 @@
+
 ## Lista de dependências (libraries)
 
-```
+Name | Version | Description
+-----|---------|------------------------------------------------------
 codeclimate/php-test-reporter      dev-master 9217abf PHP client for reporting test coverage to Code Climate
 doctrine/annotations               v1.2.7             Docblock Annotations Parser
 doctrine/cache                     v1.6.0             Caching library offering an object-oriented API for many cache backends
@@ -43,5 +45,4 @@ symfony/stopwatch                  v3.1.1             Symfony Stopwatch Componen
 symfony/yaml                       v3.1.1             Symfony Yaml Component
 webmozart/assert                   1.0.2              Assertions to validate method input/output with nice error messages.
 
-```
----
+
