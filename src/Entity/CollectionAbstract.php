@@ -14,7 +14,6 @@
 
 namespace Gpupo\Common\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Gpupo\Common\Traits\MagicCallTrait;
 use Gpupo\Common\Traits\SingletonTrait;
 
@@ -54,6 +53,19 @@ abstract class CollectionAbstract extends ArrayCollection
         } else {
             throw new \LogicException("Elemento $key deve ser um array");
         }
+    }
+
+    protected function partitionByArrayKey(array $allowed)
+    {
+        $new = [];
+        $list = $this->toArray();
+        foreach ($list as $key => $value) {
+            if (in_array($key, $allowed, true)) {
+                $new[$key] = $value;
+            }
+        }
+
+        return $new;
     }
 
     public function toJson($route = null)
