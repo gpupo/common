@@ -15,9 +15,8 @@
 namespace Gpupo\Tests\Common\Entity;
 
 use Gpupo\Common\Entity\Collection;
-use Gpupo\Tests\Common\TestCaseAbstract;
 
-class CollectionTest extends TestCaseAbstract
+class CollectionTest extends ArrayCollectionTest
 {
     public function testPossuiAcessoSingleton()
     {
