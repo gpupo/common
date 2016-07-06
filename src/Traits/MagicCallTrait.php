@@ -17,7 +17,7 @@ namespace Gpupo\Common\Traits;
 use Gpupo\Common\Tools\StringTool;
 
 /**
- * Acesso mágico a elementos de Doctrine Collection.
+ * Acesso mágico a elementos.
  */
 trait MagicCallTrait
 {

@@ -68,7 +68,8 @@ abstract class AbstractApplication extends Application
             return $input->getOption($parameter['key']);
         } elseif (array_key_exists('options', $parameter)) {
             $subject = $parameter['key'].' (['.implode($parameter['options'], ',')
-                .((array_key_exists('default', $parameter)) ? '] ENTER for <info>'.$parameter['default'].'</info>' : '').'): ';
+                .((array_key_exists('default', $parameter)) ? '] ENTER for <info>'
+                    .$parameter['default'].'</info>' : '').'): ';
 
             $question = new ChoiceQuestion($subject, $parameter['options'], 0);
             $question->setErrorMessage('%s is invalid. Valid values:'.implode($parameter['options']));
