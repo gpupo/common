@@ -22,6 +22,20 @@ abstract class CollectionAbstract extends ArrayCollection
     use MagicCallTrait;
     use SingletonTrait;
 
+    /**
+     * Aplica empty() a um elemento interno
+     */
+    public function empty($key)
+    {
+        if (!$this->containsKey($key)) {
+            return true;
+        }
+
+        $value = $this->get($key);
+
+        return empty($value);
+    }
+
     public function toArray()
     {
         $list = parent::toArray();
