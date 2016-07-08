@@ -25,7 +25,7 @@ abstract class CollectionAbstract extends ArrayCollection
     /**
      * Aplica empty() a um elemento interno
      */
-    public function empty($key)
+    public function elementEmpty($key)
     {
         if (!$this->containsKey($key)) {
             return true;
