@@ -56,8 +56,7 @@ abstract class AbstractApplication extends Application
                 if (file_exists($filename)) {
                     $this->configFiles[] = $filename;
                     if (false === $this->addConfig(file_get_contents($filename))) {
-                        echo "Invalid Json format of file [".$filename."]! [Abort]\n";
-                        exit;
+                        return error_log("Invalid Json format of file [".$filename."]!");
                     }
                 }
             };
