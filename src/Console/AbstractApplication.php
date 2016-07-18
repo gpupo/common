@@ -14,7 +14,6 @@
 
 namespace Gpupo\Common\Console;
 
-use Exception;
 use Gpupo\Common\Traits\TableTrait;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
@@ -37,7 +36,7 @@ abstract class AbstractApplication extends Application
 
     protected function addConfig($string)
     {
-        $load =  json_decode($string, true);
+        $load = json_decode($string, true);
         if (!is_array($load)) {
             return false;
         }
@@ -56,7 +55,7 @@ abstract class AbstractApplication extends Application
                 if (file_exists($filename)) {
                     $this->configFiles[] = $filename;
                     if (false === $this->addConfig(file_get_contents($filename))) {
-                        return error_log("Invalid Json format of file [".$filename."]!");
+                        return error_log('Invalid Json format of file ['.$filename.']!');
                     }
                 }
             };
