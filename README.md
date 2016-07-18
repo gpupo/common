@@ -54,7 +54,9 @@ Proibido:
 ## Indicadores de qualidade
 
 [![Build Status](https://secure.travis-ci.org/gpupo/common.png?branch=master)](http://travis-ci.org/gpupo/common)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gpupo/common/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gpupo/common/?branch=master)
 [![Code Climate](https://codeclimate.com/github/gpupo/common/badges/gpa.svg)](https://codeclimate.com/github/gpupo/common)
+[![Code Coverage](https://scrutinizer-ci.com/g/gpupo/common/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/gpupo/common/?branch=master)
 [![Test Coverage](https://codeclimate.com/github/gpupo/common/badges/coverage.svg)](https://codeclimate.com/github/gpupo/common/coverage)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/c74618a2-45c9-4d12-922a-704b23f7c607/mini.png)](https://insight.sensiolabs.com/projects/c74618a2-45c9-4d12-922a-704b23f7c607)
 
@@ -95,6 +97,45 @@ Adicione o pacote ``common`` ao seu projeto utilizando [composer](http://getcomp
 
 <!-- testdox -->
 
+### Common\Entity\ArrayCollection
+
+
+- [x] To array indexed
+- [x] To array associative
+- [x] To array mixed
+- [x] First indexed
+- [x] First associative
+- [x] First mixed
+- [x] Last indexed
+- [x] Last associative
+- [x] Last mixed
+- [x] Key indexed
+- [x] Key associative
+- [x] Key mixed
+- [x] Next indexed
+- [x] Next associative
+- [x] Next mixed
+- [x] Current indexed
+- [x] Current associative
+- [x] Current mixed
+- [x] Get keys indexed
+- [x] Get keys associative
+- [x] Get keys mixed
+- [x] Get values indexed
+- [x] Get values associative
+- [x] Get values mixed
+- [x] Count indexed
+- [x] Count associative
+- [x] Count mixed
+- [x] Remove
+- [x] Remove element
+- [x] Contains key
+- [x] Empty
+- [x] Contains
+- [x] Exists
+- [x] Index of
+- [x] Get
+
 ### Common\Entity\Collection
 
 
@@ -102,6 +143,41 @@ Adicione o pacote ``common`` ao seu projeto utilizando [composer](http://getcomp
 - [x] Possui métodos getters e setters mágicos
 - [x] Métodos getters mágicos possibilitam acesso a propriedades camel case ou snake case
 - [x] Possui estrutura de informacao 
+- [x] To array indexed
+- [x] To array associative
+- [x] To array mixed
+- [x] First indexed
+- [x] First associative
+- [x] First mixed
+- [x] Last indexed
+- [x] Last associative
+- [x] Last mixed
+- [x] Key indexed
+- [x] Key associative
+- [x] Key mixed
+- [x] Next indexed
+- [x] Next associative
+- [x] Next mixed
+- [x] Current indexed
+- [x] Current associative
+- [x] Current mixed
+- [x] Get keys indexed
+- [x] Get keys associative
+- [x] Get keys mixed
+- [x] Get values indexed
+- [x] Get values associative
+- [x] Get values mixed
+- [x] Count indexed
+- [x] Count associative
+- [x] Count mixed
+- [x] Remove
+- [x] Remove element
+- [x] Contains key
+- [x] Empty
+- [x] Contains
+- [x] Exists
+- [x] Index of
+- [x] Get
 
 ### Common\Tools\StringTool
 
