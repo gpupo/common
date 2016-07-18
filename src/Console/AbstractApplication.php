@@ -14,6 +14,7 @@
 
 namespace Gpupo\Common\Console;
 
+use Exception;
 use Gpupo\Common\Traits\TableTrait;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
@@ -30,11 +31,18 @@ abstract class AbstractApplication extends Application
 
     protected $config = [];
 
+    protected $configAlias = [];
+
     protected $commonParameters = [];
 
     protected function addConfig($string)
     {
-        $this->config = array_merge($this->config, @json_decode($string, true));
+        $load =  json_decode($string, true);
+        if (!is_array($load)) {
+            return false;
+        }
+
+        $this->config = array_merge($this->config, $load);
 
         return $this;
     }
@@ -47,7 +55,10 @@ abstract class AbstractApplication extends Application
                 $filename = $path.$name;
                 if (file_exists($filename)) {
                     $this->configFiles[] = $filename;
-                    $this->addConfig(file_get_contents($filename));
+                    if (false === $this->addConfig(file_get_contents($filename))) {
+                        echo "Invalid Json format of file [".$filename."]! [Abort]\n";
+                        exit;
+                    }
                 }
             };
         }
@@ -82,9 +93,9 @@ abstract class AbstractApplication extends Application
     {
         if ($input->getOption($parameter['key'])) {
             return $input->getOption($parameter['key']);
-        } elseif (array_key_exists($parameter['key'], $this->config)) {
+        } elseif (is_array($this->config) && array_key_exists($parameter['key'], $this->config)) {
             return $this->config[$parameter['key']];
-        } elseif (array_key_exists('options', $parameter)) {
+        } elseif (is_array($parameter) && array_key_exists('options', $parameter)) {
             $subject = $parameter['key'].' (['.implode($parameter['options'], ',')
                 .((array_key_exists('default', $parameter)) ? '] ENTER for <info>'
                     .$parameter['default'].'</info>' : '').'): ';
@@ -105,6 +116,17 @@ abstract class AbstractApplication extends Application
         $list = [];
         foreach (array_merge($this->commonParameters, $definitions) as $parameter) {
             $list[$parameter['key']] = $this->processInputParameter($parameter, $input, $output);
+        }
+
+        return $this->processAliasParameters($list);
+    }
+
+    protected function processAliasParameters(array $list)
+    {
+        foreach ($this->configAlias as $k => $v) {
+            if (array_key_exists($k, $list)) {
+                $list[$v] = $list[$k];
+            }
         }
 
         return $list;
