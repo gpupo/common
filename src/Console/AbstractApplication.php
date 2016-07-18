@@ -26,6 +26,8 @@ abstract class AbstractApplication extends Application
 {
     use TableTrait;
 
+    protected $configFiles = [];
+
     protected $config = [];
 
     protected $commonParameters = [];
@@ -40,13 +42,29 @@ abstract class AbstractApplication extends Application
     public function findConfig(array $paths, $nick = 'app')
     {
         foreach ($paths as $path) {
-            foreach ([$nick.'.json.dist', $nick.'.json', '.'.$nick] as $name) {
+            foreach (['app.json.dist', '.'.$nick.'.json.dist', '.'.$nick.'.json', $nick.'.json',
+                '.'.$nick, 'app.json', ] as $name) {
                 $filename = $path.$name;
                 if (file_exists($filename)) {
+                    $this->configFiles[] = $filename;
                     $this->addConfig(file_get_contents($filename));
                 }
             };
         }
+    }
+
+    protected function displayConfigFiles(OutputInterface $output)
+    {
+        if (!empty($this->configFiles)) {
+            $output->writeln('Config files loaded: <comment>'.implode('</>, <comment>', $this->configFiles).'</>');
+        }
+    }
+
+    public function doRun(InputInterface $input, OutputInterface $output)
+    {
+        $this->displayConfigFiles($output);
+
+        return parent::doRun($input, $output);
     }
 
     public function factoryDefinition(array $definitions = [])
@@ -62,10 +80,10 @@ abstract class AbstractApplication extends Application
 
     protected function processInputParameter($parameter, InputInterface $input, OutputInterface $output)
     {
-        if (array_key_exists($parameter['key'], $this->config)) {
-            return $this->config[$parameter['key']];
-        } elseif ($input->getOption($parameter['key'])) {
+        if ($input->getOption($parameter['key'])) {
             return $input->getOption($parameter['key']);
+        } elseif (array_key_exists($parameter['key'], $this->config)) {
+            return $this->config[$parameter['key']];
         } elseif (array_key_exists('options', $parameter)) {
             $subject = $parameter['key'].' (['.implode($parameter['options'], ',')
                 .((array_key_exists('default', $parameter)) ? '] ENTER for <info>'

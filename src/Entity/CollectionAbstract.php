@@ -23,7 +23,7 @@ abstract class CollectionAbstract extends ArrayCollection
     use SingletonTrait;
 
     /**
-     * Aplica empty() a um elemento interno
+     * Aplica empty() a um elemento interno.
      */
     public function elementEmpty($key)
     {
