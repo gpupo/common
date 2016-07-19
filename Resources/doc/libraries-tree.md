@@ -58,20 +58,6 @@ codeclimate/php-test-reporter dev-master PHP client for reporting test coverage 
    |--php >=5.5.9
    `--symfony/polyfill-mbstring ~1.0
       `--php >=5.3.3
-doctrine/common v2.5.3 Common Library for Doctrine projects
-|--doctrine/annotations 1.*
-|  |--doctrine/lexer 1.*
-|  |  `--php >=5.3.2
-|  `--php >=5.3.2
-|--doctrine/cache 1.*
-|  `--php ~5.5|~7.0
-|--doctrine/collections 1.*
-|  `--php >=5.3.2
-|--doctrine/inflector 1.*
-|  `--php >=5.3.2
-|--doctrine/lexer 1.*
-|  `--php >=5.3.2
-`--php >=5.3.2
 phpunit/phpunit 5.4.6 The PHP Unit Testing framework.
 |--ext-dom *
 |--ext-json *
