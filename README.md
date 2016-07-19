@@ -214,13 +214,7 @@ Adicione o pacote ``common`` ao seu projeto utilizando [composer](http://getcomp
 Name | Version | Description
 -----|---------|------------------------------------------------------
 codeclimate/php-test-reporter | dev-master 9217abf PHP client for reporting test coverage to Code Climate
-doctrine/annotations | v1.2.7 | Docblock Annotations Parser
-doctrine/cache | v1.6.0 | Caching library offering an object-oriented API for many cache backends
-doctrine/collections | v1.3.0 | Collections Abstraction library
-doctrine/common | v2.5.3 | Common Library for Doctrine projects
-doctrine/inflector | v1.1.0 | Common String Manipulations with regard to casing and singular/plural rules.
 doctrine/instantiator | 1.0.5 | A small, lightweight utility to instantiate objects in PHP without invoking their constructors
-doctrine/lexer | v1.0.1 | Base library for a lexer that can be used in Top-Down, Recursive Descent Parsers.
 guzzle/guzzle | v3.9.3 | PHP HTTP client. This library is deprecated in favor of https://packagist.org/packages/guzzlehttp/guzzle
 myclabs/deep-copy | 1.5.1 | Create deep copies (clones) of your objects
 phpdocumentor/reflection-common | 1.0 | Common reflection classes used by phpdocumentor to reflect the code structure
@@ -246,13 +240,13 @@ sebastian/object-enumerator | 1.0.0 | Traverses array structures and object grap
 sebastian/recursion-context | 1.0.2 | Provides functionality to recursively process PHP variables
 sebastian/resource-operations | 1.0.0 | Provides a list of PHP built-in functions that operate on resources
 sebastian/version | 2.0.0 | Library that helps with managing the version number of Git-hosted PHP projects
-symfony/config | v3.1.1 | Symfony Config Component
-symfony/console | v3.1.1 | Symfony Console Component
-symfony/event-dispatcher | v2.8.7 | Symfony EventDispatcher Component
-symfony/filesystem | v3.1.1 | Symfony Filesystem Component
+symfony/config | v3.1.2 | Symfony Config Component
+symfony/console | v3.1.2 | Symfony Console Component
+symfony/event-dispatcher | v2.8.8 | Symfony EventDispatcher Component
+symfony/filesystem | v3.1.2 | Symfony Filesystem Component
 symfony/polyfill-mbstring | v1.2.0 | Symfony polyfill for the Mbstring extension
-symfony/stopwatch | v3.1.1 | Symfony Stopwatch Component
-symfony/yaml | v3.1.1 | Symfony Yaml Component
+symfony/stopwatch | v3.1.2 | Symfony Stopwatch Component
+symfony/yaml | v3.1.2 | Symfony Yaml Component
 webmozart/assert | 1.0.2 | Assertions to validate method input/output with nice error messages.
 
 
