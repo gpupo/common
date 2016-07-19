@@ -32,6 +32,9 @@ trait TableTrait
         }
 
         foreach ($list as $item) {
+            if (!is_array($item)) {
+                continue;
+            }
             foreach ($item as $key => $value) {
                 if (!empty($keysOnly) && !in_array($key, $keysOnly, true)) {
                     unset($item[$key]);
