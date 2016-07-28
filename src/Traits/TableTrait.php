@@ -16,14 +16,24 @@ namespace Gpupo\Common\Traits;
 
 use Gpupo\Common\Entity\CollectionAbstract;
 use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Console\Helper\TableStyle;
 use Symfony\Component\Console\Output\OutputInterface;
 
 trait TableTrait
 {
-    public function displayTableResults(OutputInterface $output, $object, array $keysOnly = [], $maxWidth = 35)
-    {
+    public function displayTableResults(
+        OutputInterface $output,
+        $object,
+        array $keysOnly = [],
+        $maxWidth = 35,
+        $count = false
+    ) {
         $table = new Table($output);
-        $table->setStyle('borderless');
+        $style = new TableStyle();
+        $style->setHorizontalBorderChar('<fg=magenta>-</>')
+            ->setVerticalBorderChar('<fg=magenta>|</>')
+            ->setCrossingChar(' ');
+        $table->setStyle($style);
 
         if ($object instanceof CollectionAbstract) {
             $list = $object->toArray();
@@ -31,10 +41,12 @@ trait TableTrait
             $list = $object;
         }
 
+        $i = 0;
         foreach ($list as $item) {
             if (!is_array($item)) {
                 continue;
             }
+            ++$i;
             foreach ($item as $key => $value) {
                 if (!empty($keysOnly) && !in_array($key, $keysOnly, true)) {
                     unset($item[$key]);
@@ -61,6 +73,10 @@ trait TableTrait
                 $value = substr($value, 0, $maxWidth);
 
                 $item[$key] = $value;
+            }
+
+            if (true === $count) {
+                $item = array_merge(['#' => $i], $item);
             }
 
             if (!isset($headers)) {
