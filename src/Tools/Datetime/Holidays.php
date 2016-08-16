@@ -35,7 +35,7 @@ class Holidays
         $easter = easter_date($y);
 
         return [
-            'brazil'   => [
+            'brazil' => [
                 date('d-m-Y', $easter),               // Pascoa
                 date('d-m-Y', $easter + (60 * $d)), // Corpus christi
                 date('d-m-Y', $easter - (48 * $d)), // Segunda de carnaval
@@ -62,5 +62,4 @@ class Holidays
 
         return in_array($this->datetime->format('d-m-Y'), $list, true);
     }
-
 }
