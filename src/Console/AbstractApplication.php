@@ -65,7 +65,7 @@ abstract class AbstractApplication extends Application
                         return error_log('Invalid Json format of file ['.$filename.']!');
                     }
                 }
-            };
+            }
         }
     }
 

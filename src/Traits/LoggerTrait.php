@@ -30,6 +30,7 @@ trait LoggerTrait
             return $this->setLogger($logger);
         }
     }
+    
     public function log($level, $message, array $context = [])
     {
         if ($this->getLogger()) {
