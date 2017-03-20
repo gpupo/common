@@ -18,6 +18,14 @@ trait SingletonTrait
 {
     protected static $instanceList = [];
 
+    /**
+     * trigger
+     */
+    public function onInstanceContruction()
+    {
+        return;
+    }
+
     final public static function getInstance()
     {
         $calledClassName = get_called_class();
@@ -32,6 +40,7 @@ trait SingletonTrait
     final public static function setInstance($calledClassName, $object)
     {
         self::$instanceList[$calledClassName] = $object;
+        $object->onInstanceContruction();
     }
 
     final public static function rebuildInstance($object)
