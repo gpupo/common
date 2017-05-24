@@ -82,7 +82,10 @@ abstract class CollectionAbstract extends ArrayCollection
         return $new;
     }
 
-    public function toJson($route = null)
+    /**
+     * @see http://php.net/manual/en/function.json-encode.php
+     */
+    public function toJson($route = null, $options = 0, $depth = 512)
     {
         if (empty($route) || $route === 'save') {
             $data = $this->toArray();
@@ -91,7 +94,7 @@ abstract class CollectionAbstract extends ArrayCollection
             $data = $this->$method();
         }
 
-        return json_encode($data);
+        return json_encode($data, $options, $depth);
     }
 
     protected function piece($key, $newKey = null)
