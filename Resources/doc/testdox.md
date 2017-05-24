@@ -80,10 +80,20 @@
 - [x] Index of
 - [x] Get
 
+Tools\Datetime\Holidays
+- [x] ``listOfHolidays()`` 
+- [x] ``isHoliday()`` 
+
 ### Common\Tools\StringTool
 
 
 - [x] Converte camel case para snake case 
+
+### Common\Traits\GettersTypeTrait
+
+
+- [x] Get type float
+- [x] Get type boolean
 
 ### Common\Traits\LoggerTrait
 
