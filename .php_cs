@@ -37,5 +37,5 @@ return Config::create()
         'pre_increment',
     ])
     ->level(FixerInterface::SYMFONY_LEVEL)
-    ->setUsingCache(true)
+    ->setUsingCache(false)
     ->finder($finder);
