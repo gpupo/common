@@ -176,6 +176,10 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
      */
     public function containsKey($key)
     {
+        if (empty($this->elements)) {
+            return false;
+        }
+
         return isset($this->elements[$key]) || array_key_exists($key, $this->elements);
     }
 
