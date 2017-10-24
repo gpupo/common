@@ -1,11 +1,11 @@
 {
     "name": "gpupo/common",
     "description": "Common Objects",
-    "homepage": "http://www.g1mr.com/common/",
+    "homepage": "https://opensource.gpupo.com/common/",
     "authors": [
         {
             "name": "Gilmar Pupo",
-            "email": "g@g1mr.com"
+            "email": "contact@gpupo.com"
         }
     ],
     "keywords": ["common"],
