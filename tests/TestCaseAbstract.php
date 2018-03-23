@@ -14,7 +14,9 @@
 
 namespace Gpupo\Tests\Common;
 
-abstract class TestCaseAbstract extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+abstract class TestCaseAbstract extends TestCase
 {
     protected function getConstant($name, $default = false)
     {
