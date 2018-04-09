@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of gpupo/common
  * Created by Gilmar Pupo <contact@gpupo.com>
@@ -9,7 +11,8 @@
  * LICENSE que é distribuído com este código-fonte.
  * Para obtener la información de los derechos de autor y la licencia debe leer
  * el archivo LICENSE que se distribuye con el código fuente.
- * For more information, see <https://www.gpupo.com/>.
+ * For more information, see <https://opensource.gpupo.com/>.
+ *
  */
 
 namespace Gpupo\Common\Entity;
@@ -26,15 +29,10 @@ use IteratorAggregate;
  */
 class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 {
-    protected function all()
-    {
-        return $this->elements;
-    }
-
     /**
      * An array containing the entries of this collection.
      *
-     * @type array
+     * @var array
      */
     private $elements;
 
@@ -46,6 +44,16 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
     public function __construct(array $elements = [])
     {
         $this->elements = $elements;
+    }
+
+    /**
+     * Returns a string representation of this object.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return __CLASS__.'@'.spl_object_hash($this);
     }
 
     /**
@@ -118,7 +126,7 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
     {
         $key = array_search($element, $this->elements, true);
 
-        if ($key === false) {
+        if (false === $key) {
             return false;
         }
 
@@ -330,16 +338,6 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
     }
 
     /**
-     * Returns a string representation of this object.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return __CLASS__.'@'.spl_object_hash($this);
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function clear()
@@ -353,5 +351,10 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
     public function slice($offset, $length = null)
     {
         return array_slice($this->elements, $offset, $length, true);
+    }
+
+    protected function all()
+    {
+        return $this->elements;
     }
 }

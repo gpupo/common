@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of gpupo/common
  * Created by Gilmar Pupo <contact@gpupo.com>
@@ -9,7 +11,8 @@
  * LICENSE que é distribuído com este código-fonte.
  * Para obtener la información de los derechos de autor y la licencia debe leer
  * el archivo LICENSE que se distribuye con el código fuente.
- * For more information, see <https://www.gpupo.com/>.
+ * For more information, see <https://opensource.gpupo.com/>.
+ *
  */
 
 namespace Gpupo\Common\Entity;
@@ -22,8 +25,15 @@ abstract class CollectionAbstract extends ArrayCollection
     use MagicCallTrait;
     use SingletonTrait;
 
+    public function __toString()
+    {
+        return $this->toJson();
+    }
+
     /**
      * Aplica empty() a um elemento interno.
+     *
+     * @param mixed $key
      */
     public function elementEmpty($key)
     {
@@ -65,8 +75,32 @@ abstract class CollectionAbstract extends ArrayCollection
             $currentValue[] = $value;
             $this->set($key, $currentValue);
         } else {
-            throw new \LogicException("Elemento $key deve ser um array");
+            throw new \LogicException("Elemento ${key} deve ser um array");
         }
+    }
+
+    /**
+     * @see http://php.net/manual/en/function.json-encode.php
+     *
+     * @param null|mixed $route
+     * @param mixed      $options
+     * @param mixed      $depth
+     */
+    public function toJson($route = null, $options = 0, $depth = 512)
+    {
+        if (empty($route) || 'save' === $route) {
+            $data = $this->toArray();
+        } else {
+            $method = 'to'.ucfirst($route);
+            $data = $this->{$method}();
+        }
+
+        return json_encode($data, $options, $depth);
+    }
+
+    public function toLog()
+    {
+        return $this->toArray();
     }
 
     protected function partitionByArrayKey(array $allowed)
@@ -82,33 +116,8 @@ abstract class CollectionAbstract extends ArrayCollection
         return $new;
     }
 
-    /**
-     * @see http://php.net/manual/en/function.json-encode.php
-     */
-    public function toJson($route = null, $options = 0, $depth = 512)
-    {
-        if (empty($route) || $route === 'save') {
-            $data = $this->toArray();
-        } else {
-            $method = 'to'.ucfirst($route);
-            $data = $this->$method();
-        }
-
-        return json_encode($data, $options, $depth);
-    }
-
     protected function piece($key, $newKey = null)
     {
         return [$newKey ?: $key => $this->get($key)];
-    }
-
-    public function __toString()
-    {
-        return $this->toJson();
-    }
-
-    public function toLog()
-    {
-        return $this->toArray();
     }
 }

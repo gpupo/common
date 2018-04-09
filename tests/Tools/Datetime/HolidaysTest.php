@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of gpupo/common
  * Created by Gilmar Pupo <contact@gpupo.com>
@@ -9,7 +11,8 @@
  * LICENSE que é distribuído com este código-fonte.
  * Para obtener la información de los derechos de autor y la licencia debe leer
  * el archivo LICENSE que se distribuye con el código fuente.
- * For more information, see <https://www.gpupo.com/>.
+ * For more information, see <https://opensource.gpupo.com/>.
+ *
  */
 
 namespace Tools\Datetime;
@@ -52,9 +55,8 @@ class HolidaysTest extends TestCaseAbstract
      * @testdox ``listOfHolidays()``
      * @cover ::listOfHolidays
      * @dataProvider dataProviderHolidays
-     * @test
      */
-    public function listOfHolidays(Holidays $holidays)
+    public function testListOfHolidays(Holidays $holidays)
     {
         $this->assertInternalType('array', $holidays->listOfHolidays('Brazil'));
     }
@@ -63,9 +65,11 @@ class HolidaysTest extends TestCaseAbstract
      * @testdox ``isHoliday()``
      * @cover ::isHoliday
      * @dataProvider dataProviderHolidays
-     * @test
+     *
+     * @param mixed $d
+     * @param mixed $b
      */
-    public function isHoliday(Holidays $holidays, $d, $b)
+    public function testIsHoliday(Holidays $holidays, $d, $b)
     {
         $this->assertSame($b, $holidays->isHoliday('Brazil'), 'd:'.$d);
     }

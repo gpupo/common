@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of gpupo/common
  * Created by Gilmar Pupo <contact@gpupo.com>
@@ -9,7 +11,8 @@
  * LICENSE que é distribuído com este código-fonte.
  * Para obtener la información de los derechos de autor y la licencia debe leer
  * el archivo LICENSE que se distribuye con el código fuente.
- * For more information, see <https://www.gpupo.com/>.
+ * For more information, see <https://opensource.gpupo.com/>.
+ *
  */
 
 namespace Gpupo\Common\Traits;
@@ -21,14 +24,6 @@ use Gpupo\Common\Tools\StringTool;
  */
 trait MagicCallTrait
 {
-    abstract public function get($key);
-
-    abstract public function set($key, $value);
-
-    abstract public function add($value);
-
-    abstract public function containsKey($key);
-
     private function __magicResolvGetter($field, callable $exception)
     {
         if ($this->containsKey($field)) {
@@ -63,13 +58,15 @@ trait MagicCallTrait
         $field = substr($method, 3);
         $field[0] = strtolower($field[0]);
 
-        if ($command === 'set') {
+        if ('set' === $command) {
             $this->set($field, current($args));
 
             return $this;
-        } elseif ($command === 'get') {
+        }
+        if ('get' === $command) {
             return $this->__magicResolvGetter($field, $exception);
-        } elseif ($command === 'add') {
+        }
+        if ('add' === $command) {
             $this->add($field, current($args));
 
             return $this;
@@ -77,4 +74,12 @@ trait MagicCallTrait
 
         $exception();
     }
+
+    abstract public function get($key);
+
+    abstract public function set($key, $value);
+
+    abstract public function add($value);
+
+    abstract public function containsKey($key);
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of gpupo/common
  * Created by Gilmar Pupo <contact@gpupo.com>
@@ -9,7 +11,8 @@
  * LICENSE que é distribuído com este código-fonte.
  * Para obtener la información de los derechos de autor y la licencia debe leer
  * el archivo LICENSE que se distribuye con el código fuente.
- * For more information, see <https://www.gpupo.com/>.
+ * For more information, see <https://opensource.gpupo.com/>.
+ *
  */
 
 namespace Gpupo\Tests\Common\Entity;
@@ -20,11 +23,15 @@ use Gpupo\Tests\Common\TestCaseAbstract;
 /**
  * Minimal Based version of the test of Doctrine\Common\Collections\ArrayCollection
  * For more information, see <http://www.doctrine-project.org>.
+ *
+ * @coversNothing
  */
 class ArrayCollectionTest extends TestCaseAbstract
 {
     /**
      * @dataProvider provideDifferentElements
+     *
+     * @param mixed $elements
      */
     public function testToArray($elements)
     {
@@ -35,6 +42,8 @@ class ArrayCollectionTest extends TestCaseAbstract
 
     /**
      * @dataProvider provideDifferentElements
+     *
+     * @param mixed $elements
      */
     public function testFirst($elements)
     {
@@ -44,6 +53,8 @@ class ArrayCollectionTest extends TestCaseAbstract
 
     /**
      * @dataProvider provideDifferentElements
+     *
+     * @param mixed $elements
      */
     public function testLast($elements)
     {
@@ -53,6 +64,8 @@ class ArrayCollectionTest extends TestCaseAbstract
 
     /**
      * @dataProvider provideDifferentElements
+     *
+     * @param mixed $elements
      */
     public function testKey($elements)
     {
@@ -68,6 +81,8 @@ class ArrayCollectionTest extends TestCaseAbstract
 
     /**
      * @dataProvider provideDifferentElements
+     *
+     * @param mixed $elements
      */
     public function testNext($elements)
     {
@@ -89,6 +104,8 @@ class ArrayCollectionTest extends TestCaseAbstract
 
     /**
      * @dataProvider provideDifferentElements
+     *
+     * @param mixed $elements
      */
     public function testCurrent($elements)
     {
@@ -104,6 +121,8 @@ class ArrayCollectionTest extends TestCaseAbstract
 
     /**
      * @dataProvider provideDifferentElements
+     *
+     * @param mixed $elements
      */
     public function testGetKeys($elements)
     {
@@ -114,6 +133,8 @@ class ArrayCollectionTest extends TestCaseAbstract
 
     /**
      * @dataProvider provideDifferentElements
+     *
+     * @param mixed $elements
      */
     public function testGetValues($elements)
     {
@@ -124,6 +145,8 @@ class ArrayCollectionTest extends TestCaseAbstract
 
     /**
      * @dataProvider provideDifferentElements
+     *
+     * @param mixed $elements
      */
     public function testCount($elements)
     {
@@ -138,9 +161,9 @@ class ArrayCollectionTest extends TestCaseAbstract
     public function provideDifferentElements()
     {
         return [
-            'indexed'     => [[1, 2, 3, 4, 5]],
+            'indexed' => [[1, 2, 3, 4, 5]],
             'associative' => [['A' => 'a', 'B' => 'b', 'C' => 'c']],
-            'mixed'       => [['A' => 'a', 1, 'B' => 'b', 2, 3]],
+            'mixed' => [['A' => 'a', 1, 'B' => 'b', 2, 3]],
         ];
     }
 
@@ -152,7 +175,7 @@ class ArrayCollectionTest extends TestCaseAbstract
         $this->assertSame(1, $collection->remove(0));
         unset($elements[0]);
 
-        $this->assertSame(null, $collection->remove('non-existent'));
+        $this->assertNull($collection->remove('non-existent'));
         unset($elements['non-existent']);
 
         $this->assertSame(2, $collection->remove(1));
@@ -220,11 +243,11 @@ class ArrayCollectionTest extends TestCaseAbstract
         $collection = new ArrayCollection($elements);
 
         $this->assertTrue($collection->exists(function ($key, $element) {
-            return $key === 'A' && $element === 'a';
+            return 'A' === $key && 'a' === $element;
         }), 'Element exists');
 
         $this->assertFalse($collection->exists(function ($key, $element) {
-            return $key === 'non-existent' && $element === 'non-existent';
+            return 'non-existent' === $key && 'non-existent' === $element;
         }), 'Element not exists');
     }
 
@@ -245,6 +268,6 @@ class ArrayCollectionTest extends TestCaseAbstract
 
         $this->assertSame(2, $collection->get(1), 'Get element by index');
         $this->assertSame('a', $collection->get('A'), 'Get element by name');
-        $this->assertSame(null, $collection->get('non-existent'), 'Get non existent element');
+        $this->assertNull($collection->get('non-existent'), 'Get non existent element');
     }
 }

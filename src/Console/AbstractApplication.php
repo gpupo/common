@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of gpupo/common
  * Created by Gilmar Pupo <contact@gpupo.com>
@@ -9,7 +11,8 @@
  * LICENSE que é distribuído com este código-fonte.
  * Para obtener la información de los derechos de autor y la licencia debe leer
  * el archivo LICENSE que se distribuye con el código fuente.
- * For more information, see <https://www.gpupo.com/>.
+ * For more information, see <https://opensource.gpupo.com/>.
+ *
  */
 
 namespace Gpupo\Common\Console;
@@ -41,18 +44,6 @@ abstract class AbstractApplication extends Application
         $this->findConfig(['./'], $name);
     }
 
-    protected function addConfig($string)
-    {
-        $load = json_decode($string, true);
-        if (!is_array($load)) {
-            return false;
-        }
-
-        $this->config = array_merge($this->config, $load);
-
-        return $this;
-    }
-
     public function findConfig(array $paths, $nick = 'app')
     {
         foreach ($paths as $path) {
@@ -76,13 +67,6 @@ abstract class AbstractApplication extends Application
         }
     }
 
-    protected function displayConfigFiles(OutputInterface $output)
-    {
-        if (!empty($this->configFiles)) {
-            $output->writeln('Config files loaded: <comment>'.implode('</>, <comment>', $this->configFiles).'</>');
-        }
-    }
-
     public function doRun(InputInterface $input, OutputInterface $output)
     {
         $this->displayConfigFiles($output);
@@ -101,28 +85,6 @@ abstract class AbstractApplication extends Application
         return $list;
     }
 
-    protected function processInputParameter($parameter, InputInterface $input, OutputInterface $output)
-    {
-        if ($input->getOption($parameter['key'])) {
-            return $input->getOption($parameter['key']);
-        } elseif (null !== $this->getConfig($parameter['key'])) {
-            return $this->getConfig($parameter['key']);
-        } elseif (is_array($parameter) && array_key_exists('options', $parameter)) {
-            $subject = $parameter['key'].' (['.implode($parameter['options'], ',')
-                .((array_key_exists('default', $parameter)) ? '] ENTER for <info>'
-                    .$parameter['default'].'</info>' : '').'): ';
-
-            $question = new ChoiceQuestion($subject, $parameter['options'], 0);
-            $question->setErrorMessage('%s is invalid. Valid values:'.implode($parameter['options']));
-
-            return $this->getHelperSet()->get('question')->ask($input, $output, $question);
-        } else {
-            $question = new Question($parameter['key'].': ');
-
-            return  $this->getHelperSet()->get('question')->ask($input, $output, $question);
-        }
-    }
-
     public function processInputParameters(array $definitions, InputInterface $input, OutputInterface $output)
     {
         $list = [];
@@ -131,6 +93,48 @@ abstract class AbstractApplication extends Application
         }
 
         return $this->processAliasParameters($list);
+    }
+
+    protected function addConfig($string)
+    {
+        $load = json_decode($string, true);
+        if (!is_array($load)) {
+            return false;
+        }
+
+        $this->config = array_merge($this->config, $load);
+
+        return $this;
+    }
+
+    protected function displayConfigFiles(OutputInterface $output)
+    {
+        if (!empty($this->configFiles)) {
+            $output->writeln('Config files loaded: <comment>'.implode('</>, <comment>', $this->configFiles).'</>');
+        }
+    }
+
+    protected function processInputParameter($parameter, InputInterface $input, OutputInterface $output)
+    {
+        if ($input->getOption($parameter['key'])) {
+            return $input->getOption($parameter['key']);
+        }
+        if (null !== $this->getConfig($parameter['key'])) {
+            return $this->getConfig($parameter['key']);
+        }
+        if (is_array($parameter) && array_key_exists('options', $parameter)) {
+            $subject = $parameter['key'].' (['.implode($parameter['options'], ',')
+                .((array_key_exists('default', $parameter)) ? '] ENTER for <info>'
+                    .$parameter['default'].'</info>' : '').'): ';
+
+            $question = new ChoiceQuestion($subject, $parameter['options'], 0);
+            $question->setErrorMessage('%s is invalid. Valid values:'.implode($parameter['options']));
+
+            return $this->getHelperSet()->get('question')->ask($input, $output, $question);
+        }
+        $question = new Question($parameter['key'].': ');
+
+        return  $this->getHelperSet()->get('question')->ask($input, $output, $question);
     }
 
     protected function processAliasParameters(array $list)
