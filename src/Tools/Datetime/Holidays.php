@@ -33,7 +33,7 @@ class Holidays
      */
     public function listOfHolidays()
     {
-        $y = intval($this->datetime->format('Y'));
+        $y = (int) ($this->datetime->format('Y'));
         $d = 86400;
         $easter = easter_date($y);
 

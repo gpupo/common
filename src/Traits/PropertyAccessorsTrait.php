@@ -33,6 +33,27 @@ trait PropertyAccessorsTrait
         $exception();
     }
 
+    private function __accessorPropertyException($method, $property = null)
+    {
+        if (empty($property) || !$this->__accessorPropertyExists($property)) {
+            throw new \BadMethodCallException('There is no [magic] method '.$method.'()');
+        }
+    }
+
+    public function __get($property)
+    {
+        if ($this->__accessorPropertyExists($property)) {
+            return $this->{$property};
+        }
+    }
+
+    public function __set($property, $value)
+    {
+        $this->{$property} = $value;
+
+        return true;
+    }
+
     /**
      * Magic method Hook.
      *
@@ -45,28 +66,27 @@ trait PropertyAccessorsTrait
      */
     public function __call($method, $args)
     {
-        $exception = function () use ($method) {
-            throw new \BadMethodCallException('There is no [magic] method '.$method.'()');
-        };
-
         $command = substr($method, 0, 3);
         $property = substr($method, 3);
         $property[0] = strtolower($property[0]);
 
         if ('set' === $command) {
-            if ($this->__accessorPropertyExists($property)) {
-                $this->{$property} = current($args);
+            $this->__accessorPropertyException($method, $property);
 
-                return true;
-            }
-        } elseif ('has' === $command) {
-            $value = $this->__accessorPropertyGetter($property, $exception);
+            return $this->__set($property, current($args));
+        }
+        if ('has' === $command) {
+            $this->__accessorPropertyException($method, $property);
+            $value = $this->__get($property);
 
             return !empty($value);
-        } elseif ('get' === $command) {
-            return $this->__accessorPropertyGetter($property, $exception);
+        }
+        if ('get' === $command) {
+            $this->__accessorPropertyException($method, $property);
+
+            return $this->__get($property);
         }
 
-        $exception();
+        $this->__accessorPropertyException($method);
     }
 }
