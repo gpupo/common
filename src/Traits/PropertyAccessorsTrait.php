@@ -19,36 +19,23 @@ namespace Gpupo\Common\Traits;
 
 trait PropertyAccessorsTrait
 {
-    private function __accessorPropertyExists($property)
-    {
-        return property_exists(self::class, $property);
-    }
-
-    private function __accessorPropertyGetter($property, callable $exception)
-    {
-        if ($this->__accessorPropertyExists($property)) {
-            return $this->{$property};
-        }
-
-        $exception();
-    }
-
     private function __accessorPropertyException($method, $property = null)
     {
-        if (empty($property) || !$this->__accessorPropertyExists($property)) {
-            throw new \BadMethodCallException('There is no [magic] method '.$method.'()');
+        if (empty($property) || !property_exists(get_called_class(), $property)) {
+            throw new \BadMethodCallException('There is no [magic] method '.$method.'() ['.$property.']');
         }
     }
 
     public function __get($property)
     {
-        if ($this->__accessorPropertyExists($property)) {
-            return $this->{$property};
-        }
+        $this->__accessorPropertyException('__get', $property);
+
+        return $this->{$property};
     }
 
     public function __set($property, $value)
     {
+        $this->__accessorPropertyException('__set', $property);
         $this->{$property} = $value;
 
         return true;
@@ -71,18 +58,15 @@ trait PropertyAccessorsTrait
         $property[0] = strtolower($property[0]);
 
         if ('set' === $command) {
-            $this->__accessorPropertyException($method, $property);
 
             return $this->__set($property, current($args));
         }
         if ('has' === $command) {
-            $this->__accessorPropertyException($method, $property);
             $value = $this->__get($property);
 
             return !empty($value);
         }
         if ('get' === $command) {
-            $this->__accessorPropertyException($method, $property);
 
             return $this->__get($property);
         }
