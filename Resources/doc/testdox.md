@@ -95,7 +95,7 @@ Tools\Datetime\Holidays
 - [x] Get type float
 - [x] Get type boolean
 
-### Common\Traits\LoggerTrait
+### Common\Traits\LoggerAwareTrait
 
 
 - [x] Implements logger interface

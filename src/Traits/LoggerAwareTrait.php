@@ -17,9 +17,8 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Traits;
 
-trait LoggerTrait
+trait LoggerAwareTrait
 {
-    use \Psr\Log\LoggerTrait;
     use \Psr\Log\LoggerAwareTrait;
 
     public function getLogger()

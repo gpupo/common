@@ -23,7 +23,7 @@ use Gpupo\Tests\Common\TestCaseAbstract;
 /**
  * @coversNothing
  */
-class LoggerTraitTest extends TestCaseAbstract
+class LoggerAwareTraitTest extends TestCaseAbstract
 {
     public function testImplementsLoggerInterface()
     {

@@ -18,9 +18,9 @@ declare(strict_types=1);
 namespace Gpupo\Tests\Common\Objects;
 
 use Gpupo\Common\Interfaces\LoggerInterface;
-use Gpupo\Common\Traits\LoggerTrait;
+use Gpupo\Common\Traits\LoggerAwareTrait;
 
 class HasLogger extends AbstractObject implements LoggerInterface
 {
-    use LoggerTrait;
+    use LoggerAwareTrait;
 }
