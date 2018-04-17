@@ -22,7 +22,7 @@ trait PropertyAccessorsTrait
     private function __accessorPropertyException($method, $property = null)
     {
         if (empty($property) || !property_exists(get_called_class(), $property)) {
-            throw new \BadMethodCallException('There is no [magic] method '.$method.'() ['.$property.']');
+            throw new \BadMethodCallException('There is no [magic] method '.$method.'() for '.get_called_class().'::$'.$property);
         }
     }
 
