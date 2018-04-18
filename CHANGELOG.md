@@ -2,6 +2,11 @@
 VERSION 2  LOGGER CHANNEL SWITCH
 ================================
 
+   Version 2.3 - Absorved Tool
+      18/04/2018 13:59  2.3.0  initial release
+         24bae66 Add Absorved Tool
+         07f8d02 Update README
+
    Version 2.2 - Logger channel switch
       18/04/2018 11:35  2.2.0  initial release
          2f61bec Logger channel switch
