@@ -15,7 +15,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Tools\Datetime;
+namespace Gpupo\Tests\Tools\Datetime;
 
 use DateTime;
 use Gpupo\Common\Tools\Datetime\Holidays;

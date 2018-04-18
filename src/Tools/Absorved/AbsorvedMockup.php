@@ -15,20 +15,22 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Traits;
+namespace Gpupo\Common\Tools\Absorved;
 
-use Gpupo\Tests\Common\Objects\HasLogger;
-use Gpupo\Tests\Common\TestCaseAbstract;
+use Gpupo\Common\Traits\PropertyAccessorsTrait;
+use Gpupo\Common\Traits\SingletonTrait;
 
-/**
- * @coversNothing
- */
-class LoggerTraitTest extends TestCaseAbstract
+class AbsorvedMockup
 {
-    public function testImplementsLoggerInterface()
-    {
-        $object = new HasLogger();
+    use SingletonTrait;
+    use PropertyAccessorsTrait;
 
-        $this->assertInstanceOf('\Gpupo\Common\Interfaces\LoggerInterface', $object);
+    protected function __accessorGetter($property, $defaultValue = null)
+    {
+        if (null === $defaultValue) {
+            return $this;
+        }
+
+        return $defaultValue;
     }
 }

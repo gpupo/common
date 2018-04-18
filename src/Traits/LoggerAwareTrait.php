@@ -17,13 +17,12 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Traits;
 
-use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerAwareTrait as CoreLoggerAwareTrait;
 
 trait LoggerAwareTrait
 {
     use CoreLoggerAwareTrait;
-    
+
     public function getLogger()
     {
         return $this->logger;

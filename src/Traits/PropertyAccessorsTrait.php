@@ -19,23 +19,36 @@ namespace Gpupo\Common\Traits;
 
 trait PropertyAccessorsTrait
 {
-    private function __accessorPropertyException($method, $property = null)
+    private function __accessorPropertyValidate($method, $property = null, $defaultValue = null)
     {
         if (empty($property) || !property_exists(get_called_class(), $property)) {
+            if (null !== $defaultValue) {
+                return false;
+            }
+
             throw new \BadMethodCallException('There is no [magic] method '.$method.'() for '.get_called_class().'::$'.$property);
         }
+
+        return true;
+    }
+
+    protected function __accessorGetter($property, $defaultValue = null)
+    {
+        if (true === $this->__accessorPropertyValidate('__get', $property, $defaultValue)) {
+            return $this->{$property};
+        }
+
+        return $defaultValue;
     }
 
     public function __get($property)
     {
-        $this->__accessorPropertyException('__get', $property);
-
-        return $this->{$property};
+        return $this->__accessorGetter($property);
     }
 
     public function __set($property, $value)
     {
-        $this->__accessorPropertyException('__set', $property);
+        $this->__accessorPropertyValidate('__set', $property);
         $this->{$property} = $value;
 
         return true;
@@ -56,21 +69,20 @@ trait PropertyAccessorsTrait
         $command = substr($method, 0, 3);
         $property = substr($method, 3);
         $property[0] = strtolower($property[0]);
+        $argument = (is_array($args) && !empty($args)) ? current($args) : null;
 
         if ('set' === $command) {
-
-            return $this->__set($property, current($args));
+            return $this->__set($property, $argument);
         }
         if ('has' === $command) {
-            $value = $this->__get($property);
+            $value = $this->__accessorGetter($property);
 
             return !empty($value);
         }
         if ('get' === $command) {
-
-            return $this->__get($property);
+            return $this->__accessorGetter($property, $argument);
         }
 
-        $this->__accessorPropertyException($method);
+        $this->__accessorPropertyValidate($method);
     }
 }

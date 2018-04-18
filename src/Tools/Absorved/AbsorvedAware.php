@@ -15,20 +15,23 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Traits;
+namespace Gpupo\Common\Tools\Absorved;
 
-use Gpupo\Tests\Common\Objects\HasLogger;
-use Gpupo\Tests\Common\TestCaseAbstract;
-
-/**
- * @coversNothing
- */
-class LoggerTraitTest extends TestCaseAbstract
+trait AbsorvedAware
 {
-    public function testImplementsLoggerInterface()
-    {
-        $object = new HasLogger();
+    protected $absorved;
 
-        $this->assertInstanceOf('\Gpupo\Common\Interfaces\LoggerInterface', $object);
+    public function absorve($result)
+    {
+        $this->absorved = $result;
+    }
+
+    protected function getAbsorved()
+    {
+        if ($this->absorved) {
+            return $this->absorved;
+        }
+
+        return AbsorvedMockup::getInstance();
     }
 }

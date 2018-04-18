@@ -15,20 +15,23 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Traits;
+namespace Gpupo\Tests\Tools\Absorved;
 
-use Gpupo\Tests\Common\Objects\HasLogger;
+use Gpupo\Common\Tools\Absorved\AbsorvedAware;
 use Gpupo\Tests\Common\TestCaseAbstract;
 
 /**
  * @coversNothing
  */
-class LoggerTraitTest extends TestCaseAbstract
+class AbsorvedMockupTest extends TestCaseAbstract
 {
-    public function testImplementsLoggerInterface()
-    {
-        $object = new HasLogger();
+    use AbsorvedAware;
 
-        $this->assertInstanceOf('\Gpupo\Common\Interfaces\LoggerInterface', $object);
+    public function testWorkWithNonExistentProperty()
+    {
+        $this->assertFalse($this->getAbsorved()->getFoo(false));
+        $this->assertFalse($this->getAbsorved()->getFoo()->getBar(false));
+        $this->assertTrue($this->getAbsorved()->getFoo()->getBar(true));
+        $this->assertSame('James', $this->getAbsorved()->getFoo()->getBar()->getKing('James'));
     }
 }
