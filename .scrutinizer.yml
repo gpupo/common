@@ -1,6 +1,6 @@
 build:
   nodes:
-    default-tests:
+    analysis:
         environment:
             php: 7.2.3
         tests:
