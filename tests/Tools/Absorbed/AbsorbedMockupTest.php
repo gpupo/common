@@ -15,23 +15,23 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Tools\Absorved;
+namespace Gpupo\Tests\Tools\Absorbed;
 
-use Gpupo\Common\Tools\Absorved\AbsorvedAware;
+use Gpupo\Common\Tools\Absorbed\AbsorbedAware;
 use Gpupo\Tests\Common\TestCaseAbstract;
 
 /**
  * @coversNothing
  */
-class AbsorvedMockupTest extends TestCaseAbstract
+class AbsorbedMockupTest extends TestCaseAbstract
 {
-    use AbsorvedAware;
+    use AbsorbedAware;
 
     public function testWorkWithNonExistentProperty()
     {
-        $this->assertFalse($this->getAbsorved()->getFoo(false));
-        $this->assertFalse($this->getAbsorved()->getFoo()->getBar(false));
-        $this->assertTrue($this->getAbsorved()->getFoo()->getBar(true));
-        $this->assertSame('James', $this->getAbsorved()->getFoo()->getBar()->getKing('James'));
+        $this->assertFalse($this->getAbsorbed()->getFoo(false));
+        $this->assertFalse($this->getAbsorbed()->getFoo()->getBar(false));
+        $this->assertTrue($this->getAbsorbed()->getFoo()->getBar(true));
+        $this->assertSame('James', $this->getAbsorbed()->getFoo()->getBar()->getKing('James'));
     }
 }

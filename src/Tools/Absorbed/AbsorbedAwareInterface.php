@@ -15,23 +15,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Common\Tools\Absorved;
+namespace Gpupo\Common\Tools\Absorbed;
 
-trait AbsorvedAware
+interface AbsorbedAwareInterface
 {
-    protected $absorved;
+    public function absorb($result);
 
-    public function absorve($result)
-    {
-        $this->absorved = $result;
-    }
-
-    protected function getAbsorved()
-    {
-        if ($this->absorved) {
-            return $this->absorved;
-        }
-
-        return AbsorvedMockup::getInstance();
-    }
+    public function getAbsorbed();
 }

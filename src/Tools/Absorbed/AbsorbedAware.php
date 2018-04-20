@@ -15,22 +15,23 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Common\Tools\Absorved;
+namespace Gpupo\Common\Tools\Absorbed;
 
-use Gpupo\Common\Traits\PropertyAccessorsTrait;
-use Gpupo\Common\Traits\SingletonTrait;
-
-class AbsorvedMockup
+trait AbsorbedAware
 {
-    use SingletonTrait;
-    use PropertyAccessorsTrait;
+    protected $absorbed;
 
-    protected function __accessorGetter($property, $defaultValue = null)
+    public function absorb($result)
     {
-        if (null === $defaultValue) {
-            return $this;
+        $this->absorbed = $result;
+    }
+
+    public function getAbsorbed()
+    {
+        if ($this->absorbed) {
+            return $this->absorbed;
         }
 
-        return $defaultValue;
+        return AbsorbedMockup::getInstance();
     }
 }
