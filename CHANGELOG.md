@@ -2,6 +2,10 @@
 VERSION 2  LOGGER CHANNEL SWITCH
 ================================
 
+   Version 2.4 - Add Reflected object
+      20/04/2018 17:58  2.4.0  initial release
+         d7b0965 Add Reflected object
+
    Version 2.3 - Absorbed Tool
       20/04/2018 13:03  2.3.2  Fix Absorbed Namespace
          98119b2 Fix Absorbed Namespace
