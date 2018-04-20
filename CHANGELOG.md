@@ -3,6 +3,8 @@ VERSION 2  LOGGER CHANNEL SWITCH
 ================================
 
    Version 2.3 - Absorbed Tool
+      20/04/2018 13:03  2.3.2  Fix Absorbed Namespace
+         98119b2 Fix Absorbed Namespace
       19/04/2018 19:14  2.3.1  AbsorbedAwareInterface
          da64144 Add AbsorbedAwareInterface
          8bc3fae Migrate to new scrutinizer-ci PHP Analysis #a
