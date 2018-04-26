@@ -3,6 +3,7 @@ VERSION 2  LOGGER CHANNEL SWITCH
 ================================
 
    Version 2.4 - Add Reflected object
+      26/04/2018 17:34  2.4.1  Add Decorated Tool
       20/04/2018 17:58  2.4.0  initial release
          d7b0965 Add Reflected object
 
