@@ -29,10 +29,10 @@ class AbsorbedMockupTest extends TestCaseAbstract
 
     public function testWorkWithNonExistentProperty()
     {
-        $this->assertFalse($this->getAbsorbed()->getFoo(false));
-        $this->assertFalse($this->getAbsorbed()->getFoo()->getBar(false));
-        $this->assertTrue($this->getAbsorbed()->getFoo()->getBar(true));
-        $this->assertSame('James', $this->getAbsorbed()->getFoo()->getBar()->getKing('James'));
+        $this->assertFalse($this->accessAbsorbed()->getFoo(false));
+        $this->assertFalse($this->accessAbsorbed()->getFoo()->getBar(false));
+        $this->assertTrue($this->accessAbsorbed()->getFoo()->getBar(true));
+        $this->assertSame('James', $this->accessAbsorbed()->getFoo()->getBar()->getKing('James'));
     }
 
     public function testHasAbsorbed()

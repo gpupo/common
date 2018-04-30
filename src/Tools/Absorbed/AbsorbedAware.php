@@ -19,22 +19,22 @@ namespace Gpupo\Common\Tools\Absorbed;
 
 trait AbsorbedAware
 {
-    protected $absorbed;
+    private $__absorbed;
 
     public function absorb($result)
     {
-        $this->absorbed = $result;
+        $this->__absorbed = $result;
     }
 
     public function hasAbsorbed()
     {
-        return !empty($this->absorbed);
+        return !empty($this->__absorbed);
     }
 
-    public function getAbsorbed()
+    public function accessAbsorbed()
     {
         if ($this->hasAbsorbed()) {
-            return $this->absorbed;
+            return $this->__absorbed;
         }
 
         return AbsorbedMockup::getInstance();

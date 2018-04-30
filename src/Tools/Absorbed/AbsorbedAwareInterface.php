@@ -21,5 +21,5 @@ interface AbsorbedAwareInterface
 {
     public function absorb($result);
 
-    public function getAbsorbed();
+    public function accessAbsorbed();
 }
