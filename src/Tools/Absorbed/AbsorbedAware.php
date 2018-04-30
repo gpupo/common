@@ -26,9 +26,14 @@ trait AbsorbedAware
         $this->absorbed = $result;
     }
 
+    public function hasAbsorbed()
+    {
+        return !empty($this->absorbed);
+    }
+
     public function getAbsorbed()
     {
-        if ($this->absorbed) {
+        if ($this->hasAbsorbed()) {
             return $this->absorbed;
         }
 

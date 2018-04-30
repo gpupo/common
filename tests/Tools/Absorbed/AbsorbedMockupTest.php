@@ -34,4 +34,11 @@ class AbsorbedMockupTest extends TestCaseAbstract
         $this->assertTrue($this->getAbsorbed()->getFoo()->getBar(true));
         $this->assertSame('James', $this->getAbsorbed()->getFoo()->getBar()->getKing('James'));
     }
+
+    public function testHasAbsorbed()
+    {
+        $this->assertFalse($this->hasAbsorbed());
+        $this->absorb(new \DateTime());
+        $this->assertTrue($this->hasAbsorbed());
+    }
 }
