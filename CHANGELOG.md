@@ -3,6 +3,9 @@ VERSION 2  LOGGER CHANNEL SWITCH
 ================================
 
    Version 2.4 - Add Reflected object
+      03/05/2018 18:26  2.4.2  "Rename  getAbsorbed() to accessAbsorbed()"
+         4c9af7c Rename getAbsorbed() to accessAbsorbed()
+         8444ffb Add hasAbsorbed()
       26/04/2018 17:34  2.4.1  Add Decorated Tool
       20/04/2018 17:58  2.4.0  initial release
          d7b0965 Add Reflected object
