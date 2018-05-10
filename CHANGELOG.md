@@ -2,6 +2,10 @@
 VERSION 2  LOGGER CHANNEL SWITCH
 ================================
 
+   Version 2.5 - Add suport to use displayTableResults() with generic collections
+      10/05/2018 18:15  2.5.0  initial release
+         6bc0a66 Add suport to use displayTableResults() with generic collections
+
    Version 2.4 - Add Reflected object
       03/05/2018 18:26  2.4.2  "Rename  getAbsorbed() to accessAbsorbed()"
          4c9af7c Rename getAbsorbed() to accessAbsorbed()
