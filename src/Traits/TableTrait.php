@@ -38,7 +38,7 @@ trait TableTrait
             ->setCrossingChar(' ');
         $table->setStyle($style);
 
-        if ($object instanceof CollectionAbstract) {
+        if ($object instanceof CollectionAbstract || method_exists($object, 'toArray')) {
             $list = $object->toArray();
         } else {
             $list = $object;
@@ -47,7 +47,11 @@ trait TableTrait
         $i = 0;
         foreach ($list as $item) {
             if (!is_array($item)) {
-                continue;
+                if (method_exists($item, 'toArray')) {
+                    $item = $item->toArray();
+                } else {
+                    continue;
+                }
             }
             ++$i;
             foreach ($item as $key => $value) {
@@ -88,6 +92,10 @@ trait TableTrait
             }
 
             $table->addRow($item);
+        }
+
+        if (0 === $i) {
+            throw new \Exception('Empty Table', 1);
         }
 
         return $table->render($output);
