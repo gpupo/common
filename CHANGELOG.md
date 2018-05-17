@@ -2,6 +2,10 @@
 VERSION 2  LOGGER CHANNEL SWITCH
 ================================
 
+   Version 2.6 - Inspect Tool
+      17/05/2018 14:34  2.6.0  initial release
+         aba95fc Add Inspect Tool
+
    Version 2.5 - Add suport to use displayTableResults() with generic collections
       10/05/2018 18:15  2.5.0  initial release
          6bc0a66 Add suport to use displayTableResults() with generic collections
