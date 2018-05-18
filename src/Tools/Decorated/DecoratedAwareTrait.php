@@ -17,7 +17,7 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Tools\Decorated;
 
-trait DecoratedAware
+trait DecoratedAwareTrait
 {
     protected $decorated;
 

@@ -2,6 +2,9 @@
 VERSION 2  LOGGER CHANNEL SWITCH
 ================================
 
+   Version 2.7 - Add SimpleCache Aware Trait
+      18/05/2018 13:47  2.7.0  initial release
+
    Version 2.6 - Inspect Tool
       17/05/2018 14:34  2.6.0  initial release
          aba95fc Add Inspect Tool

@@ -1,0 +1,70 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of gpupo/common
+ * Created by Gilmar Pupo <contact@gpupo.com>
+ * For the information of copyright and license you should read the file
+ * LICENSE which is distributed with this source code.
+ * Para a informação dos direitos autorais e de licença você deve ler o arquivo
+ * LICENSE que é distribuído com este código-fonte.
+ * Para obtener la información de los derechos de autor y la licencia debe leer
+ * el archivo LICENSE que se distribuye con el código fuente.
+ * For more information, see <https://opensource.gpupo.com/>.
+ *
+ */
+
+namespace Gpupo\Tests\Tools\Decorated;
+
+use Gpupo\Common\Tools\Cache\SimpleCacheAwareTrait;
+use Gpupo\Tests\Common\TestCaseAbstract;
+use Symfony\Component\Cache\Simple\FilesystemCache;
+
+/**
+ * @coversNothing
+ */
+class SimpleCacheAwareTest extends TestCaseAbstract
+{
+    use SimpleCacheAwareTrait;
+
+    public function testHaveAInstance()
+    {
+        $cache = new FilesystemCache();
+        $this->initSimpleCache($cache);
+        $this->assertInstanceOf(FilesystemCache::class, $this->getSimpleCache());
+
+        return $this->getSimpleCache();
+    }
+
+    /**
+     * @depends testHaveAInstance
+     */
+    public function testOperations(FilesystemCache $cache)
+    {
+        $this->initSimpleCache($cache);
+
+        // save a new item in the cache
+        $this->assertTrue($this->getSimpleCache()->set('stats.products_count', 4711));
+
+        // remove the cache key
+        $this->getSimpleCache()->delete('stats.products_count');
+        $this->assertFalse($this->getSimpleCache()->has('stats.products_count'));
+
+        // or set it with a custom ttl
+        $this->assertTrue($this->getSimpleCache()->set('stats.products_count', 4711, 3600));
+
+        $this->assertFalse($this->getSimpleCache()->has('stats.products_not_exist'));
+
+        // retrieve the value stored by the item
+        $this->assertSame(4711, $this->getSimpleCache()->get('stats.products_count'));
+
+        // or specify a default value, if the key doesn't exist
+        $this->assertSame('foo', $this->getSimpleCache()->get('stats.products_not_exist', 'foo'));
+
+        // clear *all* cache keys
+        $this->getSimpleCache()->clear();
+
+        $this->assertFalse($this->getSimpleCache()->has('stats.products_count'));
+    }
+}

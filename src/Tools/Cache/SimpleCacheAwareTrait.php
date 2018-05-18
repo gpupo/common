@@ -15,25 +15,32 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Tools\Decorated;
+namespace Gpupo\Common\Tools\Cache;
 
-use Gpupo\Common\Tools\Datetime\Holidays;
-use Gpupo\Common\Tools\Decorated\DecoratedAwareTrait;
-use Gpupo\Tests\Common\TestCaseAbstract;
+use Psr\SimpleCache\CacheInterface;
 
-/**
- * @coversNothing
- */
-class DecoratedAwareTest extends TestCaseAbstract
+trait SimpleCacheAwareTrait
 {
-    use DecoratedAwareTrait;
+    protected $simpleCache;
 
-    public function testGetterSetterrs()
+    public function setSimpleCache(CacheInterface $simpleCache)
     {
-        $object = new Holidays(new \DateTime());
+        $this->simpleCache = $simpleCache;
 
-        $this->assertNull($this->getDecorated());
-        $this->assertTrue($this->setDecorated($object));
-        $this->assertSame($object, $this->getDecorated());
+        return true;
+    }
+
+    public function getSimpleCache(): ?CacheInterface
+    {
+        return $this->simpleCache;
+    }
+
+    public function initSimpleCache($cache = null)
+    {
+        if (empty($cache)) {
+            return;
+        }
+
+        return $this->setSimpleCache($cache);
     }
 }
