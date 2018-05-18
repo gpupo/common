@@ -35,6 +35,11 @@ trait SimpleCacheAwareTrait
         return $this->simpleCache;
     }
 
+    public function hasSimpleCache(): bool
+    {
+        return $this->simpleCache instanceof CacheInterface;
+    }
+
     public function initSimpleCache($cache = null)
     {
         if (empty($cache)) {
@@ -43,4 +48,16 @@ trait SimpleCacheAwareTrait
 
         return $this->setSimpleCache($cache);
     }
+
+    public function simpleCacheGenerateId($key, $prefix = null): string
+    {
+        if (is_array($key)) {
+            $sha1 = sha1(serialize($key));
+        } else {
+            $sha1 = sha1($key);
+        }
+
+        return $prefix.$sha1;
+    }
+
 }

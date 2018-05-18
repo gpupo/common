@@ -67,4 +67,26 @@ class SimpleCacheAwareTest extends TestCaseAbstract
 
         $this->assertFalse($this->getSimpleCache()->has('stats.products_count'));
     }
+
+    /**
+     * @depends testHaveAInstance
+     */
+    public function testHasSimpleCache(FilesystemCache $cache)
+    {
+        $this->assertFalse($this->hasSimpleCache());
+        $this->initSimpleCache($cache);
+        $this->assertTrue($this->hasSimpleCache());
+    }
+
+    /**
+     * @depends testHaveAInstance
+     */
+    public function testSimpleCacheGenerateId(FilesystemCache $cache)
+    {
+        $this->initSimpleCache($cache);
+        $this->assertSame('0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33', $this->simpleCacheGenerateId('foo'));
+        $this->assertSame('cfd403945388a36240193983e2a0fb6b8f7e7d92', $this->simpleCacheGenerateId(['foo', ['bar']]));
+        $this->assertSame('foo-0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33', $this->simpleCacheGenerateId('foo', 'foo-'));
+        $this->assertSame('bar-cfd403945388a36240193983e2a0fb6b8f7e7d92', $this->simpleCacheGenerateId(['foo', ['bar']], 'bar-'));
+    }
 }
