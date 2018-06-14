@@ -1,4 +1,10 @@
 
+VERSION 3  MAJOR VERSION 4
+==========================
+
+   Version 3.0 - Major version 4
+      14/06/2018 11:44  3.0.0  initial release
+
 VERSION 2  LOGGER CHANNEL SWITCH
 ================================
 
