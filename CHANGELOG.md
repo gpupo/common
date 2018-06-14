@@ -1,4 +1,10 @@
 
+VERSION 4  MAJOR VERSION 3 SKIPPED
+==================================
+
+   Version 4.0 - Major version 3 skipped
+      14/06/2018 11:44  4.0.0  initial release
+
 VERSION 3  MAJOR VERSION 4
 ==========================
 
