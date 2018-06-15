@@ -21,7 +21,7 @@ print_style () {
 }
 
 git-flow-pull() {
-    CURRENT=`git branch | grep '\*' | awk '{print $2}'`
+    CURRENT=`git-branch-name`
     git checkout develop
     git pull --rebase origin develop
     git checkout ${CURRENT}
@@ -31,18 +31,23 @@ git-flow-pull() {
 }
 
 git-flow-push() {
-    CURRENT=`git branch | grep '\*' | awk '{print $2}'`
-    git checkout develop
+    git-flow-push-to develop
+}
+
+git-flow-master() {
+    git-flow-push-to master
+}
+
+git-flow-push-to() {
+    CURRENT=`git-branch-name`
+    git checkout $1
     git merge ${CURRENT}
-    git push origin develop
-    print_style 'Your code is on `develop`' 'success';
+    git push origin $1
     git checkout ${CURRENT};
-    print_style 'All commits are in `develop`' 'success';
-    git branch;
 }
 
 git-flow-push-squash() {
-    CURRENT=`git branch | grep '\*' | awk '{print $2}'`
+    CURRENT=`git-branch-name`
     git checkout develop
     git merge --squash ${CURRENT}
     git commit
@@ -64,14 +69,14 @@ git-flow-ship() {
     print_style 'Done!' 'success';
 }
 
-
-git-remote-doubled() {
-  git remote set-url --add --push origin git@bitbucket.org:$1.git;
-  git remote set-url --add --push origin git@github.com:$1.git;
+git-flow-absorb() {
+  git checkout -b tmp
+  git pull $REPO_URL $REPO_BRANCH;
+  #git commit --amend --reset-author --no-edit
 }
 
 git-merge-to-master() {
-  CURRENT=`git branch | grep '\*' | awk '{print $2}'`
+  CURRENT=`git-branch-name`
   git checkout -b "${CURRENT}-`date +"%m-%d-%y-%s"`";
   git checkout -b branchB
   git checkout master
@@ -88,3 +93,10 @@ git-merge-to-master() {
   git push origin master:master;
   git checkout -b ${CURRENT}
 }
+
+git-branch-name() {
+  git branch | grep '\*' | awk '{print $2}'
+  #git branch 2>/dev/null | grep '^*' | colrm 1 2
+}
+
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\] \[\033[33;1m\]\w\[\033[m\] (\$(git-branch-name)) \$ "
