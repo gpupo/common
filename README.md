@@ -1,16 +1,8 @@
-
-<!-- main -->
-
-# common
-
 Common Objects for PHP components
-
-<!-- require -->
 
 ## Requisitos para uso
 
 * PHP >= *7.1*
-* [curl extension](http://php.net/manual/en/intro.curl.php)
 * [Composer Dependency Manager](http://getcomposer.org)
 
 Este componente **não é uma aplicação Stand Alone** e seu objetivo é ser utilizado como biblioteca.
@@ -49,21 +41,11 @@ Proibido:
 
 - Responsabilidade Assegurada
 
-<!-- QA -->
-
+---
 ## Indicadores de qualidade
 
 [![Build Status](https://secure.travis-ci.org/gpupo/common.png?branch=master)](http://travis-ci.org/gpupo/common)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gpupo/common/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gpupo/common/?branch=master)
-[![Code Climate](https://codeclimate.com/github/gpupo/common/badges/gpa.svg)](https://codeclimate.com/github/gpupo/common)
-[![Code Coverage](https://scrutinizer-ci.com/g/gpupo/common/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/gpupo/common/?branch=master)
-[![Test Coverage](https://codeclimate.com/github/gpupo/common/badges/coverage.svg)](https://codeclimate.com/github/gpupo/common/coverage)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/c74618a2-45c9-4d12-922a-704b23f7c607/mini.png)](https://insight.sensiolabs.com/projects/c74618a2-45c9-4d12-922a-704b23f7c607)
-
-<!-- thanks -->
-
-
-<!-- install -->
 
 ---
 
@@ -72,3 +54,17 @@ Proibido:
 Adicione o pacote ``common`` ao seu projeto utilizando [composer](http://getcomposer.org):
 
     composer require gpupo/common
+
+
+---
+
+## Development (with docker)
+
+### Load Aliases
+
+    source bin/alias.sh
+
+### Tools loaded
+
+- phpunit
+- php-cs-fixer

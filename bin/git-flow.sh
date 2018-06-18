@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Git Flow Functions by @gpupo
 print_style () {
     if [ "$2" == "info" ] ; then
         COLOR="96m";
@@ -95,8 +94,9 @@ git-merge-to-master() {
 }
 
 git-branch-name() {
-  git branch | grep '\*' | awk '{print $2}'
-  #git branch 2>/dev/null | grep '^*' | colrm 1 2
+  if [ -d .git ]; then
+    git branch | grep '\*' | awk '{print $2}'
+  fi;
 }
 
-export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\] \[\033[33;1m\]\w\[\033[m\] (\$(git-branch-name)) \$ "
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\[\033[33;1m\]\w\[\033[m\]\e[96m(\$(git-branch-name))\e[0m\$ "
