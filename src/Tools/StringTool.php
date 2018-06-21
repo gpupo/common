@@ -36,4 +36,38 @@ class StringTool
 
         return implode('_', $ret);
     }
+
+    /**
+     * Convert snake_case to CamelCase.
+     *
+     * @param string $input MyString
+     * @param bool $capitalizeFirstCharacter
+     *
+     * @return string my_string
+     */
+    public static function snakeCaseToCamelCase($input, $capitalizeFirstCharacter = false)
+    {
+        $str = str_replace('_', '', ucwords($input, '_'));
+
+        if (!$capitalizeFirstCharacter) {
+            $str = lcfirst($str);
+        }
+
+        return $str;
+    }
+
+    public static function normalizeToSingular($string)
+    {
+        return rtrim($string, 's');
+    }
+
+    public static function normalizeToPlural($string)
+    {
+        return sprintf('%ss',self::normalizeToSingular($string));
+    }
+
+    public static function normalizeToSlug($string)
+    {
+        return str_replace('\\', '_', $string);
+    }
 }
