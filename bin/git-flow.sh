@@ -68,10 +68,14 @@ git-flow-ship() {
     print_style 'Done!' 'success';
 }
 
+# usage: git-flow-absorb https://github.com/foo/common-schema feature-add-test-shipping
 git-flow-absorb() {
-  git checkout -b tmp
-  git pull $REPO_URL $REPO_BRANCH;
-  #git commit --amend --reset-author --no-edit
+  CURRENT=`git-branch-name`
+  TEMPORARY=tmp-$2
+  git checkout -b $TEMPORARY
+  git pull $1 $2;
+  git checkout ${CURRENT}
+  git merge --squash $TEMPORARY
 }
 
 git-merge-to-master() {
