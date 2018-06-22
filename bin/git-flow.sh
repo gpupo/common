@@ -1,6 +1,15 @@
 #!/bin/bash
 
-print_style () {
+print_with_color()
+{
+  # @see https://misc.flogisoft.com/bash/tip_colors_and_formatting
+  STARTCOLOR="\e[$2";
+  ENDCOLOR="\e[0m";
+
+  printf "$STARTCOLOR%b$ENDCOLOR" "$1"
+}
+
+print_style() {
     if [ "$2" == "info" ] ; then
         COLOR="96m";
     elif [ "$2" == "success" ] ; then
@@ -13,10 +22,7 @@ print_style () {
         COLOR="0m";
     fi
 
-    STARTCOLOR="\e[$COLOR";
-    ENDCOLOR="\e[0m";
-
-    printf "$STARTCOLOR%b$ENDCOLOR" "$1" "\n";
+    print_with_color "$1 \n" $COLOR
 }
 
 git-flow-pull() {
@@ -103,4 +109,4 @@ git-branch-name() {
   fi;
 }
 
-export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\[\033[33;1m\]\w\[\033[m\]\e[96m(\$(git-branch-name))\e[0m\$ "
+export PS1="\$(print_with_color \u 92m)\$(print_with_color @ 90m)\$(print_with_color \w 94m)\$(print_with_color : 90m)\$(print_with_color \$(git-branch-name) 96m)\$(print_with_color \$ 90m) "
