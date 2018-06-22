@@ -40,8 +40,8 @@ class StringTool
     /**
      * Convert snake_case to CamelCase.
      *
-     * @param string $input MyString
-     * @param bool $capitalizeFirstCharacter
+     * @param string $input                    MyString
+     * @param bool   $capitalizeFirstCharacter
      *
      * @return string my_string
      */
@@ -63,7 +63,7 @@ class StringTool
 
     public static function normalizeToPlural($string)
     {
-        return sprintf('%ss',self::normalizeToSingular($string));
+        return sprintf('%ss', self::normalizeToSingular($string));
     }
 
     public static function normalizeToSlug($string)

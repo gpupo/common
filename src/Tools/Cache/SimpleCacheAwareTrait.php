@@ -59,5 +59,4 @@ trait SimpleCacheAwareTrait
 
         return $prefix.$sha1;
     }
-
 }
