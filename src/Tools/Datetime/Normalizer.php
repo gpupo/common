@@ -38,6 +38,11 @@ class Normalizer
         return $this->currentTimeZone;
     }
 
+    public function factoryDateTimeByString($string)
+    {
+        return new DateTime($string, $this->datetimeTimeZone());
+    }
+
     public function setFlagRemoveTimezone(bool $flag)
     {
         $this->flags['removeTimezone'] = $flag;
@@ -50,13 +55,18 @@ class Normalizer
         return $this->flags[$key];
     }
 
+    public function datetimeTimeZone()
+    {
+        return new DateTimeZone($this->getCurrentTimeZone());
+    }
+
     public function normalizeFormat($string)
     {
         if (is_numeric($string)) {
             return $this->normalizeFormat($this->millisecondsConverter($string));
         }
 
-        $datetime = new DateTime($string, $this->datetimeTimeZone());
+        $datetime = $this->factoryDateTimeByString($string);
 
         if ($this->getFlag('removeTimezone')) {
             return $datetime->format('Y-m-d H:i:s');
@@ -87,11 +97,5 @@ class Normalizer
         }
 
         return $value;
-    }
-
-    // America/Sao_Paulo
-    protected function datetimeTimeZone()
-    {
-        return new DateTimeZone($this->getCurrentTimeZone());
     }
 }
