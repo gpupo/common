@@ -3,7 +3,7 @@
 print_with_color()
 {
   # @see https://misc.flogisoft.com/bash/tip_colors_and_formatting
-  STARTCOLOR="\e[$2";
+  STARTCOLOR="\e[$2m";
   ENDCOLOR="\e[0m";
 
   printf "$STARTCOLOR%b$ENDCOLOR" "$1"
@@ -11,15 +11,15 @@ print_with_color()
 
 print_style() {
     if [ "$2" == "info" ] ; then
-        COLOR="96m";
+        COLOR="96";
     elif [ "$2" == "success" ] ; then
-        COLOR="92m";
+        COLOR="92";
     elif [ "$2" == "warning" ] ; then
-        COLOR="93m";
+        COLOR="93";
     elif [ "$2" == "danger" ] ; then
-        COLOR="91m";
+        COLOR="91";
     else #default color
-        COLOR="0m";
+        COLOR="0";
     fi
 
     print_with_color "$1 \n" $COLOR
@@ -109,4 +109,4 @@ git-branch-name() {
   fi;
 }
 
-export PS1="\$(print_with_color \u 92m)\$(print_with_color @ 90m)\$(print_with_color \w 94m)\$(print_with_color : 90m)\$(print_with_color \$(git-branch-name) 96m)\$(print_with_color \$ 90m) "
+export PS1="\[\$(print_with_color \u 92)\$(print_with_color @ 90)\$(print_with_color \w 94)\$(print_with_color : 90)\$(print_with_color \$(git-branch-name) 96)\]\$(print_with_color \$ 90) "
