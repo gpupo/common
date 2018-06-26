@@ -2,6 +2,20 @@
 VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
+   Version 4.1 - Add DateTime normalizer
+      26/06/2018 15:27  4.1.0  initial release
+         208ba15 Refactory color
+         f7bda0d add factoryDateTimeByString
+         834ab26 Add DateTime normalizer
+         b636733 Add normalizer test
+         89e2c31 add print color
+         f4bacb1 refactory git-flow-absorb
+         d6ed2fe add string methods
+         e4bee4f fix alias
+         6073dc0 add aliases
+         fd60475 add git branch name function
+         20c3449 Add git-flow funcions
+
    Version 4.0 - Major version 3 skipped
       14/06/2018 11:44  4.0.0  initial release
 
