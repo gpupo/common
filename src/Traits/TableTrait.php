@@ -33,9 +33,9 @@ trait TableTrait
     ) {
         $table = new Table($output);
         $style = new TableStyle();
-        $style->setHorizontalBorderChar('<fg=magenta>-</>')
-            ->setVerticalBorderChar('<fg=magenta>|</>')
-            ->setCrossingChar(' ');
+        $style->setHorizontalBorderChars('<fg=magenta>-</>')
+            ->setVerticalBorderChars('<fg=magenta>|</>')
+            ->setDefaultCrossingChar(' ');
         $table->setStyle($style);
 
         if ($object instanceof CollectionAbstract || method_exists($object, 'toArray')) {
