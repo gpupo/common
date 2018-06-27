@@ -51,6 +51,13 @@ git-flow-push-to() {
     git checkout ${CURRENT};
 }
 
+git-flow-merge-to() {
+    CURRENT=`git-branch-name`
+    git checkout $1
+    git merge --squash ${CURRENT}
+}
+
+
 git-flow-push-squash() {
     CURRENT=`git-branch-name`
     git checkout develop
