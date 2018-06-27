@@ -3,6 +3,11 @@ VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
    Version 4.1 - Add DateTime normalizer
+      27/06/2018 08:28  4.1.1  add factoryElementAndAdd
+         4212079 add abstract function to trait getter
+         e618940 update console table style
+         b53c10c Simplify CI config
+         36732d7 simplify CI
       26/06/2018 15:27  4.1.0  initial release
          208ba15 Refactory color
          f7bda0d add factoryDateTimeByString
