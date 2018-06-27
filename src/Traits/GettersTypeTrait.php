@@ -19,6 +19,8 @@ namespace Gpupo\Common\Traits;
 
 trait GettersTypeTrait
 {
+    abstract public function get($key);
+    
     public function getTypeFloat($key)
     {
         $x = (float) $this->get($key);
