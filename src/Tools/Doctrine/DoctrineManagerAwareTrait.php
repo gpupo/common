@@ -45,9 +45,17 @@ trait DoctrineManagerAwareTrait
         $this->_doctrine_service_set('DocumentManager', $documentManager);
     }
 
-    protected function getDoctrine(): EntityManagerInterface
+    protected function getDoctrineEntityManager(): EntityManagerInterface
     {
         return $this->_doctrine_service_get('EntityManagerInterface');
+    }
+
+    /**
+     * Alias
+     */
+    protected function getDoctrine(): EntityManagerInterface
+    {
+        return $this->getDoctrineEntityManager();
     }
 
     protected function closeDoctrine()
