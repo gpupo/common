@@ -33,10 +33,15 @@ trait AbsorbedAware
 
     public function accessAbsorbed()
     {
-        if ($this->hasAbsorbed()) {
-            return $this->__absorbed;
+        if (false === $this->hasAbsorbed()) {
+            $this->absorb($this->factoryEmptyAbsorbed());
         }
 
+        return $this->__absorbed;
+    }
+
+    protected function factoryEmptyAbsorbed()
+    {
         return AbsorbedMockup::getInstance();
     }
 }
