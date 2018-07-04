@@ -15,22 +15,15 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Objects;
+namespace Gpupo\Common\Entity;
 
-use Gpupo\Common\Interfaces\OptionsInterface;
-use Gpupo\Common\Traits\OptionsTrait;
+use Doctrine\ORM\Mapping as ORM;
+use Gpupo\Common\Traits\PropertyAccessorsTrait;
 
-class HasOptions extends AbstractObject implements OptionsInterface
+/**
+ * @ORM\MappedSuperclass
+ */
+abstract class AbstractORMEntity
 {
-    use OptionsTrait;
-
-    public function getDefaultOptions()
-    {
-        return [
-            'king'  => 'james',
-            'queen' => 'margaret',
-        ];
-    }
-
-
+    use PropertyAccessorsTrait;
 }

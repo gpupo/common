@@ -17,8 +17,12 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Traits;
 
+use Gpupo\Common\Tools\StringTool;
+
 trait PropertyAccessorsTrait
 {
+    protected $propertyNamingMode = 'lowerCamelCase';
+
     private function __accessorPropertyValidate($method, $property = null, $defaultValue = null)
     {
         if (empty($property) || !property_exists(get_called_class(), $property)) {
@@ -30,6 +34,17 @@ trait PropertyAccessorsTrait
         }
 
         return true;
+    }
+
+    protected function __propertyNameNormalizer($property): string
+    {
+        $property[0] = strtolower($property[0]);
+
+        if ('snake_case' === $this->propertyNamingMode) {
+            $property = StringTool::camelCaseToSnakeCase($property);
+        }
+
+        return $property;
     }
 
     protected function __accessorGetter($property, $defaultValue = null)
@@ -67,8 +82,13 @@ trait PropertyAccessorsTrait
     public function __call($method, $args)
     {
         $command = substr($method, 0, 3);
-        $property = substr($method, 3);
-        $property[0] = strtolower($property[0]);
+
+        if ('_' === $command[0]) {
+            throw new \BadMethodCallException('Magic methods start with _ is not allowed');
+        }
+
+        $property = $this->__propertyNameNormalizer(substr($method, 3));
+
         $argument = (is_array($args) && !empty($args)) ? current($args) : null;
 
         if ('set' === $command) {
