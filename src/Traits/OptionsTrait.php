@@ -48,6 +48,6 @@ trait OptionsTrait
 
     public function receiveOptions(Collection $options)
     {
-        return $this->setOptions(array_merge($this->getDefaultOptions(), $options->toArray()));
+        return $this->setOptions($options->toArray());
     }
 }

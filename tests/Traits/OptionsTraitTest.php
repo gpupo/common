@@ -38,4 +38,25 @@ class OptionsTraitTest extends TestCaseAbstract
         $object->setOptions(['foo' => 'bar']);
         $this->assertSame('bar', $object->getOptions()->get('foo'));
     }
+
+    public function testMergeTwoOptions()
+    {
+        $objectA = new HasOptions();
+        $objectA->setOptions(['foo' => 'bar']);
+
+        $objectB = new HasOptions();
+        $objectB->receiveOptions($objectA->getOptions());
+
+        $this->assertSame('bar', $objectB->getOptions()->get('foo'));
+        $this->assertSame('margaret', $objectB->getOptions()->get('queen'));
+
+        $objectA->setOptions([
+            'foo' => 'bar',
+            'king'=> 'bob',
+        ]);
+        $this->assertSame('bob', $objectA->getOptions()->get('king'));
+        $this->assertSame('james', $objectB->getOptions()->get('king'));
+        $objectB->receiveOptions($objectA->getOptions());
+        $this->assertSame('bob', $objectB->getOptions()->get('king'));
+    }
 }

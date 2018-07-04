@@ -23,4 +23,14 @@ use Gpupo\Common\Traits\OptionsTrait;
 class HasOptions extends AbstractObject implements OptionsInterface
 {
     use OptionsTrait;
+
+    public function getDefaultOptions()
+    {
+        return [
+            'king'  => 'james',
+            'queen' => 'margaret',
+        ];
+    }
+
+
 }
