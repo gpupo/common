@@ -51,7 +51,7 @@ trait DoctrineManagerAwareTrait
     }
 
     /**
-     * Alias
+     * Alias.
      */
     protected function getDoctrine(): EntityManagerInterface
     {

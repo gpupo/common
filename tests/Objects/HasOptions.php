@@ -27,10 +27,8 @@ class HasOptions extends AbstractObject implements OptionsInterface
     public function getDefaultOptions()
     {
         return [
-            'king'  => 'james',
+            'king' => 'james',
             'queen' => 'margaret',
         ];
     }
-
-
 }

@@ -52,7 +52,7 @@ class OptionsTraitTest extends TestCaseAbstract
 
         $objectA->setOptions([
             'foo' => 'bar',
-            'king'=> 'bob',
+            'king' => 'bob',
         ]);
         $this->assertSame('bob', $objectA->getOptions()->get('king'));
         $this->assertSame('james', $objectB->getOptions()->get('king'));
