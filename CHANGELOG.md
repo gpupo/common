@@ -2,6 +2,16 @@
 VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
+   Version 4.2 - Add Doctrine Manager Aware
+      05/07/2018 16:29  4.2.0  initial release
+         8175dbe Fix conflicts
+         dc05148 Apply cs rules
+         1a919d0 add tests
+         26819df add tests
+         5bb11bb Add factoryEmptyAbsorbed
+         c88c1c6 fix name
+         e23dc16 add doctrine aware
+
    Version 4.1 - Add DateTime normalizer
       27/06/2018 08:28  4.1.1  add factoryElementAndAdd
          4212079 add abstract function to trait getter
