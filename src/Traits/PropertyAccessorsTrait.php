@@ -30,7 +30,7 @@ trait PropertyAccessorsTrait
                 return false;
             }
 
-            throw new \BadMethodCallException('There is no [magic] method '.$method.'() for '.get_called_class().'::$'.$property);
+            throw new \BadMethodCallException('There is no magic method '.$method.'() for '.get_called_class().'::$'.$property);
         }
 
         return true;
