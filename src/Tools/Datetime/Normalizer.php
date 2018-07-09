@@ -90,9 +90,9 @@ class Normalizer
         return $date;
     }
 
-    public function normalizeTimeZone(\DateTime $value)
+    public function normalizeTimeZone(DateTime $value)
     {
-        if ($value instanceof \DateTime) {
+        if ($value instanceof DateTime) {
             $value->setTimeZone($this->datetimeTimeZone());
         }
 
