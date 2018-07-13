@@ -3,6 +3,9 @@ VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
    Version 4.2 - Add Doctrine Manager Aware
+      13/07/2018 09:58  4.2.1  Refactory
+         27e0f33 Update alias
+         2e3bf07 refactory
       05/07/2018 16:29  4.2.0  initial release
          8175dbe Fix conflicts
          dc05148 Apply cs rules
