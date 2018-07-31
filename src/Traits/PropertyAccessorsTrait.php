@@ -36,8 +36,12 @@ trait PropertyAccessorsTrait
         return true;
     }
 
-    protected function __propertyNameNormalizer($property): string
+    protected function __propertyNameNormalizer($property)
     {
+        if(empty($property)) {
+            return;
+        }
+
         $property[0] = strtolower($property[0]);
 
         if ('snake_case' === $this->propertyNamingMode) {
@@ -87,7 +91,12 @@ trait PropertyAccessorsTrait
             throw new \BadMethodCallException('Magic methods start with _ is not allowed');
         }
 
-        $property = $this->__propertyNameNormalizer(substr($method, 3));
+        if ('id' === $method) {
+            $property = $method;
+            $command = 'get';
+        } else {
+            $property = $this->__propertyNameNormalizer(substr($method, 3));
+        }
 
         $argument = (is_array($args) && !empty($args)) ? current($args) : null;
 
