@@ -3,6 +3,9 @@ VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
    Version 4.2 - Add Doctrine Manager Aware
+      01/08/2018 16:13  4.2.2  Improve messages
+         35962bd Improve exception message
+         3ed5e6b Improve accessor
       13/07/2018 09:58  4.2.1  Refactory
          27e0f33 Update alias
          2e3bf07 refactory
