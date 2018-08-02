@@ -26,4 +26,16 @@ class HasPropertyAccessors
     protected $foo = 'bar';
 
     protected $littleBigPlanet = 3;
+
+    protected $secret = 'floyd';
+
+    public function getPink()
+    {
+        return $this->secret;
+    }
+
+    public function setPink($value)
+    {
+        $this->secret = $value;
+    }
 }

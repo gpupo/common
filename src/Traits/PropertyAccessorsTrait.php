@@ -29,14 +29,12 @@ trait PropertyAccessorsTrait
             return false;
         }
 
-        $snakeName = StringTool::camelCaseToSnakeCase($property);
-
         if (!property_exists(get_called_class(), $property)) {
             if (null !== $defaultValue) {
                 return false;
             }
 
-            throw new \BadMethodCallException(sprintf('Property $%s or $%s not found in %s trying %s() in [%s] mode', $property, $snakeName, get_called_class(), $method, $this->propertyNamingMode));
+            throw new \BadMethodCallException(sprintf('Property $%s not found in %s trying %s() in [%s] mode', $property, get_called_class(), $method, $this->propertyNamingMode));
         }
 
         return true;
@@ -69,11 +67,23 @@ trait PropertyAccessorsTrait
 
     public function __get($property)
     {
+        $concreteGetter = StringTool::snakeCaseToCamelCase('get_'.$property);
+
+        if (method_exists(get_called_class(), $concreteGetter)) {
+            return $this->{$concreteGetter}();
+        }
+
         return $this->__accessorGetter($property);
     }
 
     public function __set($property, $value)
     {
+        $concreteSetter = StringTool::snakeCaseToCamelCase('set_'.$property);
+
+        if (method_exists(get_called_class(), $concreteSetter)) {
+            return $this->{$concreteSetter}($value);
+        }
+
         $this->__accessorPropertyValidate('__set', $property);
         $this->{$property} = $value;
 

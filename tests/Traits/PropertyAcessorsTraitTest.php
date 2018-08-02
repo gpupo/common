@@ -38,5 +38,19 @@ class PropertyAcessorsTraitTest extends TestCaseAbstract
         $this->assertSame('hi', $object->getLittleBigPlanet());
         $this->assertSame('hi', $object->little_big_planet);
         $this->assertSame('hi', $object->littleBigPlanet);
+
+        return $object;
+    }
+
+    /**
+         * @depends testHasMagicMethods
+     */
+    public function testAccessGetMethods($object)
+    {
+        $this->assertSame('floyd', $object->pink);
+        $this->assertSame('floyd', $object->getPink());
+
+        $object->pink = 'blue';
+        $this->assertSame('blue', $object->pink);
     }
 }
