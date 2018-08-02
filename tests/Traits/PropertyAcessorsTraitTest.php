@@ -28,6 +28,15 @@ class PropertyAcessorsTraitTest extends TestCaseAbstract
     public function testHasMagicMethods()
     {
         $object = new HasPropertyAccessors();
+        $this->assertSame('bar', $object->foo);
         $this->assertSame('bar', $object->getFoo());
+        $this->assertSame(3, $object->getLittleBigPlanet());
+        $this->assertSame(3, $object->little_big_planet);
+        $this->assertSame(3, $object->littleBigPlanet);
+        $object->foo = $object->littleBigPlanet = 'hi';
+        $this->assertSame('hi', $object->foo);
+        $this->assertSame('hi', $object->getLittleBigPlanet());
+        $this->assertSame('hi', $object->little_big_planet);
+        $this->assertSame('hi', $object->littleBigPlanet);
     }
 }

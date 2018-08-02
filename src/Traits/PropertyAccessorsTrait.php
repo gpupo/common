@@ -25,12 +25,18 @@ trait PropertyAccessorsTrait
 
     private function __accessorPropertyValidate($method, $property = null, $defaultValue = null)
     {
-        if (empty($property) || !property_exists(get_called_class(), $property)) {
+        if (empty($property)) {
+            return false;
+        }
+
+        $snakeName = StringTool::camelCaseToSnakeCase($property);
+
+        if (!property_exists(get_called_class(), $property)) {
             if (null !== $defaultValue) {
                 return false;
             }
 
-            throw new \BadMethodCallException(sprintf('Property $%s not found in %s trying %s()', $property, get_called_class(), $method));
+            throw new \BadMethodCallException(sprintf('Property $%s or $%s not found in %s trying %s() in [%s] mode', $property, $snakeName, get_called_class(), $method, $this->propertyNamingMode));
         }
 
         return true;
@@ -38,14 +44,13 @@ trait PropertyAccessorsTrait
 
     protected function __propertyNameNormalizer($property)
     {
-        if(empty($property)) {
+        if (empty($property)) {
             return;
         }
-
-        $property[0] = strtolower($property[0]);
-
         if ('snake_case' === $this->propertyNamingMode) {
             $property = StringTool::camelCaseToSnakeCase($property);
+        } else {
+            $property = StringTool::snakeCaseToCamelCase($property);
         }
 
         return $property;
@@ -53,6 +58,8 @@ trait PropertyAccessorsTrait
 
     protected function __accessorGetter($property, $defaultValue = null)
     {
+        $property = $this->__propertyNameNormalizer($property);
+
         if (true === $this->__accessorPropertyValidate('__get', $property, $defaultValue)) {
             return $this->{$property};
         }
@@ -112,6 +119,6 @@ trait PropertyAccessorsTrait
             return $this->__accessorGetter($property, $argument);
         }
 
-        $this->__accessorPropertyValidate($method);
+        $this->__accessorPropertyValidate($this->__propertyNameNormalizer($method));
     }
 }

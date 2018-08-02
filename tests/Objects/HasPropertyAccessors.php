@@ -22,5 +22,8 @@ use Gpupo\Common\Traits\PropertyAccessorsTrait;
 class HasPropertyAccessors
 {
     use PropertyAccessorsTrait;
+
     protected $foo = 'bar';
+
+    protected $littleBigPlanet = 3;
 }
