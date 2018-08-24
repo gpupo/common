@@ -3,6 +3,10 @@ VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
    Version 4.2 - Add Doctrine Manager Aware
+      24/08/2018 15:20  4.2.3  Remove dev-master
+         cef7abe Update dependency version
+         3058694 find concrete getters and setters
+         30acd7f snack case call fix
       01/08/2018 16:13  4.2.2  Improve messages
          35962bd Improve exception message
          3ed5e6b Improve accessor
