@@ -115,5 +115,3 @@ git-branch-name() {
     git branch | grep '\*' | awk '{print $2}'
   fi;
 }
-
-export PS1="\[\$(print_with_color \u 92)\$(print_with_color @ 90)\$(print_with_color \w 94)\$(print_with_color : 90)\$(print_with_color \$(git-branch-name) 96)\]\$(print_with_color \$ 90) "
