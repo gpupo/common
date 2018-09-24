@@ -2,6 +2,9 @@
 VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
+   Version 4.3 - Removed getDoctrine
+      24/09/2018 15:53  4.3.0  initial release
+
    Version 4.2 - Add Doctrine Manager Aware
       24/08/2018 15:20  4.2.3  Remove dev-master
          cef7abe Update dependency version

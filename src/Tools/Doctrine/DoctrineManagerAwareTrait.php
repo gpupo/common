@@ -50,14 +50,6 @@ trait DoctrineManagerAwareTrait
         return $this->_doctrine_service_get('EntityManagerInterface');
     }
 
-    /**
-     * Alias.
-     */
-    protected function getDoctrine(): EntityManagerInterface
-    {
-        return $this->getDoctrineEntityManager();
-    }
-
     protected function closeDoctrine()
     {
         $this->getDoctrine()->close();
