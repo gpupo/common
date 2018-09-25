@@ -43,7 +43,9 @@ class PropertyAcessorsTraitTest extends TestCaseAbstract
     }
 
     /**
-         * @depends testHasMagicMethods
+     * @depends testHasMagicMethods
+     *
+     * @param mixed $object
      */
     public function testAccessGetMethods($object)
     {

@@ -30,7 +30,7 @@ trait SingletonTrait
 
     final public static function getInstance()
     {
-        $calledClassName = get_called_class();
+        $calledClassName = \get_called_class();
 
         if (!isset(self::$instanceList[$calledClassName])) {
             self::setInstance($calledClassName, new $calledClassName());
@@ -47,6 +47,6 @@ trait SingletonTrait
 
     final public static function rebuildInstance($object)
     {
-        self::setInstance(get_called_class(), $object);
+        self::setInstance(\get_called_class(), $object);
     }
 }

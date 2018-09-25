@@ -27,7 +27,7 @@ class Reflected
 
     public function __construct($object)
     {
-        if (!is_object($object)) {
+        if (!\is_object($object)) {
             throw new InvalidArgumentException('Argument must be an object');
         }
 

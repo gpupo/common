@@ -29,12 +29,12 @@ trait PropertyAccessorsTrait
             return false;
         }
 
-        if (!property_exists(get_called_class(), $property)) {
+        if (!property_exists(\get_called_class(), $property)) {
             if (null !== $defaultValue) {
                 return false;
             }
 
-            throw new \BadMethodCallException(sprintf('Property $%s not found in %s trying %s() in [%s] mode', $property, get_called_class(), $method, $this->propertyNamingMode));
+            throw new \BadMethodCallException(sprintf('Property $%s not found in %s trying %s() in [%s] mode', $property, \get_called_class(), $method, $this->propertyNamingMode));
         }
 
         return true;
@@ -69,7 +69,7 @@ trait PropertyAccessorsTrait
     {
         $concreteGetter = StringTool::snakeCaseToCamelCase('get_'.$property);
 
-        if (method_exists(get_called_class(), $concreteGetter)) {
+        if (method_exists(\get_called_class(), $concreteGetter)) {
             return $this->{$concreteGetter}();
         }
 
@@ -80,7 +80,7 @@ trait PropertyAccessorsTrait
     {
         $concreteSetter = StringTool::snakeCaseToCamelCase('set_'.$property);
 
-        if (method_exists(get_called_class(), $concreteSetter)) {
+        if (method_exists(\get_called_class(), $concreteSetter)) {
             return $this->{$concreteSetter}($value);
         }
 
@@ -102,7 +102,7 @@ trait PropertyAccessorsTrait
      */
     public function __call($method, $args)
     {
-        $command = substr($method, 0, 3);
+        $command = mb_substr($method, 0, 3);
 
         if ('_' === $command[0]) {
             throw new \BadMethodCallException('Magic methods start with _ is not allowed');
@@ -112,10 +112,10 @@ trait PropertyAccessorsTrait
             $property = $method;
             $command = 'get';
         } else {
-            $property = $this->__propertyNameNormalizer(substr($method, 3));
+            $property = $this->__propertyNameNormalizer(mb_substr($method, 3));
         }
 
-        $argument = (is_array($args) && !empty($args)) ? current($args) : null;
+        $argument = (\is_array($args) && !empty($args)) ? current($args) : null;
 
         if ('set' === $command) {
             return $this->__set($property, $argument);

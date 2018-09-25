@@ -62,11 +62,11 @@ class Holidays
     public function isHoliday($country)
     {
         $array = $this->listOfHolidays();
-        $key = strtolower($country);
-        if (!array_key_exists($key, $array) || !is_array($array[$key])) {
+        $key = mb_strtolower($country);
+        if (!array_key_exists($key, $array) || !\is_array($array[$key])) {
             return;
         }
 
-        return in_array($this->datetime->format('d-m-Y'), $array[$key], true);
+        return \in_array($this->datetime->format('d-m-Y'), $array[$key], true);
     }
 }

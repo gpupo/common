@@ -71,7 +71,7 @@ abstract class CollectionAbstract extends ArrayCollection
     {
         $currentValue = $this->get($key);
 
-        if (is_array($currentValue)) {
+        if (\is_array($currentValue)) {
             $currentValue[] = $value;
             $this->set($key, $currentValue);
         } else {
@@ -108,7 +108,7 @@ abstract class CollectionAbstract extends ArrayCollection
         $new = [];
         $list = $this->toArray();
         foreach ($list as $key => $value) {
-            if (in_array($key, $allowed, true)) {
+            if (\in_array($key, $allowed, true)) {
                 $new[$key] = $value;
             }
         }

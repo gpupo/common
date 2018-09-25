@@ -54,9 +54,9 @@ trait MagicCallTrait
             throw new \BadMethodCallException('There is no [magic] method '.$method.'()');
         };
 
-        $command = substr($method, 0, 3);
-        $field = substr($method, 3);
-        $field[0] = strtolower($field[0]);
+        $command = mb_substr($method, 0, 3);
+        $field = mb_substr($method, 3);
+        $field[0] = mb_strtolower($field[0]);
 
         if ('set' === $command) {
             $this->set($field, current($args));

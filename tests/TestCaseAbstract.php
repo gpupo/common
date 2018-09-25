@@ -23,8 +23,8 @@ abstract class TestCaseAbstract extends TestCase
 {
     protected function getConstant($name, $default = false)
     {
-        if (defined($name)) {
-            return constant($name);
+        if (\defined($name)) {
+            return \constant($name);
         }
 
         return $default;

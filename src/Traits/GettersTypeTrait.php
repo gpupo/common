@@ -44,6 +44,6 @@ trait GettersTypeTrait
             'OK',
         ];
 
-        return in_array($x, $l, true);
+        return \in_array($x, $l, true);
     }
 }

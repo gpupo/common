@@ -51,7 +51,7 @@ trait SimpleCacheAwareTrait
 
     public function simpleCacheGenerateId($key, $prefix = null): string
     {
-        if (is_array($key)) {
+        if (\is_array($key)) {
             $sha1 = sha1(serialize($key));
         } else {
             $sha1 = sha1($key);

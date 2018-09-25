@@ -62,7 +62,7 @@ abstract class AbstractApplication extends Application
 
     public function getConfig($key)
     {
-        if (is_array($this->config) && array_key_exists($key, $this->config)) {
+        if (\is_array($this->config) && array_key_exists($key, $this->config)) {
             return $this->config[$key];
         }
     }
@@ -98,7 +98,7 @@ abstract class AbstractApplication extends Application
     protected function addConfig($string)
     {
         $load = json_decode($string, true);
-        if (!is_array($load)) {
+        if (!\is_array($load)) {
             return false;
         }
 
@@ -122,13 +122,13 @@ abstract class AbstractApplication extends Application
         if (null !== $this->getConfig($parameter['key'])) {
             return $this->getConfig($parameter['key']);
         }
-        if (is_array($parameter) && array_key_exists('options', $parameter)) {
-            $subject = $parameter['key'].' (['.implode($parameter['options'], ',')
+        if (\is_array($parameter) && array_key_exists('options', $parameter)) {
+            $subject = $parameter['key'].' (['.implode(',', $parameter['options'])
                 .((array_key_exists('default', $parameter)) ? '] ENTER for <info>'
                     .$parameter['default'].'</info>' : '').'): ';
 
             $question = new ChoiceQuestion($subject, $parameter['options'], 0);
-            $question->setErrorMessage('%s is invalid. Valid values:'.implode($parameter['options']));
+            $question->setErrorMessage('%s is invalid. Valid values:'.implode('', $parameter['options']));
 
             return $this->getHelperSet()->get('question')->ask($input, $output, $question);
         }

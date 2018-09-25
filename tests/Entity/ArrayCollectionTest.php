@@ -152,7 +152,7 @@ class ArrayCollectionTest extends TestCaseAbstract
     {
         $collection = new ArrayCollection($elements);
 
-        $this->assertSame(count($elements), $collection->count());
+        $this->assertSame(\count($elements), $collection->count());
     }
 
     /**

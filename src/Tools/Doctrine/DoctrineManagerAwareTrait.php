@@ -62,7 +62,7 @@ trait DoctrineManagerAwareTrait
         $manager = $this->_doctrine_service_get('DocumentManager');
 
         if (!$manager instanceof DocumentManager) {
-            $class = get_class($manager);
+            $class = \get_class($manager);
 
             throw new \RuntimeException("Fixture requires a PHPCR ODM DocumentManager instance, instance of '${class}' given.");
         }

@@ -44,13 +44,13 @@ class Inspect
         $src = file_get_contents($filePathName);
 
         $tokens = token_get_all($src);
-        $count = count($tokens);
+        $count = \count($tokens);
         $i = 0;
         $namespace = '';
         $namespace_ok = false;
         while ($i < $count) {
             $token = $tokens[$i];
-            if (is_array($token) && T_NAMESPACE === $token[0]) {
+            if (\is_array($token) && T_NAMESPACE === $token[0]) {
                 // Found namespace declaration
                 while (++$i < $count) {
                     if (';' === $tokens[$i]) {
@@ -59,7 +59,7 @@ class Inspect
 
                         break;
                     }
-                    $namespace .= is_array($tokens[$i]) ? $tokens[$i][1] : $tokens[$i];
+                    $namespace .= \is_array($tokens[$i]) ? $tokens[$i][1] : $tokens[$i];
                 }
 
                 break;
@@ -86,7 +86,7 @@ class Inspect
 
         $classes = [];
         $tokens = token_get_all($php_code);
-        $count = count($tokens);
+        $count = \count($tokens);
         for ($i = 2; $i < $count; ++$i) {
             if (T_CLASS === $tokens[$i - 2][0]
                     && T_WHITESPACE === $tokens[$i - 1][0]

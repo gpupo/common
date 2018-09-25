@@ -62,6 +62,8 @@ $config = PhpCsFixer\Config::create()
         'strict_comparison' => true,
         'strict_param' => true,
         'yoda_style' => true,
+        'mb_str_functions' => true,
+        'native_function_invocation' => ['include' => ['@compiler_optimized'], 'scope' => 'namespaced'],
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()

@@ -46,7 +46,7 @@ trait TableTrait
 
         $i = 0;
         foreach ($list as $item) {
-            if (!is_array($item)) {
+            if (!\is_array($item)) {
                 if (method_exists($item, 'toArray')) {
                     $item = $item->toArray();
                 } else {
@@ -55,16 +55,16 @@ trait TableTrait
             }
             ++$i;
             foreach ($item as $key => $value) {
-                if (!empty($keysOnly) && !in_array($key, $keysOnly, true)) {
+                if (!empty($keysOnly) && !\in_array($key, $keysOnly, true)) {
                     unset($item[$key]);
 
                     continue;
                 }
 
-                if (is_array($value)) {
+                if (\is_array($value)) {
                     $value = json_encode($value);
                 }
-                if (is_float($value)) {
+                if (\is_float($value)) {
                     $value = number_format($value, 3);
                 }
                 $value = str_replace(
@@ -77,7 +77,7 @@ trait TableTrait
                     $value = '~';
                 }
 
-                $value = substr($value, 0, $maxWidth);
+                $value = mb_substr($value, 0, $maxWidth);
 
                 $item[$key] = $value;
             }

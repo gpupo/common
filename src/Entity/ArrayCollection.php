@@ -196,7 +196,7 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
      */
     public function contains($element)
     {
-        return in_array($element, $this->elements, true);
+        return \in_array($element, $this->elements, true);
     }
 
     /**
@@ -250,7 +250,7 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
      */
     public function count()
     {
-        return count($this->elements);
+        return \count($this->elements);
     }
 
     /**
@@ -350,7 +350,7 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
      */
     public function slice($offset, $length = null)
     {
-        return array_slice($this->elements, $offset, $length, true);
+        return \array_slice($this->elements, $offset, $length, true);
     }
 
     protected function all()
