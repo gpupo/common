@@ -27,7 +27,7 @@ trait DoctrineManagerAwareTrait
         'DocumentManager' => false,
     ];
 
-    protected function _doctrine_service_set($key, $value)
+    protected function _doctrine_service_set($key, $value): void
     {
         if (null !== $value) {
             $this->_doctrine_services[$key] = $value;
@@ -50,9 +50,9 @@ trait DoctrineManagerAwareTrait
         return $this->_doctrine_service_get('EntityManagerInterface');
     }
 
-    protected function closeDoctrine()
+    protected function closeDoctrine(): void
     {
-        $this->getDoctrine()->close();
+        $this->getDoctrineEntityManager()->close();
         $this->_doctrine_service_set('EntityManagerInterface', false);
         $this->_doctrine_service_set('DocumentManager', false);
     }
