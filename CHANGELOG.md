@@ -3,6 +3,9 @@ VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
    Version 4.3 - Removed getDoctrine
+      25/09/2018 10:22  4.3.1  Fix doctrine close
+         b8a4fe6 Add new cs config
+         4e9fd52 Rename doctrine getter
       24/09/2018 15:53  4.3.0  initial release
 
    Version 4.2 - Add Doctrine Manager Aware
