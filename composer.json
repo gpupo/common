@@ -25,7 +25,8 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.3|dev-master"
+        "phpunit/phpunit": "^7.2.7|dev-master",
+        "phan/phan": "^1.0"
     },
     "config": {
         "preferred-install": "dist"
