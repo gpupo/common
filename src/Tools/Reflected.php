@@ -25,6 +25,11 @@ class Reflected
 {
     protected $object;
 
+    public function export()
+    {
+        return $this->object;
+    }
+
     public function __construct($object)
     {
         if (!\is_object($object)) {
