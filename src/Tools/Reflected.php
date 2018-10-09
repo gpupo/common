@@ -25,11 +25,6 @@ class Reflected
 {
     protected $object;
 
-    public function export()
-    {
-        return $this->object;
-    }
-
     public function __construct($object)
     {
         if (!\is_object($object)) {
@@ -55,6 +50,11 @@ class Reflected
     public function __set($name, $value)
     {
         $this->setPropertyAccessible($name)->setValue($this->object, $value);
+    }
+
+    public function export()
+    {
+        return $this->object;
     }
 
     private function setPropertyAccessible($name)
