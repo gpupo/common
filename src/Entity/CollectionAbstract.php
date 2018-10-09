@@ -51,7 +51,7 @@ abstract class CollectionAbstract extends ArrayCollection
         $list = parent::toArray();
 
         foreach ($list as $key => $value) {
-            if ($value instanceof self) {
+            if ($value instanceof self || method_exists($value, 'toArray')) {
                 $list[$key] = $value->toArray();
             }
         }

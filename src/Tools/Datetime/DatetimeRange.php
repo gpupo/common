@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Tools\Datetime;
 
+use DateInterval;
 use DateTime;
 
 class DatetimeRange
@@ -24,6 +25,12 @@ class DatetimeRange
     protected $start;
 
     protected $end;
+
+    public function __clone()
+    {
+        $this->start = clone $this->start;
+        $this->end = clone $this->end;
+    }
 
     public function setStart(DateTime $start): void
     {
@@ -51,5 +58,12 @@ class DatetimeRange
             'start' => $this->getStart()->format('Y-m-d 00:00:00'),
             'end' => $this->getEnd()->format('Y-m-d 23:59:59'),
         ];
+    }
+
+    public function back($string): void
+    {
+        $interval = new DateInterval($string);
+        $this->start->sub($interval);
+        $this->end->sub($interval);
     }
 }
