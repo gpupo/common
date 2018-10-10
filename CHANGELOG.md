@@ -2,6 +2,16 @@
 VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
+   Version 4.4 - Add Datetime Range
+      10/10/2018 16:53  4.4.0  initial release
+         3fba4c0 Add datetimeRange back()
+         ba18984 Apply CS fix
+         4a93d59 Add DatetimeRange
+         b360334 Add export to Reflected
+         a905724 Add phan tool
+         8eb34d2 Add Makefile
+         55e0526 Improve editor config
+
    Version 4.3 - Removed getDoctrine
       25/09/2018 10:22  4.3.1  Fix doctrine close
          b8a4fe6 Add new cs config
