@@ -3,6 +3,8 @@ VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
    Version 4.4 - Add Datetime Range
+      19/10/2018 15:38  4.4.1  Add TimeShift
+         fb98725 Add TimeShift
       10/10/2018 16:53  4.4.0  initial release
          3fba4c0 Add datetimeRange back()
          ba18984 Apply CS fix
