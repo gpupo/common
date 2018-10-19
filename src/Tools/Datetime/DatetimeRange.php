@@ -17,7 +17,6 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Tools\Datetime;
 
-use DateInterval;
 use DateTime;
 
 class DatetimeRange
@@ -62,8 +61,15 @@ class DatetimeRange
 
     public function back($string): void
     {
-        $interval = new DateInterval($string);
-        $this->start->sub($interval);
-        $this->end->sub($interval);
+        $ts = new TimeShift();
+        $this->setStart($ts->back($this->getStart(), $string));
+        $this->setEnd($ts->back($this->getEnd(), $string));
+    }
+
+    public function forward($string): void
+    {
+        $ts = new TimeShift();
+        $this->setStart($ts->forward($this->getStart(), $string));
+        $this->setEnd($ts->forward($this->getEnd(), $string));
     }
 }
