@@ -17,7 +17,7 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Tools\Doctrine;
 
-use Doctrine\ODM\PHPCR\DocumentManager;
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 
 trait DoctrineManagerAwareTrait
@@ -39,7 +39,7 @@ trait DoctrineManagerAwareTrait
         return $this->_doctrine_services[$key];
     }
 
-    protected function setDoctrine(EntityManagerInterface $doctrine = null, DocumentManager $documentManager = null)
+    protected function setDoctrine(EntityManagerInterface $doctrine = null, ObjectManager $documentManager = null)
     {
         $this->_doctrine_service_set('EntityManagerInterface', $doctrine);
         $this->_doctrine_service_set('DocumentManager', $documentManager);
@@ -57,14 +57,14 @@ trait DoctrineManagerAwareTrait
         $this->_doctrine_service_set('DocumentManager', false);
     }
 
-    protected function getDoctrineObjectManager(): DocumentManager
+    protected function getDoctrineObjectManager(): ObjectManager
     {
         $manager = $this->_doctrine_service_get('DocumentManager');
 
-        if (!$manager instanceof DocumentManager) {
+        if (!$manager instanceof ObjectManager) {
             $class = \get_class($manager);
 
-            throw new \RuntimeException("Fixture requires a PHPCR ODM DocumentManager instance, instance of '${class}' given.");
+            throw new \RuntimeException("Fixture requires a DocumentManager instance, instance of '${class}' given.");
         }
 
         return $manager;
