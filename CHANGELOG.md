@@ -2,6 +2,11 @@
 VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
+   Version 4.5 - MongoDB support
+      23/10/2018 16:21  4.5.0  initial release
+         e8c1589 Add ODM Entity
+         407fbce Add suport to mongodb in trait
+
    Version 4.4 - Add Datetime Range
       19/10/2018 15:38  4.4.1  Add TimeShift
          fb98725 Add TimeShift
