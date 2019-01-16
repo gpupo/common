@@ -15,13 +15,13 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Tools;
+namespace Gpupo\Common\Tests\Tools;
 
 use DateTime;
 use Gpupo\Common\Entity\Collection;
 use Gpupo\Common\Tools\Datetime\Holidays;
 use Gpupo\Common\Tools\Reflected;
-use Gpupo\Tests\Common\TestCaseAbstract;
+use Gpupo\Common\Tests\TestCaseAbstract;
 
 /**
  * @coversNothing

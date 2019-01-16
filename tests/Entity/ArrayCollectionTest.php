@@ -15,10 +15,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Entity;
+namespace Gpupo\Common\Tests\Entity;
 
 use Gpupo\Common\Entity\ArrayCollection;
-use Gpupo\Tests\Common\TestCaseAbstract;
+use Gpupo\Common\Tests\TestCaseAbstract;
 
 /**
  * Minimal Based version of the test of Doctrine\Common\Collections\ArrayCollection

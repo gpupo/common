@@ -15,7 +15,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Objects;
+namespace Gpupo\Common\Tests\Objects;
 
 use Gpupo\Common\Traits\SingletonTrait;
 

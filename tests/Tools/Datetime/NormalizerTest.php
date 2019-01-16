@@ -15,10 +15,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Tools\Datetime;
+namespace Gpupo\Common\Tests\Tools\Datetime;
 
 use Gpupo\Common\Tools\Datetime\Normalizer;
-use Gpupo\Tests\Common\TestCaseAbstract;
+use Gpupo\Common\Tests\TestCaseAbstract;
 
 /**
  * @coversDefaultClass \Gpupo\Common\Tools\Datetime\Normalizer

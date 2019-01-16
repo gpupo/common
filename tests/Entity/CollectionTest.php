@@ -15,7 +15,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Entity;
+namespace Gpupo\Common\Tests\Entity;
 
 use Gpupo\Common\Entity\Collection;
 

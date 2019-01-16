@@ -15,11 +15,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Tools\Datetime;
+namespace Gpupo\Common\Tests\Tools\Datetime;
 
 use DateTime;
 use Gpupo\Common\Tools\Datetime\DatetimeRange;
-use Gpupo\Tests\Common\TestCaseAbstract;
+use Gpupo\Common\Tests\TestCaseAbstract;
 
 /**
  * @coversDefaultClass \Gpupo\Common\Tools\Datetime\DatetimeRange

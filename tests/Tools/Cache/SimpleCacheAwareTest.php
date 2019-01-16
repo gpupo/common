@@ -15,10 +15,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Tools\Decorated;
+namespace Gpupo\Common\Tests\Tools\Decorated;
 
 use Gpupo\Common\Tools\Cache\SimpleCacheAwareTrait;
-use Gpupo\Tests\Common\TestCaseAbstract;
+use Gpupo\Common\Tests\TestCaseAbstract;
 use Symfony\Component\Cache\Simple\FilesystemCache;
 
 /**

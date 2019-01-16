@@ -15,10 +15,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Traits;
+namespace Gpupo\Common\Tests\Traits;
 
-use Gpupo\Tests\Common\Objects\HasMagicCall;
-use Gpupo\Tests\Common\TestCaseAbstract;
+use Gpupo\Common\Tests\Objects\HasMagicCall;
+use Gpupo\Common\Tests\TestCaseAbstract;
 
 /**
  * @coversNothing

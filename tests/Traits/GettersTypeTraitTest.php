@@ -15,10 +15,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Traits;
+namespace Gpupo\Common\Tests\Traits;
 
-use Gpupo\Tests\Common\Objects\HasGettersTypeTrait;
-use Gpupo\Tests\Common\TestCaseAbstract;
+use Gpupo\Common\Tests\Objects\HasGettersTypeTrait;
+use Gpupo\Common\Tests\TestCaseAbstract;
 
 /**
  * @coversNothing

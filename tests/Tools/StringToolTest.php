@@ -15,10 +15,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Tools;
+namespace Gpupo\Common\Tests\Tools;
 
 use Gpupo\Common\Tools\StringTool;
-use Gpupo\Tests\Common\TestCaseAbstract;
+use Gpupo\Common\Tests\TestCaseAbstract;
 
 /**
  * @coversNothing

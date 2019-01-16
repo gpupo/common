@@ -15,11 +15,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common\Tools\Decorated;
+namespace Gpupo\Common\Tests\Tools\Decorated;
 
 use Gpupo\Common\Tools\Datetime\Holidays;
 use Gpupo\Common\Tools\Decorated\DecoratedAwareTrait;
-use Gpupo\Tests\Common\TestCaseAbstract;
+use Gpupo\Common\Tests\TestCaseAbstract;
 
 /**
  * @coversNothing

@@ -21,7 +21,7 @@
     "autoload": {
         "psr-4": {
             "Gpupo\\Common\\": "src",
-            "Gpupo\\Tests\\Common\\": "tests"
+            "Gpupo\\Common\\Tests\\": "tests"
         }
     },
     "require-dev": {

@@ -15,7 +15,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Common;
+namespace Gpupo\Common\Tests;
 
 use PHPUnit\Framework\TestCase;
 
