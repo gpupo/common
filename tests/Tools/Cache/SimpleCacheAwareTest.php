@@ -15,7 +15,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Tools\Decorated;
+namespace Gpupo\Tests\Common\Tools\Decorated;
 
 use Gpupo\Common\Tools\Cache\SimpleCacheAwareTrait;
 use Gpupo\Tests\Common\TestCaseAbstract;

@@ -21,6 +21,8 @@ use DateTime;
 
 class Holidays
 {
+    const SECONDS_IN_A_DAY = 86400;
+
     protected $datetime;
 
     public function __construct(Datetime $datetime)
@@ -28,43 +30,59 @@ class Holidays
         $this->datetime = $datetime;
     }
 
+    public function getYear(): int
+    {
+        return (int) ($this->datetime->format('Y'));
+    }
+
+    public function getEasterDate(): int
+    {
+        $value = easter_date($this->getYear());
+        $value += self::SECONDS_IN_A_DAY/4;
+
+        return $value;
+    }
     /**
      * @return array
      */
-    public function listOfHolidays()
+    public function getHolidays(): array
     {
-        $y = (int) ($this->datetime->format('Y'));
-        $d = 86400;
-        $easter = easter_date($y);
+        $year = $this->getYear();
+        $easter = $this->getEasterDate();
+
+        $easter_based = function($value) use ($easter) {
+            $days = $value * self::SECONDS_IN_A_DAY;
+            return date('d-m-Y', $easter + $days);
+        };
 
         return [
             'brazil' => [
-                date('d-m-Y', $easter),               // Pascoa
-                date('d-m-Y', $easter + (60 * $d)), // Corpus christi
-                date('d-m-Y', $easter - (48 * $d)), // Segunda de carnaval
-                date('d-m-Y', $easter - (47 * $d)), // Terca de carnaval
-                date('d-m-Y', $easter - (46 * $d)), // Quarta feira de cinzas
-                date('d-m-Y', $easter - (2 * $d)),  // Sexta feira santa
-                '01-01-'.$y,                        // Dia mundial da paz
-                '21-04-'.$y,                        // Tiradentes
-                '01-05-'.$y,                        // Dia do trabalhador
-                '07-09-'.$y,                        // Dia da independencia
-                '12-10-'.$y,                        // Nossa senhora da aparecida
-                '02-11-'.$y,                        // Dia de finados
-                '15-11-'.$y,                        // Proclamacao da republica
-                '24-12-'.$y,                        // Natal
-                '25-12-'.$y,                        // Natal
-                '31-12-'.$y,                        // Reveillon
+                'Pascoa' => $easter_based(0),
+                'Corpus Christi' => $easter_based(60),
+                'Segunda-feira de carnaval' => $easter_based(-48),
+                'Terça-feira de carnaval' => $easter_based(-47),
+                'Quarta-feira de cinzas' => $easter_based(-46),
+                'Sexta feira Santa' => $easter_based(-2),
+                'Dia mundial da paz' => '01-01-'.$year,
+                'Tiradentes' => '21-04-'.$year,
+                'Dia do trabalhador' => '01-05-'.$year,
+                'Dia da independencia' => '07-09-'.$year,
+                'Nossa senhora da aparecida' => '12-10-'.$year,
+                'Dia de finados' => '02-11-'.$year,
+                'Proclamacao da republica' => '15-11-'.$year,
+                'Natal' => '24-12-'.$year,
+                'Natal' => '25-12-'.$year,
+                'Reveillon' => '31-12-'.$year,
             ],
         ];
     }
 
-    public function isHoliday($country)
+    public function isHoliday($country): bool
     {
-        $array = $this->listOfHolidays();
+        $array = $this->getHolidays();
         $key = mb_strtolower($country);
         if (!array_key_exists($key, $array) || !\is_array($array[$key])) {
-            return;
+            return false;
         }
 
         return \in_array($this->datetime->format('d-m-Y'), $array[$key], true);

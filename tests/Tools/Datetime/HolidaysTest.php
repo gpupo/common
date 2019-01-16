@@ -15,7 +15,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Tests\Tools\Datetime;
+namespace Gpupo\Tests\Common\Tools\Datetime;
 
 use DateTime;
 use Gpupo\Common\Tools\Datetime\Holidays;
@@ -37,10 +37,14 @@ class HolidaysTest extends TestCaseAbstract
             '02-01-2017' => false,
             '25-12-2017' => true,
             '28-02-2017' => true,
-            '14-04-2017' => true,
             '21-04-2017' => true,
             '22-04-2017' => false,
             '02-11-2017' => true,
+            '16-04-2017' => true, //Pascoa 2019
+            '01-04-2018' => true, //Pascoa 2019
+            '21-04-2019' => true, //Pascoa 2019
+            '12-04-2020' => true, //Pascoa 2020
+            '20-04-2025' => true, //Pascoa 2025
         ];
 
         foreach ($l as $d => $b) {
@@ -52,13 +56,15 @@ class HolidaysTest extends TestCaseAbstract
     }
 
     /**
-     * @testdox ``listOfHolidays()``
-     * @cover ::listOfHolidays
+     * @testdox ``getHolidays()``
+     * @cover ::getHolidays
      * @dataProvider dataProviderHolidays
      */
     public function testListOfHolidays(Holidays $holidays)
     {
-        $this->assertInternalType('array', $holidays->listOfHolidays('Brazil'));
+        $holidays = $holidays->getHolidays();
+        $this->assertInternalType('array', $holidays);
+        $this->assertInternalType('array', $holidays['brazil']);
     }
 
     /**
@@ -71,6 +77,6 @@ class HolidaysTest extends TestCaseAbstract
      */
     public function testIsHoliday(Holidays $holidays, $d, $b)
     {
-        $this->assertSame($b, $holidays->isHoliday('Brazil'), 'd:'.$d);
+        $this->assertSame($b, $holidays->isHoliday('Brazil'), sprintf('year %s day %s', $holidays->getYear(), $d));
     }
 }
