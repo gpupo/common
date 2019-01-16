@@ -17,8 +17,8 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Tests\Tools\Absorbed;
 
-use Gpupo\Common\Tools\Absorbed\AbsorbedAware;
 use Gpupo\Common\Tests\TestCaseAbstract;
+use Gpupo\Common\Tools\Absorbed\AbsorbedAware;
 
 /**
  * @coversNothing

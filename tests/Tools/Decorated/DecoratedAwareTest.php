@@ -17,9 +17,9 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Tests\Tools\Decorated;
 
+use Gpupo\Common\Tests\TestCaseAbstract;
 use Gpupo\Common\Tools\Datetime\Holidays;
 use Gpupo\Common\Tools\Decorated\DecoratedAwareTrait;
-use Gpupo\Common\Tests\TestCaseAbstract;
 
 /**
  * @coversNothing

@@ -38,10 +38,11 @@ class Holidays
     public function getEasterDate(): int
     {
         $value = easter_date($this->getYear());
-        $value += self::SECONDS_IN_A_DAY/4;
+        $value += self::SECONDS_IN_A_DAY / 4;
 
         return $value;
     }
+
     /**
      * @return array
      */
@@ -50,8 +51,9 @@ class Holidays
         $year = $this->getYear();
         $easter = $this->getEasterDate();
 
-        $easter_based = function($value) use ($easter) {
+        $easter_based = function ($value) use ($easter) {
             $days = $value * self::SECONDS_IN_A_DAY;
+
             return date('d-m-Y', $easter + $days);
         };
 

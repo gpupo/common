@@ -17,8 +17,8 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Tests\Tools\Decorated;
 
-use Gpupo\Common\Tools\Cache\SimpleCacheAwareTrait;
 use Gpupo\Common\Tests\TestCaseAbstract;
+use Gpupo\Common\Tools\Cache\SimpleCacheAwareTrait;
 use Symfony\Component\Cache\Simple\FilesystemCache;
 
 /**

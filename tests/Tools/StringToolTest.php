@@ -17,8 +17,8 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Tests\Tools;
 
-use Gpupo\Common\Tools\StringTool;
 use Gpupo\Common\Tests\TestCaseAbstract;
+use Gpupo\Common\Tools\StringTool;
 
 /**
  * @coversNothing

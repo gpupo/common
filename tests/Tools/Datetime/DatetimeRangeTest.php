@@ -18,8 +18,8 @@ declare(strict_types=1);
 namespace Gpupo\Common\Tests\Tools\Datetime;
 
 use DateTime;
-use Gpupo\Common\Tools\Datetime\DatetimeRange;
 use Gpupo\Common\Tests\TestCaseAbstract;
+use Gpupo\Common\Tools\Datetime\DatetimeRange;
 
 /**
  * @coversDefaultClass \Gpupo\Common\Tools\Datetime\DatetimeRange

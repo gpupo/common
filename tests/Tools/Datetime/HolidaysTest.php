@@ -18,8 +18,8 @@ declare(strict_types=1);
 namespace Gpupo\Common\Tests\Tools\Datetime;
 
 use DateTime;
-use Gpupo\Common\Tools\Datetime\Holidays;
 use Gpupo\Common\Tests\TestCaseAbstract;
+use Gpupo\Common\Tools\Datetime\Holidays;
 
 /**
  * @coversDefaultClass \Gpupo\Common\Tools\Datetime\Holidays

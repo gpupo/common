@@ -17,8 +17,8 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Tests\Tools\Datetime;
 
-use Gpupo\Common\Tools\Datetime\Normalizer;
 use Gpupo\Common\Tests\TestCaseAbstract;
+use Gpupo\Common\Tools\Datetime\Normalizer;
 
 /**
  * @coversDefaultClass \Gpupo\Common\Tools\Datetime\Normalizer
