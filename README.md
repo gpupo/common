@@ -2,7 +2,7 @@ Common Objects for PHP components
 
 ## Requisitos para uso
 
-* PHP >= *7.1*
+* PHP >= *7.2*
 * [Composer Dependency Manager](http://getcomposer.org)
 
 Este componente **não é uma aplicação Stand Alone** e seu objetivo é ser utilizado como biblioteca.
@@ -15,7 +15,6 @@ desenvolvimento.
 
 A documentação mais importante está nos testes unitários. Se você não consegue ler os testes unitários, eu recomendo que não utilize esta biblioteca.
 
-<!-- license -->
 
 ## Direitos autorais e de licença
 
@@ -45,7 +44,6 @@ Proibido:
 ## Indicadores de qualidade
 
 [![Build Status](https://secure.travis-ci.org/gpupo/common.png?branch=master)](http://travis-ci.org/gpupo/common)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gpupo/common/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gpupo/common/?branch=master)
 
 ---
 
@@ -54,17 +52,3 @@ Proibido:
 Adicione o pacote ``common`` ao seu projeto utilizando [composer](http://getcomposer.org):
 
     composer require gpupo/common
-
-
----
-
-## Development (with docker)
-
-### Load Aliases
-
-    source bin/alias.sh
-
-### Tools loaded
-
-- phpunit
-- php-cs-fixer
