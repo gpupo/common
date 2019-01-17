@@ -53,4 +53,4 @@ Adicione o pacote ``common`` ao seu projeto utilizando [composer](http://getcomp
 
 Criação de TestCases a partir de Classes existentes:
 
-	vendor/bin/common tests:implement --class 'Gpupo\Common\Tools\Datetime\TimeShift'
+	vendor/bin/developer-toolbox developer-toolbox:tests:generate --class 'Gpupo\Common\Tools\Datetime\TimeShift'
