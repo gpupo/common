@@ -17,7 +17,11 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Console;
 
+use Exception;
 use Gpupo\Common\Traits\TableTrait;
+use Monolog\Handler\ErrorLogHandler;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -29,35 +33,15 @@ abstract class AbstractApplication extends Application
 {
     use TableTrait;
 
-    protected $configFiles = [];
-
-    protected $config = [];
-
-    protected $configAlias = [];
+    protected $configAlias = [
+        'env' => 'version',
+    ];
 
     protected $commonParameters = [];
 
     public function __construct($name = 'UNKNOWN', $version = 'UNKNOWN')
     {
         parent::__construct($name, $version);
-
-        $this->findConfig(['./'], $name);
-    }
-
-    public function findConfig(array $paths, $nick = 'app')
-    {
-        foreach ($paths as $path) {
-            foreach (['app.json.dist', '.'.$nick.'.json.dist', '.'.$nick.'.json', $nick.'.json',
-                '.'.$nick, 'app.json', ] as $name) {
-                $filename = $path.$name;
-                if (file_exists($filename)) {
-                    $this->configFiles[] = $filename;
-                    if (false === $this->addConfig(file_get_contents($filename))) {
-                        return error_log('Invalid Json format of file ['.$filename.']!');
-                    }
-                }
-            }
-        }
     }
 
     public function getConfig($key)
@@ -69,8 +53,6 @@ abstract class AbstractApplication extends Application
 
     public function doRun(InputInterface $input, OutputInterface $output)
     {
-        $this->displayConfigFiles($output);
-
         return parent::doRun($input, $output);
     }
 
@@ -95,23 +77,49 @@ abstract class AbstractApplication extends Application
         return $this->processAliasParameters($list);
     }
 
-    protected function addConfig($string)
+    public function factoryLogger($channel = 'bin', $verbose = null)
     {
-        $load = json_decode($string, true);
-        if (!\is_array($load)) {
-            return false;
+        $logger = new Logger($channel);
+        $logger->pushHandler(new StreamHandler($this->getLogFilePath(), $this->getLogLevel()));
+
+        if (!empty($verbose)) {
+            $logger->pushHandler(new ErrorLogHandler(0, Logger::INFO));
         }
 
-        $this->config = array_merge($this->config, $load);
-
-        return $this;
+        return $logger;
     }
 
-    protected function displayConfigFiles(OutputInterface $output)
+    public function appendCommand($name, $description, array $definition = [])
     {
-        if (!empty($this->configFiles)) {
-            $output->writeln('Config files loaded: <comment>'.implode('</>, <comment>', $this->configFiles).'</>');
+        return $this->register($name)
+            ->setDescription($description)
+            ->setDefinition($this->factoryDefinition($definition));
+    }
+
+    public function showException(Exception $e, OutputInterface $output, $description = 'Erro')
+    {
+        $output->writeln('<error>'.$description.'</error>');
+        $output->writeln('Message: <comment>'.$e->getMessage().'</comment>');
+        $output->writeln('Error Code: <comment>'.$e->getCode().'</comment>');
+    }
+
+    public function jsonLoadFromFile($filename)
+    {
+        if (!file_exists($filename)) {
+            throw new Exception('Filename '.$filename.' not exists!');
         }
+
+        $string = file_get_contents($filename);
+
+        return json_decode($string, true);
+    }
+
+    public function jsonSaveToFile(array $array, $filename, OutputInterface $output)
+    {
+        $json = json_encode($array, JSON_PRETTY_PRINT);
+        file_put_contents($filename, $json);
+
+        return $output->writeln('Arquivo <info>'.$filename.'</info> gerado.');
     }
 
     protected function processInputParameter($parameter, InputInterface $input, OutputInterface $output)
@@ -146,5 +154,15 @@ abstract class AbstractApplication extends Application
         }
 
         return $list;
+    }
+
+    protected function getLogFilePath()
+    {
+        return 'var/logs/main.log';
+    }
+
+    protected function getLogLevel()
+    {
+        return Logger::DEBUG;
     }
 }

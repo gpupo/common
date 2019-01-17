@@ -1,4 +1,13 @@
 #!/bin/bash
+
+##
+# This file is part of gpupo/common
+# Created by Gilmar Pupo <contact@gpupo.com>
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+# For more information, see <https://opensource.gpupo.com/>.
+##
+
 shopt -s expand_aliases
 
 ## System
@@ -18,7 +27,7 @@ alias docker-stop-all='docker stop $(docker ps -a -q)'
 alias docker-remove-all='docker rmi $(docker images -a -q)'
 
 ## Docker services
-alias php-fpm-service='docker run -v "$PWD":/var/www/app --rm gpupo/container-orchestration:php-dev-v1.5.1'
+alias php-fpm-service='docker run -v "$PWD":/var/www/app --rm gpupo/container-orchestration:symfony-dev-v1.6.0'
 alias composer='php-fpm-service composer'
 alias phpunit='php-fpm-service vendor/bin/phpunit'
 alias php-cs-fixer='php-fpm-service /root/.composer/vendor/bin/php-cs-fixer'
