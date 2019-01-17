@@ -125,7 +125,7 @@ abstract class AbstractApplication extends Application
         if (null !== $envValue) {
             return $envValue;
         }
-        
+
         if (\is_array($parameter) && array_key_exists('options', $parameter)) {
             $subject = $parameter['key'].' (['.implode(',', $parameter['options'])
                 .((array_key_exists('default', $parameter)) ? '] ENTER for <info>'

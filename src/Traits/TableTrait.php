@@ -98,6 +98,6 @@ trait TableTrait
             throw new \Exception('Empty Table', 1);
         }
 
-        return $table->render($output);
+        return $table->render();
     }
 }

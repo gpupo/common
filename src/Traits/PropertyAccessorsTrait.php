@@ -76,18 +76,16 @@ trait PropertyAccessorsTrait
         return $this->__accessorGetter($property);
     }
 
-    public function __set($property, $value)
+    public function __set($property, $value): void
     {
         $concreteSetter = StringTool::snakeCaseToCamelCase('set_'.$property);
 
         if (method_exists(\get_called_class(), $concreteSetter)) {
-            return $this->{$concreteSetter}($value);
+            $this->{$concreteSetter}($value);
+        } else {
+            $this->__accessorPropertyValidate('__set', $property);
+            $this->{$property} = $value;
         }
-
-        $this->__accessorPropertyValidate('__set', $property);
-        $this->{$property} = $value;
-
-        return true;
     }
 
     /**

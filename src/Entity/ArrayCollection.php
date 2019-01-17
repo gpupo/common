@@ -113,6 +113,8 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 
     /**
      * Required by interface ArrayAccess.
+     *
+     * @param mixed $offset
      */
     public function offsetExists($offset)
     {
@@ -121,6 +123,8 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 
     /**
      * Required by interface ArrayAccess.
+     *
+     * @param mixed $offset
      */
     public function offsetGet($offset)
     {
@@ -129,6 +133,9 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 
     /**
      * Required by interface ArrayAccess.
+     *
+     * @param mixed $offset
+     * @param mixed $value
      */
     public function offsetSet($offset, $value): void
     {
@@ -141,6 +148,8 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 
     /**
      * Required by interface ArrayAccess.
+     *
+     * @param mixed $offset
      */
     public function offsetUnset($offset)
     {
