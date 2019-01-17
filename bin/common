@@ -21,7 +21,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
-use Gpupo\Tests\Common\Documentor\Docblock;
+use Gpupo\Common\Tools\Documentor\Docblock;
 use Symfony\Component\Console\Input\ArrayInput;
 
 $app = new Application('@gpupo Common', '4.3');
@@ -88,10 +88,7 @@ $app->appendCommand('tests:implement', 'Implement a test', $opts)
 
         file_put_contents($test['filename'], $test['content'], FILE_TEXT);
 
-
         $output->writeln('Try run <comment>bin/phpunit  --no-log --filter='. $test['testShortName'] . '</>');
-
-
 });
 
 
