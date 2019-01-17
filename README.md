@@ -1,8 +1,11 @@
-Common Objects for PHP components
+Common tools for PHP components
+
+[![Build Status](https://secure.travis-ci.org/gpupo/common.png?branch=master)](http://travis-ci.org/gpupo/common)
+
 
 ## Requisitos para uso
 
-* PHP >= *7.2*
+* PHP >= *7.3*
 * [Composer Dependency Manager](http://getcomposer.org)
 
 Este componente **não é uma aplicação Stand Alone** e seu objetivo é ser utilizado como biblioteca.
@@ -40,22 +43,14 @@ Proibido:
 
 - Responsabilidade Assegurada
 
----
-## Indicadores de qualidade
-
-[![Build Status](https://secure.travis-ci.org/gpupo/common.png?branch=master)](http://travis-ci.org/gpupo/common)
-
----
-
 ## Instalação
 
 Adicione o pacote ``common`` ao seu projeto utilizando [composer](http://getcomposer.org):
 
-    composer require gpupo/common
+    composer require gpupo/common:^4.3
 
 ## Uso
 
 Criação de TestCases a partir de Classes existentes:
 
 	vendor/bin/common tests:implement --class 'Gpupo\Common\Tools\Datetime\TimeShift'
-	

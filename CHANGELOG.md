@@ -2,6 +2,28 @@
 VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
+   Version 4.6 - Add Developer Toolbox console
+      17/01/2019 16:04  4.6.0  initial release
+         0f0ec52 Fix void
+         d66a791 Fix Phan violations
+         e872d66 Add Phan config
+         37c7a37 Refactory deprecated assertionsgs
+         23d08a4 Refactory deprecated assertions
+         9aec3e6 Rename console to developer toolbox
+         d5acbc8 Test array
+         5e5bbe8 Add doc
+         75f4c80 Move class finder from CommonSdk
+         5f52623 Move Documentor fro CommonSdk
+         8bf61ce Add console and bootstrap
+         03912aa Add dotenv
+         60d3d86 Merge bash functions
+         c1f1d27 Require PHP >= 7.3.1
+         208a990 Apply CS Rules
+         72b8186 Rename Test Namespace
+         d4ddd99 Refactory Holiday tool
+         ce9131e Update libs
+         d7a855d Refactory git functions
+
    Version 4.5 - MongoDB support
       23/10/2018 16:21  4.5.0  initial release
          e8c1589 Add ODM Entity
