@@ -87,7 +87,7 @@ class Docblock
 
     public function generate(array $data = [], $json = null)
     {
-        if (array_key_exists('schema', $data) && is_array($data['schema'])) {
+        if (array_key_exists('schema', $data) && \is_array($data['schema'])) {
             foreach ($data['schema'] as $item) {
                 $case = $this->camelCase($item['name']);
                 $getter = 'get'.$case;
