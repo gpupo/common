@@ -44,13 +44,6 @@ abstract class AbstractApplication extends Application
         parent::__construct($name, $version);
     }
 
-    public function getConfig($key)
-    {
-        if (\is_array($this->config) && array_key_exists($key, $this->config)) {
-            return $this->config[$key];
-        }
-    }
-
     public function doRun(InputInterface $input, OutputInterface $output)
     {
         return parent::doRun($input, $output);
@@ -127,9 +120,12 @@ abstract class AbstractApplication extends Application
         if ($input->getOption($parameter['key'])) {
             return $input->getOption($parameter['key']);
         }
-        if (null !== $this->getConfig($parameter['key'])) {
-            return $this->getConfig($parameter['key']);
+
+        $envValue = getenv($parameter['key']);
+        if (null !== $envValue) {
+            return $envValue;
         }
+        
         if (\is_array($parameter) && array_key_exists('options', $parameter)) {
             $subject = $parameter['key'].' (['.implode(',', $parameter['options'])
                 .((array_key_exists('default', $parameter)) ? '] ENTER for <info>'

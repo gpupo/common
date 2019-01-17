@@ -34,7 +34,7 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
      *
      * @var array
      */
-    private $elements;
+    private $elements = [];
 
     /**
      * Initializes a new ArrayCollection.
@@ -56,57 +56,36 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
         return __CLASS__.'@'.spl_object_hash($this);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function toArray()
     {
-        return $this->elements;
+        return (array) $this->elements;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function first()
     {
         return reset($this->elements);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function last()
     {
         return end($this->elements);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function key()
     {
         return key($this->elements);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function next()
     {
         return next($this->elements);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function current()
     {
         return current($this->elements);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function remove($key)
     {
         if (!isset($this->elements[$key]) && !array_key_exists($key, $this->elements)) {
@@ -119,9 +98,6 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
         return $removed;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function removeElement($element)
     {
         $key = array_search($element, $this->elements, true);
@@ -137,8 +113,6 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 
     /**
      * Required by interface ArrayAccess.
-     *
-     * {@inheritdoc}
      */
     public function offsetExists($offset)
     {
@@ -147,8 +121,6 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 
     /**
      * Required by interface ArrayAccess.
-     *
-     * {@inheritdoc}
      */
     public function offsetGet($offset)
     {
@@ -157,13 +129,11 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 
     /**
      * Required by interface ArrayAccess.
-     *
-     * {@inheritdoc}
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (!isset($offset)) {
-            return $this->add($value);
+            $this->add($value);
         }
 
         $this->set($offset, $value);
@@ -171,17 +141,12 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 
     /**
      * Required by interface ArrayAccess.
-     *
-     * {@inheritdoc}
      */
     public function offsetUnset($offset)
     {
         return $this->remove($offset);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function containsKey($key)
     {
         if (empty($this->elements)) {
@@ -191,17 +156,11 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
         return isset($this->elements[$key]) || array_key_exists($key, $this->elements);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function contains($element)
     {
         return \in_array($element, $this->elements, true);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function exists(Closure $p)
     {
         foreach ($this->elements as $key => $element) {
@@ -213,57 +172,36 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
         return false;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function indexOf($element)
     {
         return array_search($element, $this->elements, true);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function get($key)
     {
         return isset($this->elements[$key]) ? $this->elements[$key] : null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getKeys()
     {
         return array_keys($this->elements);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getValues()
     {
         return array_values($this->elements);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function count()
     {
         return \count($this->elements);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function set($key, $value)
     {
         $this->elements[$key] = $value;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function add($value)
     {
         $this->elements[] = $value;
@@ -271,9 +209,6 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function isEmpty()
     {
         return empty($this->elements);
@@ -281,33 +216,22 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 
     /**
      * Required by interface IteratorAggregate.
-     *
-     * {@inheritdoc}
      */
     public function getIterator()
     {
         return new ArrayIterator($this->elements);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function map(Closure $func)
     {
         return new static(array_map($func, $this->elements));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function filter(Closure $p)
     {
         return new static(array_filter($this->elements, $p));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function forAll(Closure $p)
     {
         foreach ($this->elements as $key => $element) {
@@ -319,9 +243,6 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function partition(Closure $p)
     {
         $matches = $noMatches = [];
@@ -337,17 +258,11 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
         return [new static($matches), new static($noMatches)];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function clear()
     {
         $this->elements = [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function slice($offset, $length = null)
     {
         return \array_slice($this->elements, $offset, $length, true);

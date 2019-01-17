@@ -54,12 +54,12 @@ class GettersTypeTraitTest extends TestCaseAbstract
 
         $object->set('foo', true);
         $b = $object->getTypeBoolean('foo');
-        $this->assertInternalType('boolean', $b);
+        $this->assertIsBool($b);
         $this->assertTrue($b);
 
         $object->set('foo', false);
         $b = $object->getTypeBoolean('foo');
-        $this->assertInternalType('boolean', $b);
+        $this->assertIsBool($b);
         $this->assertFalse($b);
     }
 }
