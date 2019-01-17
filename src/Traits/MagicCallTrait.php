@@ -67,12 +67,12 @@ trait MagicCallTrait
             return $this->__magicResolvGetter($field, $exception);
         }
         if ('add' === $command) {
-            $this->add($field, current($args));
+            $this->add($field);
 
             return $this;
         }
 
-        $exception();
+        return $exception();
     }
 
     abstract public function get($key);

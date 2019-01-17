@@ -26,10 +26,7 @@ use Gpupo\Common\Tools\Datetime\Holidays;
  */
 class HolidaysTest extends TestCaseAbstract
 {
-    /**
-     * @return \Gpupo\Common\Tools\Datetime\Holidays
-     */
-    public function dataProviderHolidays()
+    public function dataProviderHolidays(): array
     {
         $a = [];
         $l = [
