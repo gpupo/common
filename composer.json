@@ -31,6 +31,7 @@
         "phpunit/phpunit": "^7.3",
         "phan/phan": "^1.0"
     },
+    "bin": ["bin/common"],
     "config": {
         "preferred-install": "dist"
     },

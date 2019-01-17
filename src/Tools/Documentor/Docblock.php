@@ -87,38 +87,40 @@ class Docblock
 
     public function generate(array $data = [], $json = null)
     {
-        foreach ($data['schema'] as $item) {
-            $case = $this->camelCase($item['name']);
-            $getter = 'get'.$case;
-            $setter = 'set'.$case;
+        if (array_key_exists('schema', $data) && is_array($data['schema'])) {
+            foreach ($data['schema'] as $item) {
+                $case = $this->camelCase($item['name']);
+                $getter = 'get'.$case;
+                $setter = 'set'.$case;
 
-            $fixture = '"'.trim(str_replace(['null|'], '', $item['return'])).'"';
-            if (false !== mb_strpos($item['return'], 'DateTime')) {
-                $fixture = 'new \DateTime()';
-            } elseif (false !== mb_strpos($item['return'], 'bool')) {
-                $fixture = true;
-            } elseif (false !== mb_strpos($item['return'], 'int')) {
-                $fixture = rand();
-            } elseif (false !== mb_strpos($item['return'], 'array')) {
-                $fixture = '["foo"=>"bar"]';
-            } elseif (false !== mb_strpos($item['return'], 'undefined') || false !== mb_strpos($item['return'], 'string')) {
-                $fixture = '"'.mb_substr(md5((string) mt_rand()), 0, 7).'"';
-            }
+                $fixture = '"'.trim(str_replace(['null|'], '', $item['return'])).'"';
+                if (false !== mb_strpos($item['return'], 'DateTime')) {
+                    $fixture = 'new \DateTime()';
+                } elseif (false !== mb_strpos($item['return'], 'bool')) {
+                    $fixture = true;
+                } elseif (false !== mb_strpos($item['return'], 'int')) {
+                    $fixture = rand();
+                } elseif (false !== mb_strpos($item['return'], 'array')) {
+                    $fixture = '["foo"=>"bar"]';
+                } elseif (false !== mb_strpos($item['return'], 'undefined') || false !== mb_strpos($item['return'], 'string')) {
+                    $fixture = '"'.mb_substr(md5((string) mt_rand()), 0, 7).'"';
+                }
 
-            $data['magic_methods'][] = [
-                'getter' => $getter,
-                'setter' => $setter,
-                'return' => $item['return'],
-                'fixture' => $fixture,
-                'summary' => array_key_exists('summary', $item) ? $item['summary'] : '',
-                'name' => $item['name'],
-                'type' => $item['type'],
-                'case' => $case,
-            ];
+                $data['magic_methods'][] = [
+                    'getter' => $getter,
+                    'setter' => $setter,
+                    'return' => $item['return'],
+                    'fixture' => $fixture,
+                    'summary' => array_key_exists('summary', $item) ? $item['summary'] : '',
+                    'name' => $item['name'],
+                    'type' => $item['type'],
+                    'case' => $case,
+                ];
 
-            foreach ([$getter, $setter] as $m) {
-                if (false !== ($key = array_search($m, $data['methods'], true))) {
-                    unset($data['methods'][$key]);
+                foreach ([$getter, $setter] as $m) {
+                    if (false !== ($key = array_search($m, $data['methods'], true))) {
+                        unset($data['methods'][$key]);
+                    }
                 }
             }
         }

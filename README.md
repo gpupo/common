@@ -52,3 +52,10 @@ Proibido:
 Adicione o pacote ``common`` ao seu projeto utilizando [composer](http://getcomposer.org):
 
     composer require gpupo/common
+
+## Uso
+
+Criação de TestCases a partir de Classes existentes:
+
+	vendor/bin/common tests:implement --class 'Gpupo\Common\Tools\Datetime\TimeShift'
+	
