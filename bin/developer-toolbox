@@ -24,14 +24,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Gpupo\Common\Tools\Documentor\Docblock;
 use Symfony\Component\Console\Input\ArrayInput;
 
-$app = new Application('@gpupo Common', '4.3');
+$app = new Application('Developer Toolbox - @gpupo Common', '4.3');
 
 $opts = [
     ['key' => 'class'],
     ['key' => 'ignore-superclass', 'options' => ['y', 'n'], 'default' =>'y'],
 ];
 
-$app->appendCommand('tests:implement', 'Implement a test', $opts)
+$app->appendCommand('developer-toolbox:tests:generate', 'Implement a Testcase for a given class', $opts)
     ->setCode(function (InputInterface $input, OutputInterface $output) use ($app, $opts) {
 
         $list = $app->processInputParameters($opts, $input, $output);
@@ -91,9 +91,7 @@ $app->appendCommand('tests:implement', 'Implement a test', $opts)
         $output->writeln('Try run <comment>bin/phpunit  --no-log --filter='. $test['testShortName'] . '</>');
 });
 
-
-
-$app->appendCommand('class:finder', 'Find classes')
+$app->appendCommand('developer-toolbox:tests:find-and-create', 'Find all classes in src/ and create Testcases')
     ->setCode(function (InputInterface $input, OutputInterface $output) use ($app) {
 
         $path = 'src/';
@@ -162,6 +160,5 @@ $app->appendCommand('class:finder', 'Find classes')
             }
         }
     });
-
 
 $app->run();
