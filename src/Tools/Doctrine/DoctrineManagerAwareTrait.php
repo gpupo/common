@@ -39,7 +39,7 @@ trait DoctrineManagerAwareTrait
         return $this->_doctrine_services[$key];
     }
 
-    protected function setDoctrine(EntityManagerInterface $doctrine = null, ObjectManager $documentManager = null)
+    protected function setDoctrine(EntityManagerInterface $doctrine = null, ObjectManager $documentManager = null): void
     {
         $this->_doctrine_service_set('EntityManagerInterface', $doctrine);
         $this->_doctrine_service_set('DocumentManager', $documentManager);

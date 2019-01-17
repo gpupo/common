@@ -63,8 +63,8 @@ class HolidaysTest extends TestCaseAbstract
     public function testListOfHolidays(Holidays $holidays)
     {
         $holidays = $holidays->getHolidays();
-        $this->assertInternalType('array', $holidays);
-        $this->assertInternalType('array', $holidays['brazil']);
+        $this->assertIsArray($holidays);
+        $this->assertIsArray($holidays['brazil']);
     }
 
     /**

@@ -24,3 +24,6 @@ help:
 ## Setup environment & Install & Build application
 setup:
 	echo '@todo'
+
+phan:
+	phan --config-file config/phan.php
