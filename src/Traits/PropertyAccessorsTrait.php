@@ -76,7 +76,7 @@ trait PropertyAccessorsTrait
         return $this->__accessorGetter($property);
     }
 
-    public function __set($property, $value): void
+    public function __set($property, $value)
     {
         $concreteSetter = StringTool::snakeCaseToCamelCase('set_'.$property);
 

@@ -3,6 +3,13 @@ VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
    Version 4.6 - Add Developer Toolbox console
+      21/01/2019 16:01  4.6.1  Fix set void
+         04ecf12 add bootstrap tp phpunit
+         612267a Fix test template
+         2b8dc83 More travis
+         0cafccd Set travis to php 7.3.1
+         d2b496a Fix doc
+         da7f212 set travis to php 7.3
       17/01/2019 16:04  4.6.0  initial release
          0f0ec52 Fix void
          d66a791 Fix Phan violations
