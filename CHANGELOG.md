@@ -3,6 +3,8 @@ VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
    Version 4.7 - Add hints
+      22/01/2019 15:18  4.7.1  Add selfupdate
+         f495dfc Improve make
       22/01/2019 10:34  4.7.0  initial release
          46b0854 Add hints
 

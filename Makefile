@@ -66,5 +66,10 @@ clean:
 	rm -rfv ./vendor/* ./var/* ./*.lock ./*.cache
 	git checkout ./var/cache/.gitignore ./var/data/.gitignore
 
+## Run Phan checkup
 phan:
 	phan --config-file config/phan.php
+
+## Update make file in projects
+selfupdate:
+	cp -f vendor/gpupo/common/Makefile Makefile
