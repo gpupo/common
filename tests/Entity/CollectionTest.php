@@ -27,7 +27,7 @@ class CollectionTest extends ArrayCollectionTest
     public function testPossuiAcessoSingleton()
     {
         $collection = Collection::getInstance();
-        $this->assertInstanceOf('Gpupo\Common\Entity\Collection', $collection);
+        $this->assertInstanceOf(Collection::class, $collection);
 
         return $collection;
     }

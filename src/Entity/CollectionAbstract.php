@@ -32,10 +32,8 @@ abstract class CollectionAbstract extends ArrayCollection
 
     /**
      * Aplica empty() a um elemento interno.
-     *
-     * @param mixed $key
      */
-    public function elementEmpty($key)
+    public function elementEmpty(string $key): bool
     {
         if (!$this->containsKey($key)) {
             return true;
@@ -46,7 +44,7 @@ abstract class CollectionAbstract extends ArrayCollection
         return empty($value);
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         $list = parent::toArray();
 
@@ -62,12 +60,9 @@ abstract class CollectionAbstract extends ArrayCollection
     /**
      * Adiciona um elemento no final de um valor array existente.
      *
-     * @param string $key
-     * @param mixed  $value
-     *
-     * @throws \LogicException
+     * @param mixed $value
      */
-    public function addToArrayValue($key, $value)
+    public function addToArrayValue(string $key, $value): void
     {
         $currentValue = $this->get($key);
 
@@ -79,14 +74,7 @@ abstract class CollectionAbstract extends ArrayCollection
         }
     }
 
-    /**
-     * @see http://php.net/manual/en/function.json-encode.php
-     *
-     * @param null|mixed $route
-     * @param mixed      $options
-     * @param mixed      $depth
-     */
-    public function toJson($route = null, $options = 0, $depth = 512)
+    public function toJson(string $route = null, int $options = 0, int $depth = 512): string
     {
         if (empty($route) || 'save' === $route) {
             $data = $this->toArray();
@@ -98,12 +86,12 @@ abstract class CollectionAbstract extends ArrayCollection
         return json_encode($data, $options, $depth);
     }
 
-    public function toLog()
+    public function toLog(): array
     {
         return $this->toArray();
     }
 
-    protected function partitionByArrayKey(array $allowed)
+    protected function partitionByArrayKey(array $allowed): array
     {
         $new = [];
         $list = $this->toArray();
@@ -116,7 +104,7 @@ abstract class CollectionAbstract extends ArrayCollection
         return $new;
     }
 
-    protected function piece($key, $newKey = null)
+    protected function piece($key, $newKey = null): array
     {
         return [$newKey ?: $key => $this->get($key)];
     }
