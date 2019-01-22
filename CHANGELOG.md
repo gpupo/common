@@ -2,6 +2,10 @@
 VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
+   Version 4.7 - Add hints
+      22/01/2019 10:34  4.7.0  initial release
+         46b0854 Add hints
+
    Version 4.6 - Add Developer Toolbox console
       21/01/2019 16:01  4.6.1  Fix set void
          04ecf12 add bootstrap tp phpunit
