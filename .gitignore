@@ -4,6 +4,7 @@
 app.json
 Resources/logs/*
 *.phar
+/.phan
 *.lock
 *.cache
 phpunit.xml
