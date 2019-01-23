@@ -95,12 +95,12 @@ abstract class AbstractApplication extends Application
         return json_decode($string, true);
     }
 
-    public function jsonSaveToFile(array $array, $filename, OutputInterface $output)
+    public function jsonSaveToFile(array $array, $filename, OutputInterface $output): void
     {
         $json = json_encode($array, JSON_PRETTY_PRINT);
         file_put_contents($filename, $json);
 
-        return $output->writeln('Arquivo <info>'.$filename.'</info> gerado.');
+        $output->writeln('Arquivo <info>'.$filename.'</info> gerado.');
     }
 
     protected function processInputParameter($parameter, InputInterface $input, OutputInterface $output)
@@ -129,7 +129,7 @@ abstract class AbstractApplication extends Application
         return  $this->getHelperSet()->get('question')->ask($input, $output, $question);
     }
 
-    protected function processAliasParameters(array $list)
+    protected function processAliasParameters(array $list): array
     {
         foreach ($this->configAlias as $k => $v) {
             if (array_key_exists($k, $list)) {
@@ -140,7 +140,7 @@ abstract class AbstractApplication extends Application
         return $list;
     }
 
-    protected function getLogFilePath()
+    protected function getLogFilePath(): string
     {
         return 'var/logs/main.log';
     }
