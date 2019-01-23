@@ -70,18 +70,6 @@ abstract class AbstractApplication extends Application
         return $this->processAliasParameters($list);
     }
 
-    public function factoryLogger($channel = 'bin', $verbose = null)
-    {
-        $logger = new Logger($channel);
-        $logger->pushHandler(new StreamHandler($this->getLogFilePath(), $this->getLogLevel()));
-
-        if (!empty($verbose)) {
-            $logger->pushHandler(new ErrorLogHandler(0, Logger::INFO));
-        }
-
-        return $logger;
-    }
-
     public function appendCommand($name, $description, array $definition = [])
     {
         return $this->register($name)
@@ -157,8 +145,8 @@ abstract class AbstractApplication extends Application
         return 'var/logs/main.log';
     }
 
-    protected function getLogLevel()
+    protected function getLogLevel(): int
     {
-        return Logger::DEBUG;
+        return ('true' === getenv('APP_DEBUG')) ? Logger::DEBUG : Logger::INFO;
     }
 }
