@@ -23,7 +23,23 @@ use Gpupo\Common\Traits\PropertyAccessorsTrait;
 /**
  * @ORM\MappedSuperclass
  */
-abstract class AbstractORMEntity
+abstract class AbstractORMEntity implements CollectionInterface
 {
     use PropertyAccessorsTrait;
+
+    public function toJson(string $route = null, int $options = 0, int $depth = 512): string
+    {
+        return '';
+    }
+
+    public function toLog(): array
+    {
+        return [];
+    }
+
+
+    public function toArray(): array
+    {
+        return [];
+    }
 }

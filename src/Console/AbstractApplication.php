@@ -49,6 +49,9 @@ abstract class AbstractApplication extends Application
         return parent::doRun($input, $output);
     }
 
+    /**
+     * @deprecated since 4.6
+     */
     public function factoryDefinition(array $definitions = [])
     {
         $list = [];
@@ -60,6 +63,9 @@ abstract class AbstractApplication extends Application
         return $list;
     }
 
+    /**
+     * @deprecated since 4.6
+     */
     public function processInputParameters(array $definitions, InputInterface $input, OutputInterface $output)
     {
         $list = [];
@@ -70,6 +76,9 @@ abstract class AbstractApplication extends Application
         return $this->processAliasParameters($list);
     }
 
+    /**
+     * @deprecated since 4.6
+     */
     public function appendCommand($name, $description, array $definition = [])
     {
         return $this->register($name)
@@ -84,6 +93,10 @@ abstract class AbstractApplication extends Application
         $output->writeln('Error Code: <comment>'.$e->getCode().'</comment>');
     }
 
+
+    /**
+     * @deprecated since 4.6. Use ResourceTrait instead
+     */
     public function jsonLoadFromFile($filename)
     {
         if (!file_exists($filename)) {
@@ -103,6 +116,9 @@ abstract class AbstractApplication extends Application
         $output->writeln('Arquivo <info>'.$filename.'</info> gerado.');
     }
 
+    /**
+     * @deprecated since 4.6
+     */
     protected function processInputParameter($parameter, InputInterface $input, OutputInterface $output)
     {
         if ($input->getOption($parameter['key'])) {
@@ -129,6 +145,10 @@ abstract class AbstractApplication extends Application
         return  $this->getHelperSet()->get('question')->ask($input, $output, $question);
     }
 
+
+    /**
+     * @deprecated since 4.6
+     */
     protected function processAliasParameters(array $list): array
     {
         foreach ($this->configAlias as $k => $v) {
