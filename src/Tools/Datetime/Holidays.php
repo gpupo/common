@@ -72,7 +72,7 @@ class Holidays
                 'Nossa senhora da aparecida' => '12-10-'.$year,
                 'Dia de finados' => '02-11-'.$year,
                 'Proclamacao da republica' => '15-11-'.$year,
-                'Natal' => '24-12-'.$year,
+                'Véspera de Natal' => '24-12-'.$year,
                 'Natal' => '25-12-'.$year,
                 'Reveillon' => '31-12-'.$year,
             ],

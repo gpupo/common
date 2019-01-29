@@ -22,24 +22,16 @@ class Inspect
     /**
      * get the full name (name \ namespace) of a class from its file path
      * result example: (string) "I\Am\The\Namespace\Of\This\Class".
-     *
-     * @param $filePathName
-     *
-     * @return string
      */
-    public function getClassFullNameFromFile($filePathName)
+    public function getClassFullNameFromFile(string $filePathName): string
     {
         return $this->getClassNamespaceFromFile($filePathName).'\\'.$this->getClassNameFromFile($filePathName);
     }
 
     /**
      * get the class namespace form file path using token.
-     *
-     * @param $filePathName
-     *
-     * @return null|string
      */
-    protected function getClassNamespaceFromFile($filePathName)
+    protected function getClassNamespaceFromFile(string $filePathName): ?string
     {
         $src = file_get_contents($filePathName);
 
@@ -76,11 +68,9 @@ class Inspect
     /**
      * get the class name form file path using token.
      *
-     * @param $filePathName
-     *
      * @return mixed
      */
-    protected function getClassNameFromFile($filePathName)
+    protected function getClassNameFromFile(string $filePathName)
     {
         $php_code = file_get_contents($filePathName);
 
