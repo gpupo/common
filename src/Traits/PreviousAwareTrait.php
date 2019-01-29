@@ -15,30 +15,21 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Common\Entity;
+namespace Gpupo\Common\Traits;
 
-use Doctrine\ORM\Mapping as ORM;
-use Gpupo\Common\Traits\PropertyAccessorsTrait;
+use Gpupo\Common\Entity\CollectionInterface;
 
-/**
- * @ORM\MappedSuperclass
- */
-abstract class AbstractORMEntity implements CollectionInterface
+trait PreviousAwareTrait
 {
-    use PropertyAccessorsTrait;
+    protected $previous;
 
-    public function toJson(string $route = null, int $options = 0, int $depth = 512): string
+    public function setPrevious(CollectionInterface $previous): void
     {
-        return '';
+        $this->previous = $previous;
     }
 
-    public function toLog(): array
+    public function getPrevious(): ?CollectionInterface
     {
-        return [];
-    }
-
-    public function toArray(): array
-    {
-        return [];
+        return $this->previous;
     }
 }

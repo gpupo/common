@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Tests\Traits;
 
+use Gpupo\Common\Interfaces\OptionsInterface;
 use Gpupo\Common\Tests\Objects\HasOptions;
 use Gpupo\Common\Tests\TestCaseAbstract;
 
@@ -29,7 +30,7 @@ class OptionsTraitTest extends TestCaseAbstract
     {
         $object = new HasOptions();
 
-        $this->assertInstanceOf('\Gpupo\Common\Interfaces\OptionsInterface', $object);
+        $this->assertInstanceOf(OptionsInterface::class, $object);
     }
 
     public function testHasOptionsContainer()

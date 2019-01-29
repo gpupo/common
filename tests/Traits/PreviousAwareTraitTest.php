@@ -15,30 +15,22 @@ declare(strict_types=1);
  *
  */
 
-namespace Gpupo\Common\Entity;
+namespace Gpupo\Common\Tests\Traits;
 
-use Doctrine\ORM\Mapping as ORM;
-use Gpupo\Common\Traits\PropertyAccessorsTrait;
+use Gpupo\Common\Entity\Collection;
+use Gpupo\Common\Tests\Objects\HasPrevious;
+use Gpupo\Common\Tests\TestCaseAbstract;
 
 /**
- * @ORM\MappedSuperclass
+ * @coversNothing
  */
-abstract class AbstractORMEntity implements CollectionInterface
+class PreviousAwareTraitTest extends TestCaseAbstract
 {
-    use PropertyAccessorsTrait;
-
-    public function toJson(string $route = null, int $options = 0, int $depth = 512): string
+    public function testImplementsLoggerInterface()
     {
-        return '';
-    }
-
-    public function toLog(): array
-    {
-        return [];
-    }
-
-    public function toArray(): array
-    {
-        return [];
+        $object = new HasPrevious();
+        $foo = new Collection(['foo' => 'bar']);
+        $object->setPrevious($foo);
+        $this->assertSame('bar', $object->getPrevious()->get('foo'));
     }
 }

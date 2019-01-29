@@ -17,18 +17,19 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Tests\Traits;
 
+use Gpupo\Common\Interfaces\LoggerInterface;
 use Gpupo\Common\Tests\Objects\HasLogger;
 use Gpupo\Common\Tests\TestCaseAbstract;
 
 /**
  * @coversNothing
  */
-class LoggerTraitTest extends TestCaseAbstract
+class LoggerAwareTraitTest extends TestCaseAbstract
 {
     public function testImplementsLoggerInterface()
     {
         $object = new HasLogger();
 
-        $this->assertInstanceOf('\Gpupo\Common\Interfaces\LoggerInterface', $object);
+        $this->assertInstanceOf(LoggerInterface::class, $object);
     }
 }

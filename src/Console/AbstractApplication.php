@@ -19,8 +19,6 @@ namespace Gpupo\Common\Console;
 
 use Exception;
 use Gpupo\Common\Traits\TableTrait;
-use Monolog\Handler\ErrorLogHandler;
-use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
@@ -78,6 +76,9 @@ abstract class AbstractApplication extends Application
 
     /**
      * @deprecated since 4.6
+     *
+     * @param mixed $name
+     * @param mixed $description
      */
     public function appendCommand($name, $description, array $definition = [])
     {
@@ -93,9 +94,10 @@ abstract class AbstractApplication extends Application
         $output->writeln('Error Code: <comment>'.$e->getCode().'</comment>');
     }
 
-
     /**
      * @deprecated since 4.6. Use ResourceTrait instead
+     *
+     * @param mixed $filename
      */
     public function jsonLoadFromFile($filename)
     {
@@ -118,6 +120,8 @@ abstract class AbstractApplication extends Application
 
     /**
      * @deprecated since 4.6
+     *
+     * @param mixed $parameter
      */
     protected function processInputParameter($parameter, InputInterface $input, OutputInterface $output)
     {
@@ -144,7 +148,6 @@ abstract class AbstractApplication extends Application
 
         return  $this->getHelperSet()->get('question')->ask($input, $output, $question);
     }
-
 
     /**
      * @deprecated since 4.6
