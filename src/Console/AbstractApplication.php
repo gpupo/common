@@ -37,8 +37,17 @@ abstract class AbstractApplication extends Application
 
     protected $commonParameters = [];
 
+    protected function define(string $name, $value): void
+    {
+        if (!\defined($name)) {
+            \define($name, $value);
+        }
+    }
+
     public function __construct($name = 'UNKNOWN', $version = 'UNKNOWN')
     {
+        $this->define('NAMESPACE_SEPARATOR', '\\');
+
         parent::__construct($name, $version);
     }
 
