@@ -2,6 +2,21 @@
 VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
+   Version 4.8 - Add Previous Aware
+      01/02/2019 11:26  4.8.0  initial release
+         5a1cc89 Add Name Separator
+         ec744e8 Improve Make file
+         70a64a0 Add Stan config
+         68555f9 Improve make
+         7994e7b Add phpcs rule
+         02bcb48 Add PreviousAware
+         e6b3ed0  AbstractORMEntity implements CollectionInterface
+         5a543b0 improve gh-page build
+         61747e6 Add gh-pages build
+         4c87d7e Add hints
+         c1cdc19 Refactory log level
+         f884057 Add abstract command
+
    Version 4.7 - Add hints
       22/01/2019 15:18  4.7.1  Add selfupdate
          f495dfc Improve make
