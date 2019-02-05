@@ -11,7 +11,7 @@
 
 namespace Gpupo\Common\Console;
 
-require dirname(__DIR__).'/config/bootstrap.php';
+require './config/bootstrap.php';
 
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
@@ -31,7 +31,7 @@ $opts = [
     ['key' => 'ignore-superclass', 'options' => ['y', 'n'], 'default' =>'y'],
 ];
 
-$app->appendCommand('developer-toolbox:tests:generate', 'Implement a Testcase for a given class', $opts)
+$app->appendCommand('generate', 'Implement a Testcase for a given class', $opts)
     ->setCode(function (InputInterface $input, OutputInterface $output) use ($app, $opts) {
 
         $list = $app->processInputParameters($opts, $input, $output);
@@ -75,7 +75,8 @@ $app->appendCommand('developer-toolbox:tests:generate', 'Implement a Testcase fo
             'methods'   => $methods,
             'schema'    => $schema,
             'config'    => [
-                'namespace' => (array) $app->getConfig('namespace'),
+                // 'namespace' => (array) $app->getC/nfig('namespace'),
+                'namespace' => [],
             ],
         ]);
 
@@ -91,7 +92,7 @@ $app->appendCommand('developer-toolbox:tests:generate', 'Implement a Testcase fo
         $output->writeln('Try run <comment>bin/phpunit  --no-log --filter='. $test['testShortName'] . '</>');
 });
 
-$app->appendCommand('developer-toolbox:tests:find-and-create', 'Find all classes in src/ and create Testcases')
+$app->appendCommand('find-and-generate', 'Find all classes in src/ and create Testcases')
     ->setCode(function (InputInterface $input, OutputInterface $output) use ($app) {
 
         $path = 'src/';
@@ -123,7 +124,7 @@ $app->appendCommand('developer-toolbox:tests:find-and-create', 'Find all classes
         $tests = [];
 
 
-        $mode = (null !== $app->getConfig('namespace')) ? $app->getConfig('namespace')['mode'] : 'component';
+        $mode = null;
 
         foreach ($fqcns as $item) {
             $output->writeln($item);
@@ -148,9 +149,9 @@ $app->appendCommand('developer-toolbox:tests:find-and-create', 'Find all classes
 
         foreach ($tests as $class => $test) {
             $output->writeln($class.' => '.$test);
-            $command = $app->find('tests:implement');
+            $command = $app->find('generate');
             $t = new ArrayInput([
-               'command'    => 'tests:implement',
+               'command'    => 'generate',
                '--class'      => $class,
             ]);
             try {
