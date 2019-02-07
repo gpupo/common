@@ -10,6 +10,8 @@ COLOR_RESET   = \033[0m
 COLOR_INFO  = \033[32m
 COLOR_COMMENT = \033[33m
 SHELL := /bin/bash
+MAKEFILE_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+CURRENT_DIR := $(shell pwd)
 
 ## List Targets and Descriptions
 help:
@@ -26,7 +28,12 @@ help:
 	} \
 	{ lastLine = $$0 }' $(MAKEFILE_LIST)
 
-#Go to the bash container of the application
+## List variables
+debug:
+	printf "Make dir: $(MAKEFILE_DIR)\n"
+	printf "Current dir: $(CURRENT_DIR)\n"
+
+## Go to the bash container of the application
 bash:
 	@$(RUN) bash
 	printf "${COLOR_COMMENT}Container removed.${COLOR_RESET}\n"
@@ -103,8 +110,8 @@ gh-page:
 	cat README.md  >> var/cache/index.md;
 	git checkout gh-pages || (git checkout --orphan gh-pages && git ls-files -z | xargs -0 git rm --cached);
 	mkdir -p _layouts;
-	cp -f vendor/gpupo/common/Resources/gh-pages-template/default.html _layouts/
-	cp -f vendor/gpupo/common/Resources/gh-pages-template/_config.yml .;
+	cp -f $(MAKEFILE_DIR)/vendor/gpupo/common/Resources/gh-pages-template/default.html _layouts/
+	cp -f $(MAKEFILE_DIR)/vendor/gpupo/common/Resources/gh-pages-template/_config.yml .;
 	cp var/cache/index.md  .;
 	git add -f index.md _config.yml _layouts/default.html;
 	git commit -m "Website recreated by gpupo/common";
