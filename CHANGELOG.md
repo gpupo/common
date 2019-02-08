@@ -3,6 +3,11 @@ VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
    Version 4.8 - Add Previous Aware
+      08/02/2019 13:29  4.8.1  Improve Makefile
+         c45b120 Improve make
+         39be767 Update symfony libs
+         19c1e68 Fix bin
+         328b6a3 Add Interface option
       01/02/2019 11:26  4.8.0  initial release
          5a1cc89 Add Name Separator
          ec744e8 Improve Make file
