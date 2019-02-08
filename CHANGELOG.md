@@ -3,6 +3,7 @@ VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
    Version 4.8 - Add Previous Aware
+      08/02/2019 13:45  4.8.2  fix command
       08/02/2019 13:29  4.8.1  Improve Makefile
          c45b120 Improve make
          39be767 Update symfony libs

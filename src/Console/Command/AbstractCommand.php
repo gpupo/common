@@ -33,11 +33,11 @@ abstract class AbstractCommand extends Command
     protected function getProjectData(): array
     {
         $data = [];
-
-        foreach (explode(',', getenv('SYMFONY_DOTENV_VARS')) as $id) {
+        foreach ((array) explode(',', getenv('SYMFONY_DOTENV_VARS') ?:',') as $id) {
             $data[$id] = getenv($id);
         }
 
+        $data['getenv'] = getenv();
         $filename = $this->getProjectDataFilename();
 
         if (file_exists($filename)) {
