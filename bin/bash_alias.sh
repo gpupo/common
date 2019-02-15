@@ -27,7 +27,8 @@ alias docker-stop-all='docker stop $(docker ps -a -q)'
 alias docker-remove-all='docker rmi $(docker images -a -q)'
 
 ## Docker services
-alias php-fpm-service='docker run -v "$PWD":/var/www/app --rm gpupo/container-orchestration:symfony-dev-v1.6.0'
+alias php-fpm-service='docker run -v "$PWD":/var/www/app --rm gpupo/container-orchestration:symfony-dev'
+alias php-bash='php-fpm-service bash'
 alias composer='php-fpm-service composer'
 alias phpunit='php-fpm-service vendor/bin/phpunit'
 alias php-cs-fixer='php-fpm-service /root/.composer/vendor/bin/php-cs-fixer'
@@ -36,7 +37,7 @@ alias phpcbf='php-fpm-service /root/.composer/vendor/bin/phpcbf'
 
 
 #project ONLY
-alias project-php-fpm-service='dc run php-fpm'
+alias project-php-fpm-service='dc run --rm php-fpm'
 alias project-php='project-php-fpm-service php'
 alias project-console='project-php bin/console'
 alias project-make='project-php-fpm-service make'
