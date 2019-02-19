@@ -9,6 +9,7 @@ VENDOR_BIN=./vendor/bin
 COLOR_RESET   = \033[0m
 COLOR_INFO  = \033[32m
 COLOR_COMMENT = \033[33m
+COLOR_ERROR = \033[31m
 SHELL := /bin/bash
 MAKEFILE_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 CURRENT_DIR := $(shell pwd)
@@ -27,6 +28,13 @@ help:
 	} \
 	} \
 	{ lastLine = $$0 }' $(MAKEFILE_LIST)
+
+header:
+	if [ ! -f /.dockerenv ]; then \
+		printf "\n\n!!! ${COLOR_ERROR}This target is only available for execution insite a container!${COLOR_RESET}\n\n\n"; \
+		$(MAKE) help; \
+		exit 1; \
+	fi;
 
 ## List variables
 debug:
