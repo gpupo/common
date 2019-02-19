@@ -18,19 +18,20 @@ declare(strict_types=1);
 namespace Gpupo\Common\Tools\Cache;
 
 use Psr\SimpleCache\CacheInterface;
+use Psr\SimpleCache\CacheItemPoolInterface;
 
 trait SimpleCacheAwareTrait
 {
     protected $simpleCache;
 
-    public function setSimpleCache(CacheInterface $simpleCache)
+    public function setSimpleCache($simpleCache)
     {
         $this->simpleCache = $simpleCache;
 
         return true;
     }
 
-    public function getSimpleCache(): ?CacheInterface
+    public function getSimpleCache()
     {
         return $this->simpleCache;
     }

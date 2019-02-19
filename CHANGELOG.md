@@ -2,6 +2,11 @@
 VERSION 4  MAJOR VERSION 3 SKIPPED
 ==================================
 
+   Version 4.9 - Simple Cache Improve
+      19/02/2019 14:33  4.9.0  initial release
+         f7668eb Improve make
+         515e08d Add rm to run
+
    Version 4.8 - Add Previous Aware
       08/02/2019 13:45  4.8.2  fix command
       08/02/2019 13:29  4.8.1  Improve Makefile
