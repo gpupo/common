@@ -31,7 +31,7 @@ help:
 
 header:
 	if [ ! -f /.dockerenv ]; then \
-		printf "\n\n!!! ${COLOR_ERROR}This target is only available for execution insite a container!${COLOR_RESET}\n\n\n"; \
+		printf "\n\n!!! ${COLOR_ERROR}This target is only available for execution inside a container!${COLOR_RESET}\n\n\n"; \
 		$(MAKE) help; \
 		exit 1; \
 	fi;
