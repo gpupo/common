@@ -164,7 +164,7 @@ class Docblock
         $data['classNamespace'] = implode('\\', $array);
         $data['mainNamespace'] = $array[1];
 
-        $array[0] = $array[0].'\\Tests';
+        $array[1] = $array[1].'\\Tests';
 
         $testNamespace = implode('\\', $array);
         array_shift($array);

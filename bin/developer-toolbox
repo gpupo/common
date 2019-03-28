@@ -93,7 +93,7 @@ $app->appendCommand('generate', 'Implement a Testcase for a given class', $opts)
 
         file_put_contents($test['filename'], $test['content'], FILE_TEXT);
 
-        $output->writeln('Try run <comment>bin/phpunit  --no-log --filter='. $test['testShortName'] . '</>');
+        $output->writeln('Try run <comment>phpunit --filter='. $test['testShortName'] . '</>');
 });
 
 $app->appendCommand('find-and-generate', 'Find all classes in src/ and create Testcases')
