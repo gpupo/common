@@ -40,14 +40,13 @@ $app->appendCommand('generate', 'Implement a Testcase for a given class', $opts)
         $docblock = Docblock::getInstance();
         $methods = [];
         foreach ($class->getMethods() as $m) {
-            if ($m->class === $class->getName() || 'y' !== $list['ignore-superclass']) {
+            if ($m->class === $class->getName() || ('y' !== (string) $list['ignore-superclass'] && !empty($list['ignore-superclass']))) {
+                 $output->writeln('Track superclass methods', OutputInterface::VERBOSITY_VERBOSE);
                  if (false === strpos($m->name, '__') && !in_array($m->name,['toLog'])) {
                      $methods[] = $m->name;
                  }
             } else {
-                if ($output->isVerbose()) {
-                    $output->writeln('Ignore method: '.$m->name. ' of ' . $m->class);
-                }
+                $output->writeln('Ignore method: '.$m->name. ' of ' . $m->class, OutputInterface::VERBOSITY_VERBOSE);
             }
         }
 
@@ -65,8 +64,13 @@ $app->appendCommand('generate', 'Implement a Testcase for a given class', $opts)
             $schema = $doc['schema'];
 
         } else {
-            $discovery = $docblock->discovery($class);
-            $schema = $discovery['schema'];
+            try {
+                $discovery = $docblock->discovery($class);
+                $schema = $discovery['schema'];
+            } catch (\Exception $e) {
+                error_log(sprintf('Warning:[%s]', $e->getMessage()));
+                $schema = [];
+            }
         }
 
         $test = $docblock->generate([
