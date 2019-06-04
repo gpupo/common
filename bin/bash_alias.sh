@@ -37,7 +37,8 @@ alias phpcbf='php-fpm-service /root/.composer/vendor/bin/phpcbf'
 
 
 #project ONLY
-alias project-php-fpm-service='dc run --rm php-fpm'
+# alias project-php-fpm-service='dc run --rm php-fpm'
+alias project-php-fpm-service='dc exec php-fpm'
 alias project-php='project-php-fpm-service php'
 alias project-console='project-php bin/console'
 alias project-make='project-php-fpm-service make'
