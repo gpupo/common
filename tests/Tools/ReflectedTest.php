@@ -22,6 +22,8 @@ use Gpupo\Common\Entity\Collection;
 use Gpupo\Common\Tests\TestCaseAbstract;
 use Gpupo\Common\Tools\Datetime\Holidays;
 use Gpupo\Common\Tools\Reflected;
+use Gpupo\Common\Entity\ArrayCollection;
+use Gpupo\Common\Tests\Objects\HasMagicCall;
 
 /**
  * @coversNothing
@@ -48,5 +50,19 @@ class ReflectedTest extends TestCaseAbstract
         $reflected = new Reflected($obj);
 
         $this->assertSame($datetime, $reflected->datetime);
+    }
+
+    public function testAccessPublicMagicMethods()
+    {
+        $arrayCollection = new HasMagicCall([
+            'foo' => 'bar',
+        ]);
+
+        $this->assertSame('bar', $arrayCollection->getFoo());
+        $reflected = new Reflected($arrayCollection);
+        $this->assertSame('bar', $reflected->get('foo'));
+
+        $reflected->reflectionEnd();
+        $this->assertSame('bar', $reflected->getFoo());
     }
 }

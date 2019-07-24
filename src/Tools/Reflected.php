@@ -23,7 +23,12 @@ use ReflectionProperty;
 
 class Reflected
 {
-    protected $object;
+    const STATE_CLOSED = 0;
+    const STATE_OPEN = 1;
+
+    protected $_object;
+
+    private $_state;
 
     public function __construct($object)
     {
@@ -31,35 +36,56 @@ class Reflected
             throw new InvalidArgumentException('Argument must be an object');
         }
 
-        $this->object = $object;
+        $this->_state = $this::STATE_OPEN;
+
+        $this->_object = $object;
     }
 
-    public function __call($name, array $arguments)
+    public function reflectionEnd()
     {
-        $method = new ReflectionMethod($this->object, $name);
+        $this->_state = $this::STATE_CLOSED;
+    }
+
+    protected function isReflectionOpen()
+    {
+        return $this->_state === $this::STATE_OPEN;
+    }
+
+    public function __call($method, $args)
+    {
+        if ($this->isReflectionOpen()) {
+            return $this->reflectionCall($method, $args);
+        }
+
+        return $this->_object->$method($args);
+    }
+
+    protected function reflectionCall($name, array $arguments)
+    {
+        $method = new ReflectionMethod($this->_object, $name);
         $method->setAccessible(true);
 
-        return $method->invokeArgs($this->object, $arguments);
+        return $method->invokeArgs($this->_object, $arguments);
     }
 
     public function __get($name)
     {
-        return $this->setPropertyAccessible($name)->getValue($this->object);
+        return $this->setPropertyAccessible($name)->getValue($this->_object);
     }
 
     public function __set($name, $value)
     {
-        $this->setPropertyAccessible($name)->setValue($this->object, $value);
+        $this->setPropertyAccessible($name)->setValue($this->_object, $value);
     }
 
     public function export()
     {
-        return $this->object;
+        return $this->_object;
     }
 
     private function setPropertyAccessible($name)
     {
-        $property = new ReflectionProperty($this->object, $name);
+        $property = new ReflectionProperty($this->_object, $name);
         $property->setAccessible(true);
 
         return $property;
