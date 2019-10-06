@@ -154,6 +154,16 @@ gflow-squash-to-master() {
   git push origin master:master;
 }
 
+gflow-setPS1() {
+  export PS1='\[\033[0;32m\]\u:\[\033[36m\]\w\[\033[0m\]`__gflow_helper_get_branch_name_for_directory`\$ ';
+}
+
+__gflow_helper_get_branch_name_for_directory() {
+  if [ -d .git ]; then
+    printf " ($(__gflow_helper_print_with_color `__gflow_helper_get_branch_name` 92))"
+  fi;
+}
+
 __gflow_helper_get_branch_name() {
   if [ -d .git ]; then
     git branch | grep '\*' | awk '{print $2}'
