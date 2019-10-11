@@ -23,6 +23,7 @@ alias gc='git commit -am'
 alias dc='docker-compose'
 alias dc-up='docker-compose up -d'
 alias dc-down='docker-compose down'
+alias dc-recreate='docker-compose down; docker-compose up -dV'
 alias docker-stop-all='docker stop $(docker ps -a -q)'
 alias docker-remove-all='docker rmi $(docker images -a -q)'
 
