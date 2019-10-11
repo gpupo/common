@@ -35,6 +35,11 @@ trait MagicCallTrait
             return $this->get($snake);
         }
 
+        $bigsnake = ucfirst($field);
+        if ($this->containsKey($bigsnake)) {
+            return $this->get($bigsnake);
+        }
+
         $exception();
     }
 
@@ -50,13 +55,14 @@ trait MagicCallTrait
      */
     public function __call($method, $args)
     {
-        $exception = function () use ($method) {
-            throw new \BadMethodCallException('There is no [magic] method '.$method.'()');
-        };
-
         $command = mb_substr($method, 0, 3);
         $field = mb_substr($method, 3);
         $field[0] = mb_strtolower($field[0]);
+        $exception = function () use ($method, $command, $field) {
+            $template = 'There is no MAGIC method %s(), command `%s`, field `%s`.';
+            $message = sprintf($template, $method, $command, $field);
+            throw new \BadMethodCallException($message);
+        };
 
         if ('set' === $command) {
             $this->set($field, current($args));
