@@ -156,12 +156,12 @@ gflow-squash-to-master() {
 }
 
 gflow-setPS1() {
-  export PS1='\[\033[0;32m\]\u:\[\033[36m\]\w\[\033[0m\]`__gflow_helper_get_branch_name_for_directory`\$ ';
+  export PS1='\[\033[0;32m\]\u:\[\033[36m\]`_gflow_helper_pwd_shortener`\[\033[0m\]`__gflow_helper_get_branch_name_for_directory`\$ ';
 }
 
 __gflow_helper_get_branch_name_for_directory() {
   if [ -d .git ]; then
-    printf " ($(__gflow_helper_print_with_color `__gflow_helper_get_branch_name` 92))"
+    printf "($(__gflow_helper_print_with_color `__gflow_helper_get_branch_name` 92))"
   fi;
 }
 
@@ -169,4 +169,22 @@ __gflow_helper_get_branch_name() {
   if [ -d .git ]; then
     git branch | grep '\*' | awk '{print $2}'
   fi;
+}
+
+_gflow_helper_pwd_shortener() {
+    # How many characters of the $PWD should be kept
+    local pwdmaxlen=20
+    # Indicate that there has been dir truncation
+    local trunc_symbol=".."
+    local dir=${PWD##*/}
+    pwdmaxlen=$(( ( pwdmaxlen < ${#dir} ) ? ${#dir} : pwdmaxlen ))
+    NEW_PWD=${PWD/#$HOME/\~}
+    local pwdoffset=$(( ${#NEW_PWD} - pwdmaxlen ))
+    if [ ${pwdoffset} -gt "0" ]
+    then
+        NEW_PWD=${NEW_PWD:$pwdoffset:$pwdmaxlen}
+        NEW_PWD=${trunc_symbol}/${NEW_PWD#*/}
+    fi
+
+    echo $NEW_PWD;
 }
