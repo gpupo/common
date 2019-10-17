@@ -12,6 +12,9 @@ shopt -s expand_aliases
 
 ## System
 alias pip='pip3'
+alias chown-recursive='chown -R $USER:$(groups | cut -d " " -f1)'
+alias chown-recursive-sudo='sudo chown -R $USER:$(groups | cut -d " " -f1)'
+
 
 ## Git
 alias gs='git status'
