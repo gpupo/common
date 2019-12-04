@@ -158,6 +158,10 @@ gflow-squash-to-master() {
   git push origin master:master;
 }
 
+gflow-tag-delete-everywhere() {
+  git tag -d $1 && git push origin :refs/tags/$1;
+}
+
 gflow-setPS1() {
   export PS1='\[\033[0;32m\]\u:\[\033[36m\]`_gflow_helper_pwd_shortener`\[\033[0m\]`__gflow_helper_get_branch_name_for_directory`\$ ';
 }
