@@ -11,7 +11,7 @@
     "keywords": ["common"],
     "license": "MIT",
     "require": {
-        "php": ">=7.3.6",
+        "php": ">=7.4",
         "symfony/console": "^4.3",
         "symfony/var-dumper": "^4.3",
         "symfony/lock": "^4.3",
