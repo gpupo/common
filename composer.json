@@ -12,18 +12,18 @@
     "license": "MIT",
     "require": {
         "php": ">=7.4",
-        "symfony/console": "^4.3",
-        "symfony/var-dumper": "^4.3",
-        "symfony/lock": "^4.3",
-        "symfony/dotenv": "^4.3",
+        "symfony/console": "^5.0",
+        "symfony/var-dumper": "^5.0",
+        "symfony/lock": "^5.0",
+        "symfony/dotenv": "^5.0",
         "doctrine/common": "^2.10",
-        "doctrine/orm": "^2.6.3",
-        "symfony/yaml": "^4.3",
-        "symfony/finder": "^4.3",
-        "symfony/filesystem": "^4.3",
-        "monolog/monolog": "^1.23",
-        "symfony/cache": "^4.3",
-        "twig/twig": "^2.11",
+        "doctrine/orm": "^2.7",
+        "symfony/yaml": "^5.0",
+        "symfony/finder": "^5.0",
+        "symfony/filesystem": "^5.0",
+        "monolog/monolog": "^2.0",
+        "symfony/cache": "^5.0",
+        "twig/twig": "^3.0",
         "psr/simple-cache": "^1.0",
         "phpdocumentor/reflection-docblock": "^4.3"
     },
@@ -34,7 +34,7 @@
         }
     },
     "require-dev": {
-        "gpupo/common-dev": "^1.1"
+        "gpupo/common-dev": "^5.0.1"
     },
     "bin": ["bin/developer-toolbox"],
     "config": {
