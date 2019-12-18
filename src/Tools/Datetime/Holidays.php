@@ -43,9 +43,6 @@ class Holidays
         return $value;
     }
 
-    /**
-     * @return array
-     */
     public function getHolidays(): array
     {
         $year = $this->getYear();
@@ -83,7 +80,7 @@ class Holidays
     {
         $array = $this->getHolidays();
         $key = mb_strtolower($country);
-        if (!array_key_exists($key, $array) || !\is_array($array[$key])) {
+        if (!\array_key_exists($key, $array) || !\is_array($array[$key])) {
             return false;
         }
 

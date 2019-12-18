@@ -41,31 +41,13 @@ class Reflected
         $this->_object = $object;
     }
 
-    public function reflectionEnd()
-    {
-        $this->_state = $this::STATE_CLOSED;
-    }
-
-    protected function isReflectionOpen()
-    {
-        return $this->_state === $this::STATE_OPEN;
-    }
-
     public function __call($method, $args)
     {
         if ($this->isReflectionOpen()) {
             return $this->reflectionCall($method, $args);
         }
 
-        return $this->_object->$method($args);
-    }
-
-    protected function reflectionCall($name, array $arguments)
-    {
-        $method = new ReflectionMethod($this->_object, $name);
-        $method->setAccessible(true);
-
-        return $method->invokeArgs($this->_object, $arguments);
+        return $this->_object->{$method}($args);
     }
 
     public function __get($name)
@@ -78,9 +60,27 @@ class Reflected
         $this->setPropertyAccessible($name)->setValue($this->_object, $value);
     }
 
+    public function reflectionEnd()
+    {
+        $this->_state = $this::STATE_CLOSED;
+    }
+
     public function export()
     {
         return $this->_object;
+    }
+
+    protected function isReflectionOpen()
+    {
+        return $this->_state === $this::STATE_OPEN;
+    }
+
+    protected function reflectionCall($name, array $arguments)
+    {
+        $method = new ReflectionMethod($this->_object, $name);
+        $method->setAccessible(true);
+
+        return $method->invokeArgs($this->_object, $arguments);
     }
 
     private function setPropertyAccessible($name)

@@ -61,6 +61,7 @@ trait MagicCallTrait
         $exception = function () use ($method, $command, $field) {
             $template = 'There is no MAGIC method %s(), command `%s`, field `%s`.';
             $message = sprintf($template, $method, $command, $field);
+
             throw new \BadMethodCallException($message);
         };
 

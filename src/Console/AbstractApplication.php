@@ -143,8 +143,8 @@ abstract class AbstractApplication extends Application
             return $envValue;
         }
 
-        if (\is_array($parameter) && array_key_exists('options', $parameter)) {
-            $subject = $parameter['key'].' (['.implode(',', $parameter['options']).((array_key_exists('default', $parameter)) ? '] ENTER for <info>'.$parameter['default'].'</info>' : '').'): ';
+        if (\is_array($parameter) && \array_key_exists('options', $parameter)) {
+            $subject = $parameter['key'].' (['.implode(',', $parameter['options']).((\array_key_exists('default', $parameter)) ? '] ENTER for <info>'.$parameter['default'].'</info>' : '').'): ';
 
             $question = new ChoiceQuestion($subject, $parameter['options'], 0);
             $question->setErrorMessage('%s is invalid. Valid values:'.implode('', $parameter['options']));
@@ -162,7 +162,7 @@ abstract class AbstractApplication extends Application
     protected function processAliasParameters(array $list): array
     {
         foreach ($this->configAlias as $k => $v) {
-            if (array_key_exists($k, $list)) {
+            if (\array_key_exists($k, $list)) {
                 $list[$v] = $list[$k];
             }
         }

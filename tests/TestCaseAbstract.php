@@ -17,8 +17,8 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Gpupo\CommonDev\Traits\TestCaseTrait;
+use PHPUnit\Framework\TestCase;
 
 abstract class TestCaseAbstract extends TestCase
 {

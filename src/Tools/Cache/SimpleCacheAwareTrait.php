@@ -30,7 +30,7 @@ trait SimpleCacheAwareTrait
         return true;
     }
 
-    public function getSimpleCache():? CacheInterface
+    public function getSimpleCache(): ?CacheInterface
     {
         return $this->simpleCache;
     }

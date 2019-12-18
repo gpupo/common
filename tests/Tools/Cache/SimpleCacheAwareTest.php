@@ -52,7 +52,6 @@ class SimpleCacheAwareTest extends TestCaseAbstract
         $item->set(4711);
         $adapter->save($item);
 
-
         // remove the cache key
         $adapter->deleteItem('stats.products_count');
         $item = $adapter->getItem('stats.products_count');
@@ -72,7 +71,7 @@ class SimpleCacheAwareTest extends TestCaseAbstract
         $this->assertSame(4711, $item->get());
 
         // or specify a default value, if the key doesn't exist
-        $this->assertSame('foo', $adapter->get('stats.products_not_exist', function(ItemInterface $item) {
+        $this->assertSame('foo', $adapter->get('stats.products_not_exist', function (ItemInterface $item) {
             return 'foo';
         }));
 
