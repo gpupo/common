@@ -6,12 +6,12 @@ common@setup:
 ## Composer Install
 common@install:
 	composer self-update
-	composer install --prefer-dist
+	COMPOSER_MEMORY_LIMIT=5G composer install --prefer-dist
 
 ## Composer Update and register packages
 common@update:
 	rm -f *.lock
-	composer update --no-scripts -n
+	COMPOSER_MEMORY_LIMIT=5G composer update --no-scripts -n
 	composer info > Resources/statistics/composer-packages.txt
 
 ## Clean temporary files
