@@ -4,6 +4,7 @@ layout: default
 Common tools for PHP components
 
 [![Build Status](https://secure.travis-ci.org/gpupo/common.png?branch=master)](http://travis-ci.org/gpupo/common)
+[![Actions Status](https://github.com/gpupo/common/workflows/CI/badge.svg)](https://github.com/gpupo/common/actions)
 
 
 ## Requisitos para uso
@@ -50,7 +51,7 @@ Proibido:
 
 Adicione o pacote ``common`` ao seu projeto utilizando [composer](http://getcomposer.org):
 
-    composer require gpupo/common:^5.0
+    composer require gpupo/common
 
 ## Uso
 
