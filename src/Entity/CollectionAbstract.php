@@ -83,7 +83,23 @@ abstract class CollectionAbstract extends ArrayCollection
             $data = $this->{$method}();
         }
 
-        return json_encode($data, $options, $depth);
+        $encoded = json_encode($data, $options, $depth);
+        if ($encoded === false && $data && json_last_error() == JSON_ERROR_UTF8) {
+            $encoded = json_encode($this->utf8Resolve($data), $options, $depth);
+        }
+
+        return $encoded;
+    }
+
+    public function utf8Resolve($mixed) {
+        if (is_array($mixed)) {
+            foreach ($mixed as $key => $value) {
+                $mixed[$key] = $this->utf8Resolve($value);
+            }
+        } elseif (is_string($mixed)) {
+            return mb_convert_encoding($mixed, "UTF-8", "UTF-8");
+        }
+        return $mixed;
     }
 
     public function toLog(): array
