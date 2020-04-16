@@ -21,25 +21,34 @@ alias gc='git commit -am'
 
 ## Docker
 alias dc='docker-compose'
-alias dc-up='docker-compose up -d'
-alias dc-down='docker-compose down'
 alias docker-stop-all='docker stop $(docker ps -a -q)'
 alias docker-remove-all='docker rmi $(docker images -a -q)'
 
+## PHP
+alias g-composer='php -d memory_limit=-1 `which composer`';
+
+g-composer-require() {
+  php -d memory_limit=-1 `which composer` require $1 --no-progress --no-scripts --ignore-platform-reqs;
+}
+
+g-composer-install() {
+  php -d memory_limit=-1 `which composer` install --no-progress --no-scripts --ignore-platform-reqs;
+}
+
+g-composer-update() {
+  test -f composer.lock && rm -f composer.lock;
+  php -d memory_limit=-1 `which composer` update --no-progress --no-scripts --ignore-platform-reqs;
+}
+
 ## Docker services
-alias php-fpm-service='docker run -v "$PWD":/var/www/app --rm gpupo/container-orchestration:symfony-dev'
+alias php-fpm-service='docker run -v "$PWD":/var/www/app --rm gpupo/container-orchestration:php-dev'
 alias php-bash='php-fpm-service bash'
 
 #project ONLY
 # alias project-php-fpm-service='dc run --rm php-fpm'
 alias project-php-fpm-service='dc exec php-fpm'
-alias project-php='project-php-fpm-service php'
-alias project-console='project-php bin/console'
 alias project-make='project-php-fpm-service make'
 alias project-bash='project-php-fpm-service bash'
-alias project-simple-phpunit='project-php-fpm-service vendor/bin/simple-phpunit'
-alias project-phpunit='project-php-fpm-service vendor/bin/phpunit'
-alias project-composer='project-php-fpm-service composer'
 
 #Git functions
 __gflow_helper_print_with_color()
