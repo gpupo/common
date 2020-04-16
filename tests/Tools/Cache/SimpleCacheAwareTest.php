@@ -19,7 +19,8 @@ namespace Gpupo\Common\Tests\Tools\Decorated;
 
 use Gpupo\Common\Tests\TestCaseAbstract;
 use Gpupo\Common\Tools\Cache\SimpleCacheAwareTrait;
-use Symfony\Component\Cache\Simple\FilesystemCache;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Contracts\Cache\ItemInterface;
 
 /**
  * @coversNothing
@@ -30,9 +31,9 @@ class SimpleCacheAwareTest extends TestCaseAbstract
 
     public function testHaveAInstance()
     {
-        $cache = new FilesystemCache();
+        $cache = new FilesystemAdapter();
         $this->initSimpleCache($cache);
-        $this->assertInstanceOf(FilesystemCache::class, $this->getSimpleCache());
+        $this->assertInstanceOf(FilesystemAdapter::class, $this->getSimpleCache());
 
         return $this->getSimpleCache();
     }
@@ -40,38 +41,49 @@ class SimpleCacheAwareTest extends TestCaseAbstract
     /**
      * @depends testHaveAInstance
      */
-    public function testOperations(FilesystemCache $cache)
+    public function testOperations(FilesystemAdapter $cache)
     {
         $this->initSimpleCache($cache);
+        $adapter = $this->getSimpleCache();
 
-        // save a new item in the cache
-        $this->assertTrue($this->getSimpleCache()->set('stats.products_count', 4711));
+        $item = $adapter->getItem('stats.products_count');
+        $this->assertInstanceOf(ItemInterface::class, $item);
+        // save a new item in FilesystemCachethe cache
+        $item->set(4711);
+        $adapter->save($item);
 
         // remove the cache key
-        $this->getSimpleCache()->delete('stats.products_count');
-        $this->assertFalse($this->getSimpleCache()->has('stats.products_count'));
+        $adapter->deleteItem('stats.products_count');
+        $item = $adapter->getItem('stats.products_count');
+        $this->assertFalse($item->isHit());
 
         // or set it with a custom ttl
-        $this->assertTrue($this->getSimpleCache()->set('stats.products_count', 4711, 3600));
+        $item->expiresAfter(3600);
+        $item->set(4711);
+        $adapter->save($item);
 
-        $this->assertFalse($this->getSimpleCache()->has('stats.products_not_exist'));
+        $item = $adapter->getItem('stats.products_inexistent');
+        $this->assertFalse($item->isHit());
 
         // retrieve the value stored by the item
-        $this->assertSame(4711, $this->getSimpleCache()->get('stats.products_count'));
+        $item = $adapter->getItem('stats.products_count');
+        $this->assertTrue($item->isHit());
+        $this->assertSame(4711, $item->get());
 
         // or specify a default value, if the key doesn't exist
-        $this->assertSame('foo', $this->getSimpleCache()->get('stats.products_not_exist', 'foo'));
+        $this->assertSame('foo', $adapter->get('stats.products_not_exist', function (ItemInterface $item) {
+            return 'foo';
+        }));
 
         // clear *all* cache keys
-        $this->getSimpleCache()->clear();
-
-        $this->assertFalse($this->getSimpleCache()->has('stats.products_count'));
+        $adapter->clear();
+        $this->assertFalse($adapter->hasItem('stats.products_count'));
     }
 
     /**
      * @depends testHaveAInstance
      */
-    public function testHasSimpleCache(FilesystemCache $cache)
+    public function testHasSimpleCache(FilesystemAdapter $cache)
     {
         $this->assertFalse($this->hasSimpleCache());
         $this->initSimpleCache($cache);
@@ -81,7 +93,7 @@ class SimpleCacheAwareTest extends TestCaseAbstract
     /**
      * @depends testHaveAInstance
      */
-    public function testSimpleCacheGenerateId(FilesystemCache $cache)
+    public function testSimpleCacheGenerateId(FilesystemAdapter $cache)
     {
         $this->initSimpleCache($cache);
         $this->assertSame('0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33', $this->simpleCacheGenerateId('foo'));

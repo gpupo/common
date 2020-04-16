@@ -12,6 +12,9 @@ shopt -s expand_aliases
 
 ## System
 alias pip='pip3'
+alias chown-recursive='chown -R $USER:$(groups | cut -d " " -f1)'
+alias chown-recursive-sudo='sudo chown -R $USER:$(groups | cut -d " " -f1)'
+
 
 ## Git
 alias gs='git status'
@@ -21,6 +24,9 @@ alias gc='git commit -am'
 
 ## Docker
 alias dc='docker-compose'
+alias dc-up='docker-compose up -d'
+alias dc-down='docker-compose down'
+alias dc-recreate='docker-compose down; docker-compose up -dV'
 alias docker-stop-all='docker stop $(docker ps -a -q)'
 alias docker-remove-all='docker rmi $(docker images -a -q)'
 
@@ -163,13 +169,17 @@ gflow-squash-to-master() {
   git push origin master:master;
 }
 
+gflow-tag-delete-everywhere() {
+  git tag -d $1 && git push origin :refs/tags/$1;
+}
+
 gflow-setPS1() {
-  export PS1='\[\033[0;32m\]\u:\[\033[36m\]\w\[\033[0m\]`__gflow_helper_get_branch_name_for_directory`\$ ';
+  export PS1='\[\033[0;32m\]\u:\[\033[36m\]`_gflow_helper_pwd_shortener`\[\033[0m\]`__gflow_helper_get_branch_name_for_directory`\$ ';
 }
 
 __gflow_helper_get_branch_name_for_directory() {
   if [ -d .git ]; then
-    printf " ($(__gflow_helper_print_with_color `__gflow_helper_get_branch_name` 92))"
+    printf "($(__gflow_helper_print_with_color `__gflow_helper_get_branch_name` 92))"
   fi;
 }
 
@@ -177,4 +187,22 @@ __gflow_helper_get_branch_name() {
   if [ -d .git ]; then
     git branch | grep '\*' | awk '{print $2}'
   fi;
+}
+
+_gflow_helper_pwd_shortener() {
+    # How many characters of the $PWD should be kept
+    local pwdmaxlen=20
+    # Indicate that there has been dir truncation
+    local trunc_symbol=".."
+    local dir=${PWD##*/}
+    pwdmaxlen=$(( ( pwdmaxlen < ${#dir} ) ? ${#dir} : pwdmaxlen ))
+    NEW_PWD=${PWD/#$HOME/\~}
+    local pwdoffset=$(( ${#NEW_PWD} - pwdmaxlen ))
+    if [ ${pwdoffset} -gt "0" ]
+    then
+        NEW_PWD=${NEW_PWD:$pwdoffset:$pwdmaxlen}
+        NEW_PWD=${trunc_symbol}/${NEW_PWD#*/}
+    fi
+
+    echo $NEW_PWD;
 }

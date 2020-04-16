@@ -19,11 +19,10 @@ namespace Gpupo\Common\Tests\Tools;
 
 use DateTime;
 use Gpupo\Common\Entity\Collection;
+use Gpupo\Common\Tests\Objects\HasMagicCall;
 use Gpupo\Common\Tests\TestCaseAbstract;
 use Gpupo\Common\Tools\Datetime\Holidays;
 use Gpupo\Common\Tools\Reflected;
-use Gpupo\Common\Entity\ArrayCollection;
-use Gpupo\Common\Tests\Objects\HasMagicCall;
 
 /**
  * @coversNothing

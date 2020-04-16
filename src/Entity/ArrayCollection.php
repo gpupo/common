@@ -38,8 +38,6 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 
     /**
      * Initializes a new ArrayCollection.
-     *
-     * @param array $elements
      */
     public function __construct(array $elements = [])
     {
@@ -88,7 +86,7 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 
     public function remove($key)
     {
-        if (!isset($this->elements[$key]) && !array_key_exists($key, $this->elements)) {
+        if (!isset($this->elements[$key]) && !\array_key_exists($key, $this->elements)) {
             return;
         }
 
@@ -162,7 +160,7 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
             return false;
         }
 
-        return isset($this->elements[$key]) || array_key_exists($key, $this->elements);
+        return isset($this->elements[$key]) || \array_key_exists($key, $this->elements);
     }
 
     public function contains($element)

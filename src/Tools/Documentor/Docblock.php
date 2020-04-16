@@ -87,7 +87,7 @@ class Docblock
 
     public function generate(array $data = [], $json = null)
     {
-        if (array_key_exists('schema', $data) && \is_array($data['schema'])) {
+        if (\array_key_exists('schema', $data) && \is_array($data['schema'])) {
             foreach ($data['schema'] as $item) {
                 $case = $this->camelCase($item['name']);
                 $getter = 'get'.$case;
@@ -111,7 +111,7 @@ class Docblock
                     'setter' => $setter,
                     'return' => $item['return'],
                     'fixture' => $fixture,
-                    'summary' => array_key_exists('summary', $item) ? $item['summary'] : '',
+                    'summary' => \array_key_exists('summary', $item) ? $item['summary'] : '',
                     'name' => $item['name'],
                     'type' => $item['type'],
                     'case' => $case,
@@ -152,7 +152,7 @@ class Docblock
         $conf = $data['config']['namespace'];
         $mode = 'default';
 
-        if (array_key_exists('mode', $conf)) {
+        if (\array_key_exists('mode', $conf)) {
             $mode = $conf['mode'];
         }
 
@@ -189,7 +189,7 @@ class Docblock
 
         $data['content'] = $this->render($data, 'testCase');
 
-        if (array_key_exists('testcase', $conf)) {
+        if (\array_key_exists('testcase', $conf)) {
             $tc = $conf['testcase'];
         }
 
