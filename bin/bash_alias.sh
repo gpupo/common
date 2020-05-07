@@ -102,8 +102,7 @@ gflow-push-develop() {
 }
 
 gflow-sync() {
-  gflow-pull-develop;
-  gflow-push-develop;
+  test -d .git && gflow-pull-develop && gflow-push-develop;
 }
 
 gflow-push-to() {
