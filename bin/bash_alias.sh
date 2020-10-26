@@ -21,6 +21,7 @@ alias gs='git status'
 alias gd='git diff'
 alias gl='git log'
 alias gc='git commit -am'
+alias gt='git tag | sort -n'
 
 ## Docker
 alias dc='docker-compose'
