@@ -35,6 +35,13 @@ class TableTraitTest extends TestCaseAbstract
         (new HasTableTrait())->displayTableResults(new ConsoleOutput(), []);
     }
 
+    public function testDisplayTableResultsFailWithString()
+    {
+        $this->expectException(\TypeError::class);
+
+        (new HasTableTrait())->displayTableResults(new ConsoleOutput(), '');
+    }
+
     public function testDisplayTableResultsSuccessWithArray()
     {        
         $this->performTableTest($this->dataGenerator());
@@ -45,7 +52,17 @@ class TableTraitTest extends TestCaseAbstract
         $this->performTableTest(new Collection($this->dataGenerator()));
     }
 
-    protected function performTableTest($data): void
+    public function testDisplayTableResultsSuccessWithCollectionOfCollections()
+    {
+        $data = new Collection();
+        foreach($this->dataGenerator() as $row) {
+            $data->add(new Collection($row));
+        }
+
+        $this->performTableTest($data);
+    }
+
+    protected function performTableTest($data): string
     {
         $output = new TrimmedBufferOutput(999);
         (new HasTableTrait())->displayTableResults($output, $data);
@@ -55,6 +72,8 @@ class TableTraitTest extends TestCaseAbstract
         $this->assertStringContainsString('| dog  |', $tableText);   
         $this->assertStringContainsString('| cat  |', $tableText);   
         $this->assertStringContainsString('| bird |', $tableText);   
+
+        return $tableText;
     }
     protected function dataGenerator(): array {
 
