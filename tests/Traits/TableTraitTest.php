@@ -35,12 +35,21 @@ class TableTraitTest extends TestCaseAbstract
     }
 
     public function testDisplayTableResultsSuccessWithArray()
-    {
-        $output = new TrimmedBufferOutput(999);
-        (new HasTableTrait())->displayTableResults($output, $this->dataGenerator());
-        $this->assertStringContainsString('| dog  |', $output->fetch());
+    {        
+        $this->performTableTest($this->dataGenerator());
     }
 
+    public function testDisplayTableResultsSuccessWithCollection()
+    {
+        $this->performTableTest($this->dataGenerator());
+    }
+
+    protected function performTableTest($data): void
+    {
+        $output = new TrimmedBufferOutput(999);
+        (new HasTableTrait())->displayTableResults($output, $data);
+        $this->assertStringContainsString('| dog  |', $output->fetch());   
+    }
     protected function dataGenerator(): array {
 
         $data = [];
