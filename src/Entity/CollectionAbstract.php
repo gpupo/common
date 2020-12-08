@@ -49,7 +49,7 @@ abstract class CollectionAbstract extends ArrayCollection
         $list = parent::toArray();
 
         foreach ($list as $key => $value) {
-            if ($value instanceof self || $value instanceof CollectionInterface || method_exists($value, 'toArray')) {
+            if ($value instanceof self || $value instanceof CollectionInterface || (\is_object($value) && method_exists($value, 'toArray'))) {
                 $list[$key] = $value->toArray();
             }
         }

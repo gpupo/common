@@ -21,6 +21,7 @@ use Gpupo\Common\Tests\Objects\HasTableTrait;
 use Gpupo\Common\Tests\TestCaseAbstract;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\TrimmedBufferOutput;
+use Gpupo\Common\Entity\Collection;
 
 /**
  * @coversNothing
@@ -41,14 +42,19 @@ class TableTraitTest extends TestCaseAbstract
 
     public function testDisplayTableResultsSuccessWithCollection()
     {
-        $this->performTableTest($this->dataGenerator());
+        $this->performTableTest(new Collection($this->dataGenerator()));
     }
 
     protected function performTableTest($data): void
     {
         $output = new TrimmedBufferOutput(999);
         (new HasTableTrait())->displayTableResults($output, $data);
-        $this->assertStringContainsString('| dog  |', $output->fetch());   
+        $tableText = $output->fetch();
+        $this->assertStringContainsString('| id | name |', $tableText);   
+        $this->assertStringContainsString('---- ------', $tableText);   
+        $this->assertStringContainsString('| dog  |', $tableText);   
+        $this->assertStringContainsString('| cat  |', $tableText);   
+        $this->assertStringContainsString('| bird |', $tableText);   
     }
     protected function dataGenerator(): array {
 
