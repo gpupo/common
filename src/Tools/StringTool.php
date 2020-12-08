@@ -70,4 +70,28 @@ class StringTool
     {
         return str_replace('\\', '_', $string);
     }
+
+    public static function slugify(string $source): string
+    {
+        $slug = \transliterator_transliterate('Any-Latin; NFD; [:Nonspacing Mark:] Remove; NFC; [:Punctuation:] Remove; Lower();', $source);
+
+        if (false === $slug) {
+            throw new \InvalidArgumentException(sprintf('Incorrect source string "%s".', $source));
+        }
+
+        $slug = \strtr($slug, [' ' => '-', '_' => '-']);
+        $slug = \preg_replace('#^\-|[^a-z0-9\-]|\-$#', '', $slug);
+
+        if (false === \is_string($slug)) {
+            throw new \RuntimeException(sprintf('Can not remove special chars from "%s".', $source));
+        }
+
+        $slug = \preg_replace('#(\-+)#', '-', $slug);
+
+        if (false === \is_string($slug)) {
+            throw new \RuntimeException(sprintf('Can not remove "-" duplicates "%s".', $source));
+        }
+
+        return $slug;
+    }
 }

@@ -26,17 +26,36 @@ use Gpupo\Common\Tools\StringTool;
 class StringToolTest extends TestCaseAbstract
 {
     /**
-     * @dataProvider dataProviderCases
-     *
-     * @param mixed $camelCase
-     * @param mixed $snakeCase
+     * @dataProvider dataProviderCasesToConvert
      */
-    public function testConverteCamelCaseParaSnakeCase($camelCase, $snakeCase)
+    public function testConverteCamelCaseParaSnakeCase(string $camelCase, string $snakeCase): void
     {
         $this->assertSame($snakeCase, StringTool::camelCaseToSnakeCase($camelCase));
     }
 
-    public function dataProviderCases()
+    /**
+     * @dataProvider dataProviderStringSlug
+     */
+    public function testSlugify(string $string, string $expected): void
+    {
+        $this->assertSame($expected, StringTool::slugify($string));
+    }
+
+    public function dataProviderStringSlug(): array
+    {
+        return [
+            [
+                'Foo Bar Zeta Jones',
+                'foo-bar-zeta-jones',
+            ],
+            [
+                'JOão ? da Sil@',
+                'joao-da-sil',
+            ],
+
+        ];
+    }
+    public function dataProviderCasesToConvert(): array
     {
         return [
             ['FooBar', 'foo_bar'],
