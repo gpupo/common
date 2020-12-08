@@ -3,7 +3,6 @@ language: php
 os:
   - linux
 php:
-  - 7.4
   - nightly
 jobs:
   allow_failures:
