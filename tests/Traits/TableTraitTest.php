@@ -20,6 +20,7 @@ namespace Gpupo\Common\Tests\Traits;
 use Gpupo\Common\Tests\Objects\HasTableTrait;
 use Gpupo\Common\Tests\TestCaseAbstract;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Output\TrimmedBufferOutput;
 
 /**
  * @coversNothing
@@ -31,5 +32,26 @@ class TableTraitTest extends TestCaseAbstract
         $this->expectException(\Exception::class);
 
         (new HasTableTrait())->displayTableResults(new ConsoleOutput(), []);
+    }
+
+    public function testDisplayTableResultsSuccessWithArray()
+    {
+        $output = new TrimmedBufferOutput(999);
+        (new HasTableTrait())->displayTableResults($output, $this->dataGenerator());
+        $this->assertStringContainsString('| dog  |', $output->fetch());
+    }
+
+    protected function dataGenerator(): array {
+
+        $data = [];
+        foreach(['dog', 'cat', 'bird'] as $animal) {
+            $data[] = [
+                'id'    => rand(9, 99),
+                'name'  => $animal,
+            ];
+        }
+
+        return $data;
+        
     }
 }

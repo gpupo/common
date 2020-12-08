@@ -68,7 +68,7 @@ trait TableTrait
                 $value = str_replace(
                     ['["', '"]', '{"', '"', '}'],
                     [],
-                    $value
+                    (string) $value
                 );
 
                 if (empty($value)) {
