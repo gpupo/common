@@ -26,14 +26,10 @@ use Symfony\Component\Console\Output\ConsoleOutput;
  */
 class TableTraitTest extends TestCaseAbstract
 {
-    public function testDisplayTableResults()
+    public function testDisplayTableResultsFailWithEmptyTable()
     {
-        $hasTableTraitObject = new HasTableTrait();
+        $this->expectException(\Exception::class);
 
-        $object = [
-
-        ];
-
-        echo $hasTableTraitObject->displayTableResults(new ConsoleOutput(), $object);
+        (new HasTableTrait())->displayTableResults(new ConsoleOutput(), []);
     }
 }

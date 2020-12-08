@@ -26,10 +26,10 @@ trait TableTrait
 {
     public function displayTableResults(
         OutputInterface $output,
-        $object,
+        array|object $list,
         array $keysOnly = [],
-        $maxWidth = 35,
-        $count = false
+        int $maxWidth = 35,
+        bool $count = false
     ) {
         $table = new Table($output);
         $style = new TableStyle();
@@ -38,10 +38,8 @@ trait TableTrait
             ->setDefaultCrossingChar(' ');
         $table->setStyle($style);
 
-        if ($object instanceof CollectionAbstract || method_exists($object, 'toArray')) {
-            $list = $object->toArray();
-        } else {
-            $list = $object;
+        if (!is_array($list) && ($list instanceof CollectionAbstract || method_exists($list, 'toArray'))) {
+            $list = $list->toArray();
         }
 
         $i = 0;
