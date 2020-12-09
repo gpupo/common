@@ -35,16 +35,16 @@ alias docker-remove-all='docker rmi $(docker images -a -q)'
 alias g-composer='php -d memory_limit=-1 `which composer`';
 
 g-composer-require() {
-  php -d memory_limit=-1 `which composer` require $1 --no-progress --no-scripts --ignore-platform-reqs;
+  php -d memory_limit=-1 `which composer` require $1 --no-progress --no-scripts;
 }
 
 g-composer-install() {
-  php -d memory_limit=-1 `which composer` install --no-progress --no-scripts --ignore-platform-reqs;
+  php -d memory_limit=-1 `which composer` install --no-progress --no-scripts;
 }
 
 g-composer-update() {
   test -f composer.lock && rm -f composer.lock;
-  php -d memory_limit=-1 `which composer` update --no-progress --no-scripts --ignore-platform-reqs;
+  php -d memory_limit=-1 `which composer` update --no-progress --no-scripts;
 }
 
 ## Docker services
