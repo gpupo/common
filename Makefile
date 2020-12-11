@@ -1,18 +1,18 @@
-#!/usr/bin/make
-# This file is part of gpupo/common
-# Created by Gilmar Pupo <contact@gpupo.com>
-# For the full copyright and license information, please view the LICENSE
-# file that was distributed with this source code.
-# For more information, see <https://opensource.gpupo.com/>.
-
 # This file has settings for the Make of this project.
 # Targets must exist in the bin/make-file/targets/ directory.
 
 .SILENT:
 CURRENT_DIR := $(shell pwd)
-include bin/make-file/variables.mk
-include bin/make-file/define.mk
-include bin/make-file/help.mk
 
-include bin/make-file/functions/*.mk
-include bin/make-file/targets/*.mk
+## Install vendor
+install:
+	COMPOSER_MEMORY_LIMIT=9G composer install --prefer-dist --no-scripts
+
+## Install vendor
+install@force:
+	test -f composer.lock && rm -f composer.lock
+	COMPOSER_MEMORY_LIMIT=9G composer install --prefer-dist --no-scripts --ignore-platform-req True
+
+update:
+	test -f composer.lock && rm composer.lock
+	COMPOSER_MEMORY_LIMIT=9G composer update --prefer-dist --no-scripts
