@@ -34,7 +34,7 @@
         }
     },
     "require-dev": {
-        "gpupo/common-dev": "^5.3||dev-master"
+        "gpupo/common-dev": "^5.3||dev-main"
     },
     "bin": ["bin/developer-toolbox"],
     "config": {

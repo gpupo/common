@@ -1,6 +1,6 @@
 Common tools for PHP components
 
-[![Build Status](https://secure.travis-ci.org/gpupo/common.png?branch=master)](http://travis-ci.org/gpupo/common)
+[![Build Status](https://secure.travis-ci.org/gpupo/common.png?branch=main)](http://travis-ci.org/gpupo/common)
 [![Actions Status](https://github.com/gpupo/common/workflows/CI/badge.svg)](https://github.com/gpupo/common/actions)
 
 
