@@ -27,14 +27,12 @@ trait DoctrineManagerAwareTrait
         'DocumentManager' => false,
     ];
 
-    protected function _doctrine_service_set($key, $value): void
+    protected function _doctrine_service_set(string $key, object|null $value): void
     {
-        if (null !== $value) {
-            $this->_doctrine_services[$key] = $value;
-        }
+        $this->_doctrine_services[$key] = $value;
     }
 
-    protected function _doctrine_service_get($key)
+    protected function _doctrine_service_get(string $key)
     {
         return $this->_doctrine_services[$key];
     }
@@ -45,9 +43,11 @@ trait DoctrineManagerAwareTrait
         $this->_doctrine_service_set('DocumentManager', $documentManager);
     }
 
-    protected function getDoctrineEntityManager(): EntityManagerInterface
+    protected function getDoctrineEntityManager(): EntityManagerInterface|null
     {
-        return $this->_doctrine_service_get('EntityManagerInterface');
+        $manager = $this->_doctrine_service_get('EntityManagerInterface');
+
+        return (false !== $manager) ? $manager : null;
     }
 
     protected function closeDoctrine(): void
@@ -61,12 +61,6 @@ trait DoctrineManagerAwareTrait
     {
         $manager = $this->_doctrine_service_get('DocumentManager');
 
-        if (false !== $manager) {
-            if (!$manager instanceof ObjectManager) {
-                throw new \RuntimeException(sprinqtf("getDoctrineObjectManager requires a DocumentManager but %s instance given.", $manager::class));
-            }
-            
-            return $manager;
-        }
+        return (false !== $manager) ? $manager : null;
     }
 }
