@@ -26,19 +26,8 @@ class Reflected
     const STATE_CLOSED = 0;
     const STATE_OPEN = 1;
 
-    protected $_object;
-
-    private $_state;
-
-    public function __construct($object)
+    public function __construct(protected object $_object, private int $_state = 1)
     {
-        if (!\is_object($object)) {
-            throw new InvalidArgumentException('Argument must be an object');
-        }
-
-        $this->_state = $this::STATE_OPEN;
-
-        $this->_object = $object;
     }
 
     public function __call($method, $args)

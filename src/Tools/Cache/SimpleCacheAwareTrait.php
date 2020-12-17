@@ -49,7 +49,7 @@ trait SimpleCacheAwareTrait
         return $this->setSimpleCache($cache);
     }
 
-    public function simpleCacheGenerateId($key, $prefix = null): string
+    public function simpleCacheGenerateId(string|array $key, string|null $prefix = null): string
     {
         if (\is_array($key)) {
             $sha1 = sha1(serialize($key));

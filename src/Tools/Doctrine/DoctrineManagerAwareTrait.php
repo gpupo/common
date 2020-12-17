@@ -57,13 +57,13 @@ trait DoctrineManagerAwareTrait
         $this->_doctrine_service_set('DocumentManager', false);
     }
 
-    protected function getDoctrineObjectManager():ObjectManager|null
+    protected function getDoctrineObjectManager(): ObjectManager|null
     {
         $manager = $this->_doctrine_service_get('DocumentManager');
 
         if (false !== $manager) {
             if (!$manager instanceof ObjectManager) {
-                throw new \RuntimeException(sprintf("getDoctrineObjectManager requires a DocumentManager but %s instance given.", $manager::class));
+                throw new \RuntimeException(sprinqtf("getDoctrineObjectManager requires a DocumentManager but %s instance given.", $manager::class));
             }
             
             return $manager;
