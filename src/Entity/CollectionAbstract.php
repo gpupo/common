@@ -3,16 +3,9 @@
 declare(strict_types=1);
 
 /*
- * This file is part of gpupo/common
- * Created by Gilmar Pupo <contact@gpupo.com>
- * For the information of copyright and license you should read the file
- * LICENSE which is distributed with this source code.
- * Para a informação dos direitos autorais e de licença você deve ler o arquivo
- * LICENSE que é distribuído com este código-fonte.
- * Para obtener la información de los derechos de autor y la licencia debe leer
- * el archivo LICENSE que se distribuye con el código fuente.
- * For more information, see <https://opensource.gpupo.com/>.
- *
+ * This file is part of gpupo/common created by Gilmar Pupo <contact@gpupo.com>
+ * For the information of copyright and license you should read the file LICENSE which is
+ * distributed with this source code. For more information, see <https://opensource.gpupo.com/>
  */
 
 namespace Gpupo\Common\Entity;
@@ -84,21 +77,23 @@ abstract class CollectionAbstract extends ArrayCollection
         }
 
         $encoded = json_encode($data, $options, $depth);
-        if ($encoded === false && $data && json_last_error() == JSON_ERROR_UTF8) {
+        if (false === $encoded && $data && JSON_ERROR_UTF8 === json_last_error()) {
             $encoded = json_encode($this->utf8Resolve($data), $options, $depth);
         }
 
         return $encoded;
     }
 
-    public function utf8Resolve($mixed) {
-        if (is_array($mixed)) {
+    public function utf8Resolve($mixed)
+    {
+        if (\is_array($mixed)) {
             foreach ($mixed as $key => $value) {
                 $mixed[$key] = $this->utf8Resolve($value);
             }
-        } elseif (is_string($mixed)) {
-            return mb_convert_encoding($mixed, "UTF-8", "UTF-8");
+        } elseif (\is_string($mixed)) {
+            return mb_convert_encoding($mixed, 'UTF-8', 'UTF-8');
         }
+
         return $mixed;
     }
 

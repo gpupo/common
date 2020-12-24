@@ -3,25 +3,18 @@
 declare(strict_types=1);
 
 /*
- * This file is part of gpupo/common
- * Created by Gilmar Pupo <contact@gpupo.com>
- * For the information of copyright and license you should read the file
- * LICENSE which is distributed with this source code.
- * Para a informação dos direitos autorais e de licença você deve ler o arquivo
- * LICENSE que é distribuído com este código-fonte.
- * Para obtener la información de los derechos de autor y la licencia debe leer
- * el archivo LICENSE que se distribuye con el código fuente.
- * For more information, see <https://opensource.gpupo.com/>.
- *
+ * This file is part of gpupo/common created by Gilmar Pupo <contact@gpupo.com>
+ * For the information of copyright and license you should read the file LICENSE which is
+ * distributed with this source code. For more information, see <https://opensource.gpupo.com/>
  */
 
 namespace Gpupo\Common\Tests\Traits;
 
+use Gpupo\Common\Entity\Collection;
 use Gpupo\Common\Tests\Objects\HasTableTrait;
 use Gpupo\Common\Tests\TestCaseAbstract;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\TrimmedBufferOutput;
-use Gpupo\Common\Entity\Collection;
 
 /**
  * @coversNothing
@@ -43,7 +36,7 @@ class TableTraitTest extends TestCaseAbstract
     }
 
     public function testDisplayTableResultsSuccessWithArray()
-    {        
+    {
         $this->performTableTest($this->dataGenerator());
     }
 
@@ -55,7 +48,7 @@ class TableTraitTest extends TestCaseAbstract
     public function testDisplayTableResultsSuccessWithCollectionOfCollections()
     {
         $data = new Collection();
-        foreach($this->dataGenerator() as $row) {
+        foreach ($this->dataGenerator() as $row) {
             $data->add(new Collection($row));
         }
 
@@ -67,25 +60,25 @@ class TableTraitTest extends TestCaseAbstract
         $output = new TrimmedBufferOutput(999);
         (new HasTableTrait())->displayTableResults($output, $data);
         $tableText = $output->fetch();
-        $this->assertStringContainsString('| id | name |', $tableText);   
-        $this->assertStringContainsString('---- ------', $tableText);   
-        $this->assertStringContainsString('| dog  |', $tableText);   
-        $this->assertStringContainsString('| cat  |', $tableText);   
-        $this->assertStringContainsString('| bird |', $tableText);   
+        $this->assertStringContainsString('| id | name |', $tableText);
+        $this->assertStringContainsString('---- ------', $tableText);
+        $this->assertStringContainsString('| dog  |', $tableText);
+        $this->assertStringContainsString('| cat  |', $tableText);
+        $this->assertStringContainsString('| bird |', $tableText);
 
         return $tableText;
     }
-    protected function dataGenerator(): array {
 
+    protected function dataGenerator(): array
+    {
         $data = [];
-        foreach(['dog', 'cat', 'bird'] as $animal) {
+        foreach (['dog', 'cat', 'bird'] as $animal) {
             $data[] = [
-                'id'    => rand(9, 99),
-                'name'  => $animal,
+                'id' => rand(9, 99),
+                'name' => $animal,
             ];
         }
 
         return $data;
-        
     }
 }

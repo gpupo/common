@@ -3,16 +3,9 @@
 declare(strict_types=1);
 
 /*
- * This file is part of gpupo/common
- * Created by Gilmar Pupo <contact@gpupo.com>
- * For the information of copyright and license you should read the file
- * LICENSE which is distributed with this source code.
- * Para a informação dos direitos autorais e de licença você deve ler o arquivo
- * LICENSE que é distribuído com este código-fonte.
- * Para obtener la información de los derechos de autor y la licencia debe leer
- * el archivo LICENSE que se distribuye con el código fuente.
- * For more information, see <https://opensource.gpupo.com/>.
- *
+ * This file is part of gpupo/common created by Gilmar Pupo <contact@gpupo.com>
+ * For the information of copyright and license you should read the file LICENSE which is
+ * distributed with this source code. For more information, see <https://opensource.gpupo.com/>
  */
 
 namespace Gpupo\Common\Traits;
@@ -29,12 +22,12 @@ trait PropertyAccessorsTrait
             return false;
         }
 
-        if (!property_exists(\get_called_class(), $property)) {
+        if (!property_exists(static::class, $property)) {
             if (null !== $defaultValue) {
                 return false;
             }
 
-            throw new \BadMethodCallException(sprintf('Property $%s not found in %s trying %s() in [%s] mode', $property, \get_called_class(), $method, $this->propertyNamingMode));
+            throw new \BadMethodCallException(sprintf('Property $%s not found in %s trying %s() in [%s] mode', $property, static::class, $method, $this->propertyNamingMode));
         }
 
         return true;
@@ -69,7 +62,7 @@ trait PropertyAccessorsTrait
     {
         $concreteGetter = StringTool::snakeCaseToCamelCase('get_'.$property);
 
-        if (method_exists(\get_called_class(), $concreteGetter)) {
+        if (method_exists(static::class, $concreteGetter)) {
             return $this->{$concreteGetter}();
         }
 
@@ -80,7 +73,7 @@ trait PropertyAccessorsTrait
     {
         $concreteSetter = StringTool::snakeCaseToCamelCase('set_'.$property);
 
-        if (method_exists(\get_called_class(), $concreteSetter)) {
+        if (method_exists(static::class, $concreteSetter)) {
             $this->{$concreteSetter}($value);
         } else {
             $this->__accessorPropertyValidate('__set', $property);
