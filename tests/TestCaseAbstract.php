@@ -10,10 +10,23 @@ declare(strict_types=1);
 
 namespace Gpupo\Common\Tests;
 
-use Gpupo\CommonDev\Traits\TestCaseTrait;
 use PHPUnit\Framework\TestCase;
 
 abstract class TestCaseAbstract extends TestCase
 {
-    use TestCaseTrait;
+    protected function getConstant($name, $default = false)
+    {
+        if (\defined($name)) {
+            return \constant($name);
+        }
+
+        return $default;
+    }
+
+    protected function hasConstant($name)
+    {
+        $value = $this->getConstant($name);
+
+        return empty($value) ? false : true;
+    }
 }

@@ -20,21 +20,18 @@ use IteratorAggregate;
  * Minimal/modified Based version of the object Doctrine\Common\Collections\ArrayCollection
  * For more information, see <http://www.doctrine-project.org>.
  */
-class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
+class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess, \Stringable
 {
-    /**
-     * An array containing the entries of this collection.
-     *
-     * @var array
-     */
-    private $elements = [];
-
     /**
      * Initializes a new ArrayCollection.
      */
-    public function __construct(array $elements = [])
+    public function __construct(
+        /**
+         * An array containing the entries of this collection.
+         */
+        private array $elements = []
+    )
     {
-        $this->elements = $elements;
     }
 
     /**
@@ -42,9 +39,10 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
      *
      * @return string
      */
-    public function __toString()
+    #[\Override]
+    public function __toString(): string
     {
-        return __CLASS__.'@'.spl_object_hash($this);
+        return self::class.'@'.spl_object_hash($this);
     }
 
     public function toArray()
@@ -104,31 +102,27 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 
     /**
      * Required by interface ArrayAccess.
-     *
-     * @param mixed $offset
      */
-    public function offsetExists($offset)
+    #[\Override]
+    public function offsetExists(mixed $offset)
     {
         return $this->containsKey($offset);
     }
 
     /**
      * Required by interface ArrayAccess.
-     *
-     * @param mixed $offset
      */
-    public function offsetGet($offset)
+    #[\Override]
+    public function offsetGet(mixed $offset)
     {
         return $this->get($offset);
     }
 
     /**
      * Required by interface ArrayAccess.
-     *
-     * @param mixed $offset
-     * @param mixed $value
      */
-    public function offsetSet($offset, $value): void
+    #[\Override]
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         if (!isset($offset)) {
             $this->add($value);
@@ -139,10 +133,9 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 
     /**
      * Required by interface ArrayAccess.
-     *
-     * @param mixed $offset
      */
-    public function offsetUnset($offset)
+    #[\Override]
+    public function offsetUnset(mixed $offset)
     {
         return $this->remove($offset);
     }
@@ -179,7 +172,7 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
 
     public function get($key)
     {
-        return isset($this->elements[$key]) ? $this->elements[$key] : null;
+        return $this->elements[$key] ?? null;
     }
 
     public function getKeys()
@@ -192,6 +185,7 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
         return array_values($this->elements);
     }
 
+    #[\Override]
     public function count()
     {
         return \count($this->elements);
@@ -217,6 +211,7 @@ class ArrayCollection implements Countable, IteratorAggregate, ArrayAccess
     /**
      * Required by interface IteratorAggregate.
      */
+    #[\Override]
     public function getIterator()
     {
         return new ArrayIterator($this->elements);

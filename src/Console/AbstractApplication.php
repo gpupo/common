@@ -37,6 +37,7 @@ abstract class AbstractApplication extends Application
         parent::__construct($name, $version);
     }
 
+    #[\Override]
     public function doRun(InputInterface $input, OutputInterface $output)
     {
         return parent::doRun($input, $output);
@@ -71,11 +72,8 @@ abstract class AbstractApplication extends Application
 
     /**
      * @deprecated since 4.6
-     *
-     * @param mixed $name
-     * @param mixed $description
      */
-    public function appendCommand($name, $description, array $definition = [])
+    public function appendCommand(mixed $name, mixed $description, array $definition = [])
     {
         return $this->register($name)
             ->setDescription($description)
@@ -91,10 +89,8 @@ abstract class AbstractApplication extends Application
 
     /**
      * @deprecated since 4.6. Use ResourceTrait instead
-     *
-     * @param mixed $filename
      */
-    public function jsonLoadFromFile($filename)
+    public function jsonLoadFromFile(mixed $filename)
     {
         if (!file_exists($filename)) {
             throw new Exception('Filename '.$filename.' not exists!');
@@ -122,10 +118,8 @@ abstract class AbstractApplication extends Application
 
     /**
      * @deprecated since 4.6
-     *
-     * @param mixed $parameter
      */
-    protected function processInputParameter($parameter, InputInterface $input, OutputInterface $output)
+    protected function processInputParameter(mixed $parameter, InputInterface $input, OutputInterface $output)
     {
         if ($input->getOption($parameter['key'])) {
             return $input->getOption($parameter['key']);
