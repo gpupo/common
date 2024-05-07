@@ -1,0 +1,323 @@
+repo_name: gpupo/common
+report_id: 0cad94a24de8bb009dd7b5c72c1388af
+version: 0.1
+repo_type: Public
+timestamp: '2024-05-07T12:34:59+00:00'
+requested_by: alisonvalente
+provider: github
+branch: main
+detected_tools_count: 25
+tools:
+- name: PHP
+  description: A popular general-purpose scripting language that is especially suited
+    to web development
+  website_url: http://www.php.net/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/991/hwUcGZ41_400x400.jpg
+  detection_source_url: https://github.com/gpupo/common
+  detection_source: Repo Metadata
+- name: Symfony
+  description: A PHP full-stack web framework
+  website_url: http://symfony.com/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/1197/logosf_positif_03_icon.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Bruno Correa
+  last_updated_on: 2024-04-10 17:15:45.000000000 Z
+- name: Twig
+  description: A flexible, fast, and secure template engine
+  website_url: https://twig.symfony.com/
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/1642/default_3debd3a9a6d757c011130c7a9626e7c3bd8be945.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Gilmar Pupo
+  last_updated_on: 2014-10-23 12:12:54.000000000 Z
+- name: PHP-FPM
+  description: An alternative FastCGI daemon for PHP
+  website_url: http://php-fpm.org/
+  open_source: false
+  hosted_saas: false
+  category: Data Stores
+  sub_category: Background Processing
+  image_url: https://img.stackshare.io/no-img-open-source.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/docker-compose.yaml
+  detection_source: docker-compose.yaml
+  last_updated_by: Gilmar Pupo
+  last_updated_on: 2018-06-18 17:22:53.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/gpupo/common
+  detection_source: Repo Metadata
+- name: GitHub Actions
+  description: Automate your workflow from idea to production
+  website_url: https://github.com/features/actions
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Continuous Integration
+  image_url: https://img.stackshare.io/service/11563/actions.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/.github/workflows/php.yml
+  detection_source: ".github/workflows/php.yml"
+  last_updated_by: Gilmar Pupo
+  last_updated_on: 2020-12-11 20:46:32.000000000 Z
+- name: PHPUnit
+  description: Testing framework for PHP
+  website_url: https://phpunit.de/
+  version: '8.5'
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/1616/1_WsEnddd5Y4EgEHsT054kUQ.jpeg
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Gilmar Pupo
+  last_updated_on: 2014-10-23 12:12:54.000000000 Z
+- name: Travis CI
+  description: A hosted continuous integration service for open source and private
+    projects
+  website_url: http://travis-ci.com/
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Continuous Integration
+  image_url: https://img.stackshare.io/service/460/Lu6cGu0z_400x400.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/.travis.yml
+  detection_source: ".travis.yml"
+  last_updated_by: Gilmar Pupo
+  last_updated_on: 2014-10-23 12:12:54.000000000 Z
+- name: Monolog
+  website_url: https://github.com/Seldaek/monolog
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/9170/183678.jpeg
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Gilmar Pupo
+  last_updated_on: 2019-12-12 17:31:40.000000000 Z
+- name: Shell
+  description: A shell is a text-based terminal, used for manipulating programs and
+    files. Shell scripts typically manage program execution.
+  website_url: https://en.wikipedia.org/wiki/Shell_script
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source_url: https://github.com/gpupo/common
+  detection_source: Repo Metadata
+- name: doctrine/orm
+  description: Object-Relational-Mapper for PHP
+  package_url: https://packagist.org/doctrine/orm
+  version: '2.8'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Gilmar Pupo
+  last_updated_on: 2020-12-08 19:22:58.000000000 Z
+- name: doctrine/persistence
+  description: The Doctrine Persistence project is a set of shared interfaces and
+    functionality that the different Doctrine object mappers share
+  package_url: https://packagist.org/doctrine/persistence
+  version: '2.1'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Gilmar Pupo
+  last_updated_on: 2020-12-08 19:22:58.000000000 Z
+- name: monolog/monolog
+  description: Sends your logs to files
+  package_url: https://packagist.org/monolog/monolog
+  version: '2.0'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Gilmar Pupo
+  last_updated_on: 2019-12-12 17:31:40.000000000 Z
+- name: phpdocumentor/reflection-docblock
+  description: With this component
+  package_url: https://packagist.org/phpdocumentor/reflection-docblock
+  version: '5.2'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Bruno Correa
+  last_updated_on: 2024-04-10 17:15:45.000000000 Z
+- name: phpunit/phpunit
+  description: The PHP Unit Testing framework
+  package_url: https://packagist.org/phpunit/phpunit
+  version: '8.5'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Bruno Correa
+  last_updated_on: 2024-04-10 17:15:45.000000000 Z
+- name: psr/simple-cache
+  description: Common interfaces for simple caching
+  package_url: https://packagist.org/psr/simple-cache
+  version: '1.0'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Bruno Correa
+  last_updated_on: 2024-04-10 17:15:45.000000000 Z
+- name: symfony/cache
+  description: Provides extended PSR-6, PSR-16
+  package_url: https://packagist.org/symfony/cache
+  version: '6.4'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Bruno Correa
+  last_updated_on: 2024-04-10 17:15:45.000000000 Z
+- name: symfony/console
+  description: Eases the creation of beautiful and testable command line interfaces
+  package_url: https://packagist.org/symfony/console
+  version: '6.4'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Bruno Correa
+  last_updated_on: 2024-04-10 17:15:45.000000000 Z
+- name: symfony/dotenv
+  description: Registers environment variables from a .env file
+  package_url: https://packagist.org/symfony/dotenv
+  version: '6.4'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Bruno Correa
+  last_updated_on: 2024-04-10 17:15:45.000000000 Z
+- name: symfony/filesystem
+  description: Provides basic utilities for the filesystem
+  package_url: https://packagist.org/symfony/filesystem
+  version: '6.4'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Bruno Correa
+  last_updated_on: 2024-04-10 17:15:45.000000000 Z
+- name: symfony/finder
+  description: Finds files and directories via an intuitive fluent interface
+  package_url: https://packagist.org/symfony/finder
+  version: '6.4'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Bruno Correa
+  last_updated_on: 2024-04-10 17:15:45.000000000 Z
+- name: symfony/lock
+  description: Creates and manages locks
+  package_url: https://packagist.org/symfony/lock
+  version: '6.4'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Bruno Correa
+  last_updated_on: 2024-04-10 17:15:45.000000000 Z
+- name: symfony/var-dumper
+  description: Provides mechanisms for walking through any arbitrary PHP variable
+  package_url: https://packagist.org/symfony/var-dumper
+  version: '6.4'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Bruno Correa
+  last_updated_on: 2024-04-10 17:15:45.000000000 Z
+- name: symfony/yaml
+  description: Loads and dumps YAML files
+  package_url: https://packagist.org/symfony/yaml
+  version: '6.4'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Bruno Correa
+  last_updated_on: 2024-04-10 17:15:45.000000000 Z
+- name: twig/twig
+  description: Twig
+  package_url: https://packagist.org/twig/twig
+  version: '2.10'
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/packagist/image.png
+  detection_source_url: https://github.com/gpupo/common/blob/main/composer.json
+  detection_source: composer.json
+  last_updated_by: Gilmar Pupo
+  last_updated_on: 2019-12-16 12:39:50.000000000 Z
